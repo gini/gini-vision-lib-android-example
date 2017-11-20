@@ -1,4 +1,8 @@
 apply plugin: 'com.android.application'
+apply from: rootProject.file('gradle/git_utils.gradle')
+
+def appVersionCode = gitTagCount() > 0 ? gitTagCount() : 1
+def appVersionName = "${gitDescribe() ?: '0.0.0'} (${appVersionCode})"
 
 android {
     compileSdkVersion 26
@@ -6,14 +10,23 @@ android {
         applicationId "net.gini.android.gvlexample"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode appVersionCode
+        versionName appVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        release {
+            storeFile file(releaseKeystoreFile)
+            storePassword releaseKeystorePassword
+            keyAlias releaseKeyAlias
+            keyPassword releaseKeyPassword
+        }
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
