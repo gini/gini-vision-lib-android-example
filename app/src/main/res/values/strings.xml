@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Gini Vision</string>
+    <string name="main_greeting">The Gini Vision Library for Android provides Activities and Fragments for capturing, reviewing and analyzing photos, images and pdfs of invoices and remittance slips.\n\nBy integrating this library in your application you can allow your users to easily take a picture of a document, review it and - by implementing the necessary callbacks - upload the document to the Gini API for analysis .</string>
+    <string name="main_title">Gini Vision Library for Android</string>
+    <string name="menu_info">Info</string>
+    <string name="start_gvl_button">Launch Gini Vision</string>
+    <string name="gini_vision_logo_description">Gini Vision Library Logo</string>
 </resources>

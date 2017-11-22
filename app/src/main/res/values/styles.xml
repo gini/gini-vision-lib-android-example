@@ -1,21 +1,50 @@
 <resources>
 
     <!-- Base styles to allow easy overriding for other resource qualifiers -->
-    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Gini.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
     </style>
 
-    <style name="Base.AppTheme.SplashActivity">
+    <style name="Gini.AppTheme.SplashActivity">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
+    <style name="Gini.Button.Colored" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Gini.ThemeOverlay.Button.Colored" parent="Base.ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/start_button</item>
+    </style>
+
+    <style name="Gini.TextAppearance.Title" parent="TextAppearance.AppCompat.Small">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_title</item>
+    </style>
+
+    <style name="Gini.TextAppearance.Body" parent="TextAppearance.AppCompat.Small">
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">@color/text_body</item>
+    </style>
+
     <!-- Styles referenced in the app -->
 
-    <style name="AppTheme" parent="Base.AppTheme"/>
-    <style name="AppTheme.SplashActivity" parent="Base.AppTheme.SplashActivity"/>
+    <style name="AppTheme" parent="Gini.AppTheme" />
+
+    <style name="AppTheme.SplashActivity" parent="Gini.AppTheme.SplashActivity" />
+
+    <style name="Button.Colored" parent="Gini.Button.Colored" />
+
+    <style name="TextAppearance.Title" parent="Gini.TextAppearance.Title" />
+
+    <style name="TextAppearance.Body" parent="Gini.TextAppearance.Body" />
+
+    <style name="ThemeOverlay.Button.Colored" parent="Gini.ThemeOverlay.Button.Colored"/>
 
 </resources>
