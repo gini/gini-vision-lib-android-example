@@ -5,4 +5,10 @@
     <string name="menu_info">Info</string>
     <string name="start_gvl_button">Launch Gini Vision</string>
     <string name="gini_vision_logo_description">Gini Vision Library Logo</string>
+    <string name="info_activity_title">Info</string>
+    <string name="info_versions_header">Versions</string>
+    <string name="info_links_header">Links</string>
+    <string name="info_links_changelog">Changelog</string>
+    <string name="info_links_documentation">Documentation</string>
+    <string name="info_links_github">GitHub</string>
 </resources>
