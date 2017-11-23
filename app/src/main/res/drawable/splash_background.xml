@@ -3,7 +3,7 @@
     <item
         android:drawable="@color/primary"/>
     <item>
-        <bitmap android:src="@drawable/ginivision_logo"
-            android:gravity="center" />
+        <bitmap android:src="@drawable/ginivision_logo_white"
+            android:gravity="center"/>
     </item>
 </layer-list>
