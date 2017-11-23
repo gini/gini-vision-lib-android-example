@@ -21,7 +21,9 @@
         <item name="colorAccent">@color/start_button</item>
     </style>
 
-    <style name="Gini.TextAppearance.Title" parent="TextAppearance.AppCompat.Small">
+    <style name="Gini.TextAppearance" parent="TextAppearance.AppCompat" />
+
+    <style name="Gini.TextAppearance.Title" parent="Gini.TextAppearance">
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -30,7 +32,7 @@
         <item name="android:textColor">@color/text_title</item>
     </style>
 
-    <style name="Gini.TextAppearance.Body" parent="TextAppearance.AppCompat.Small">
+    <style name="Gini.TextAppearance.Body" parent="Gini.TextAppearance">
         <item name="android:lineSpacingExtra">4sp</item>
     </style>
 
@@ -42,8 +44,14 @@
         <item name="android:textColor">@color/primary</item>
     </style>
 
-    <style name="Gini.TextAppearance.InfoLabel" parent="Gini.TextAppearance.Title">
-        <item name="android:textSize">16sp</item>
+    <style name="Gini.TextAppearance.InfoLabel" parent="Gini.TextAppearance" />
+
+    <style name="Gini.TextAppearance.EditText.Hint" parent="Gini.TextAppearance">
+        <item name="android:textColorHint">@color/primary</item>
+    </style>
+
+    <style name="Gini.TextAppearance.EditText.CollapsedHint" parent="Gini.TextAppearance">
+        <item name="android:textColor">@color/primary</item>
     </style>
 
     <!-- Styles referenced in the app -->
@@ -54,6 +62,8 @@
 
     <style name="Button.Colored" parent="Gini.Button.Colored" />
 
+    <style name="TextAppearance" parent="Gini.TextAppearance" />
+
     <style name="TextAppearance.Title" parent="Gini.TextAppearance.Title" />
 
     <style name="TextAppearance.Title.White" parent="Gini.TextAppearance.Title.White" />
@@ -62,10 +72,14 @@
 
     <style name="TextAppearance.Body.White" parent="Gini.TextAppearance.Body.White" />
 
-    <style name="ThemeOverlay.Button.Colored" parent="Gini.ThemeOverlay.Button.Colored"/>
+    <style name="ThemeOverlay.Button.Colored" parent="Gini.ThemeOverlay.Button.Colored" />
 
-    <style name="TextAppearance.InfoHeader" parent="Gini.TextAppearance.InfoHeader"/>
+    <style name="TextAppearance.InfoHeader" parent="Gini.TextAppearance.InfoHeader" />
 
-    <style name="TextAppearance.InfoLabel" parent="Gini.TextAppearance.InfoLabel"/>
+    <style name="TextAppearance.InfoLabel" parent="Gini.TextAppearance.InfoLabel" />
+
+    <style name="TextAppearance.EditText.Hint" parent="Gini.TextAppearance.EditText.Hint" />
+
+    <style name="TextAppearance.EditText.CollapsedHint" parent="Gini.TextAppearance.EditText.CollapsedHint" />
 
 </resources>

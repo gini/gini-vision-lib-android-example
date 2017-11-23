@@ -11,4 +11,11 @@
     <string name="info_links_changelog">Changelog</string>
     <string name="info_links_documentation">Documentation</string>
     <string name="info_links_github">GitHub</string>
+    <string name="results_activity_title">Results</string>
+    <string name="done_button">Done</string>
+    <string name="amount_label">Amount</string>
+    <string name="payment_recipient_label">Payment Recipient</string>
+    <string name="iban_label">IBAN</string>
+    <string name="payment_reference_label">Payment Reference</string>
+    <string name="bic_label">BIC</string>
 </resources>

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import net.gini.android.gvlexample.info.InfoActivity;
+import net.gini.android.gvlexample.results.ResultsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,5 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchGiniVision(final View view) {
+        final Intent intent = new Intent(this, ResultsActivity.class);
+        startActivity(intent);
     }
 }
