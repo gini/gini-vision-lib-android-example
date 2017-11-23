@@ -27,8 +27,8 @@ class InfoPresenter extends InfoContract.Presenter {
 
     @Override
     public void start() {
-        getView().showVersions(getVersions());
-        getView().showLinks(getLinks());
+        getView().showVersions(getView().getContext().getString(R.string.info_links_header), getVersions());
+        getView().showLinks(getView().getContext().getString(R.string.info_versions_header), getLinks());
     }
 
     private Map<String, String> getLinks() {

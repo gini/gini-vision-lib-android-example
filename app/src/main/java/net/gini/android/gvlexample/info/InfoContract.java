@@ -13,9 +13,9 @@ abstract class InfoContract {
 
     interface View extends ViewContract {
 
-        void showVersions(final Map<String, String> versions);
+        void showVersions(final String header, final Map<String, String> versions);
 
-        void showLinks(final Map<String, String> links);
+        void showLinks(final String header, final Map<String, String> links);
     }
 
     static abstract class Presenter extends PresenterContract<View> {

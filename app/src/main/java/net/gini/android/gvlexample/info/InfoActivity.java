@@ -15,6 +15,7 @@ import android.widget.TextView;
 import net.gini.android.gvlexample.R;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,10 +39,8 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
         mInfoItemsRecycler.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        final RecyclerAdapter adapter =
-                new RecyclerAdapter(getString(R.string.info_versions_header),
-                        getString(R.string.info_links_header));
-        adapter.setLinkClickedListener(new RecyclerAdapter.LinkClickedListener() {
+        final InfoAdapter adapter = new InfoAdapter();
+        adapter.setLinkClickedListener(new InfoAdapter.LinkClickedListener() {
             @Override
             public void onLinkClicked(final String link) {
                 mPresenter.onLinkClicked(link);
@@ -57,56 +56,71 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
     }
 
     @Override
-    public void showVersions(final Map<String, String> versions) {
-        final RecyclerAdapter adapter = (RecyclerAdapter) mInfoItemsRecycler.getAdapter();
-        adapter.setVersions(versions);
+    public void showVersions(final String header, final Map<String, String> versions) {
+        final InfoAdapter adapter = (InfoAdapter) mInfoItemsRecycler.getAdapter();
+        adapter.getTable().putSection(new InfoAdapter.Table.Section(
+                new InfoAdapter.Cell(header, InfoAdapter.Cell.Type.HEADER),
+                toCellList(versions, InfoAdapter.Cell.Type.VERSION)
+        ));
+        adapter.notifyDataSetChanged();
+    }
+
+    @NonNull
+    private List<InfoAdapter.Cell> toCellList(final Map<String, String> map,
+            final InfoAdapter.Cell.Type cellType) {
+        List<InfoAdapter.Cell> items = new ArrayList<>(map.size());
+        for (final Map.Entry<String, String> labelAndValue : map.entrySet()) {
+            items.add(
+                    new InfoAdapter.Cell(labelAndValue.getKey(), labelAndValue.getValue(),
+                            cellType));
+        }
+        return items;
     }
 
     @Override
-    public void showLinks(final Map<String, String> links) {
-        final RecyclerAdapter adapter = (RecyclerAdapter) mInfoItemsRecycler.getAdapter();
-        adapter.setLinks(links);
+    public void showLinks(final String header, final Map<String, String> links) {
+        final InfoAdapter adapter = (InfoAdapter) mInfoItemsRecycler.getAdapter();
+        adapter.getTable().putSection(new InfoAdapter.Table.Section(
+                new InfoAdapter.Cell(header, InfoAdapter.Cell.Type.HEADER),
+                toCellList(links, InfoAdapter.Cell.Type.LINK)
+        ));
+        adapter.notifyDataSetChanged();
     }
 
-    static class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+    static class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
 
-        private ItemList mItems = new ItemList();
         private LinkClickedListener mLinkClickedListener = new LinkClickedListener() {
             @Override
             public void onLinkClicked(final String link) {
 
             }
         };
-
-        RecyclerAdapter(final String versionsHeader, final String linksHeader) {
-            mItems.setVersionsHeader(versionsHeader);
-            mItems.setLinksHeader(linksHeader);
-        }
+        private Table mTable = new Table();
 
         @Override
-        public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-            final ViewType viewTypeValue = ViewType.values()[viewType];
+        public InfoHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+            final Cell.Type cellType = Cell.Type.values()[viewType];
             @LayoutRes
             int layoutId = 0;
-            switch (viewTypeValue) {
+            switch (cellType) {
                 case HEADER:
                     layoutId = R.layout.item_info_header;
                     break;
-                case ITEM_VERSION:
+                case VERSION:
                     layoutId = R.layout.item_info_label_and_value;
                     break;
-                case ITEM_LINK:
+                case LINK:
                     layoutId = R.layout.item_info_label;
                     break;
             }
             final View view =
                     LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
-            return new ViewHolder(view, viewTypeValue);
+            return new InfoHolder(view, cellType);
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, final int position) {
-            final Item item = mItems.get(position);
+        public void onBindViewHolder(final InfoHolder holder, final int position) {
+            final Cell item = mTable.get(position);
             if (holder.label != null) {
                 holder.label.setText(item.label);
             }
@@ -114,12 +128,12 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
                 holder.value.setText(item.value);
             }
             holder.itemView.setOnClickListener(null);
-            if (holder.viewType == ViewType.ITEM_LINK) {
+            if (holder.cellType == Cell.Type.LINK) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
                         final int actualPosition = holder.getAdapterPosition();
-                        mLinkClickedListener.onLinkClicked(mItems.get(actualPosition).value);
+                        mLinkClickedListener.onLinkClicked(mTable.get(actualPosition).value);
                     }
                 });
             }
@@ -127,121 +141,95 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
 
         @Override
         public int getItemViewType(final int position) {
-            return mItems.get(position).type.ordinal();
+            return mTable.get(position).type.ordinal();
         }
 
         @Override
         public int getItemCount() {
-            return mItems.size();
+            return mTable.getSize();
+        }
+
+        Table getTable() {
+            return mTable;
         }
 
         void setLinkClickedListener(final LinkClickedListener listener) {
             mLinkClickedListener = listener;
         }
 
-        void setLinks(Map<String, String> links) {
-            mItems.setLinks(toItemList(links, ViewType.ITEM_LINK));
-            notifyDataSetChanged();
-        }
+        static class Cell {
 
-        @NonNull
-        private List<Item> toItemList(final Map<String, String> map, final ViewType viewType) {
-            List<Item> items = new ArrayList<>(map.size());
-            for (final Map.Entry<String, String> labelAndValue : map.entrySet()) {
-                items.add(
-                        new Item(labelAndValue.getKey(), labelAndValue.getValue(), viewType));
-            }
-            return items;
-        }
-
-        void setVersions(Map<String, String> versions) {
-            mItems.setVersions(toItemList(versions, ViewType.ITEM_VERSION));
-            notifyDataSetChanged();
-        }
-
-        enum ViewType {
-            HEADER,
-            ITEM_VERSION,
-            ITEM_LINK
-        }
-
-        static class Item {
             final String label;
-            final ViewType type;
+            final Type type;
             final String value;
-
-            Item(final String label, final String value, final ViewType type) {
+            Cell(final String label, final String value, final Type type) {
                 this.label = label;
                 this.value = value;
                 this.type = type;
             }
 
-            Item(final String label, final ViewType type) {
+            Cell(final String label, final Type type) {
                 this.label = label;
                 this.value = "";
                 this.type = type;
             }
-        }
 
-        static class ItemList {
-            private List<Item> allItems = new ArrayList<>();
-            private List<Item> links = new ArrayList<>();
-            private Item linksHeader = new Item("", ViewType.HEADER);
-            private List<Item> versions = new ArrayList<>();
-            private Item versionsHeader = new Item("", ViewType.HEADER);
-
-            ItemList() {
-                createAllItemsList();
-            }
-
-            private void createAllItemsList() {
-                allItems = new ArrayList<>();
-                allItems.add(versionsHeader);
-                allItems.addAll(versions);
-                allItems.add(linksHeader);
-                allItems.addAll(links);
-            }
-
-            Item get(final int position) {
-                return allItems.get(position);
-            }
-
-            void setLinks(final List<Item> links) {
-                this.links = links;
-                createAllItemsList();
-            }
-
-            void setLinksHeader(final String header) {
-                linksHeader = new Item(header, ViewType.HEADER);
-                createAllItemsList();
-            }
-
-            void setVersions(final List<Item> versions) {
-                this.versions = versions;
-                createAllItemsList();
-            }
-
-            void setVersionsHeader(final String header) {
-                versionsHeader = new Item(header, ViewType.HEADER);
-                createAllItemsList();
-            }
-
-            int size() {
-                return allItems.size();
+            enum Type {
+                HEADER,
+                VERSION,
+                LINK
             }
         }
 
-        static class ViewHolder extends RecyclerView.ViewHolder {
+        static class InfoHolder extends RecyclerView.ViewHolder {
 
+            final Cell.Type cellType;
             final TextView label;
             final TextView value;
-            final ViewType viewType;
 
-            ViewHolder(final View itemView, final ViewType viewType) {
+            InfoHolder(final View itemView, final Cell.Type cellType) {
                 super(itemView);
                 label = itemView.findViewById(R.id.label);
                 value = itemView.findViewById(R.id.value);
-                this.viewType = viewType;
+                this.cellType = cellType;
+            }
+        }
+
+        static class Table {
+            private final List<Cell> index = new ArrayList<>();
+            private final Map<String, Section> sections = new LinkedHashMap<>();
+
+            Cell get(final int position) {
+                return index.get(position);
+            }
+
+            int getSize() {
+                return index.size();
+            }
+
+            void putSection(final Section section) {
+                sections.put(section.header.label, section);
+                updateIndex();
+            }
+
+            private void updateIndex() {
+                index.clear();
+                for (final Map.Entry<String, Section> sectionEntry : sections.entrySet()) {
+                    final Section section = sectionEntry.getValue();
+                    index.add(section.header);
+                    index.addAll(section.items);
+                }
+            }
+
+            static class Section {
+                final Cell header;
+                final List<Cell> items;
+
+                Section(final Cell header,
+                        final List<Cell> items) {
+                    this.header = header;
+                    this.items = items;
+                }
             }
         }
 
