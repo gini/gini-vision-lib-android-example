@@ -1,8 +1,10 @@
 package net.gini.android.gvlexample.results;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
+import net.gini.android.gvlexample.NoPdfResultsActivity;
 import net.gini.android.gvlexample.gini.Extraction;
 
 import java.util.ArrayList;
@@ -39,6 +41,8 @@ class ResultsPresenter extends ResultsContract.Presenter {
     @Override
     public void onDoneClicked(final View view) {
         logExtractions();
+        final Intent intent = new Intent(getView().getContext(), NoPdfResultsActivity.class);
+        getView().getContext().startActivity(intent);
     }
 
     private void logExtractions() {

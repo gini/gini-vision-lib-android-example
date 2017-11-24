@@ -7,4 +7,6 @@
     <color name="text_title">#fff</color>
     <color name="text_body">#fff</color>
     <color name="start_button">#1ae2ae</color>
+    <color name="tip_dont_icon_background">#ff4f65</color>
+    <color name="tip_do_icon_background">#b8e986</color>
 </resources>
