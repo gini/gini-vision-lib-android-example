@@ -5,4 +5,8 @@
     <dimen name="default_margin">16dp</dimen>
     <dimen name="default_padding">16dp</dimen>
     <dimen name="main_text_body_margin">8dp</dimen>
+    <dimen name="info_item_padding">8dp</dimen>
+    <dimen name="info_value_margin">4dp</dimen>
+    <dimen name="info_header_bottom_padding">6dp</dimen>
+    <dimen name="info_item_vertical_padding">8dp</dimen>
 </resources>

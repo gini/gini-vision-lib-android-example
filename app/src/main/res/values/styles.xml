@@ -22,15 +22,28 @@
     </style>
 
     <style name="Gini.TextAppearance.Title" parent="TextAppearance.AppCompat.Small">
-        <item name="android:gravity">center</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Gini.TextAppearance.Title.White" parent="Gini.TextAppearance.Title">
         <item name="android:textColor">@color/text_title</item>
     </style>
 
     <style name="Gini.TextAppearance.Body" parent="TextAppearance.AppCompat.Small">
         <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="Gini.TextAppearance.Body.White" parent="Gini.TextAppearance.Body">
         <item name="android:textColor">@color/text_body</item>
+    </style>
+
+    <style name="Gini.TextAppearance.InfoHeader" parent="Gini.TextAppearance.Title">
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="Gini.TextAppearance.InfoLabel" parent="Gini.TextAppearance.Title">
+        <item name="android:textSize">16sp</item>
     </style>
 
     <!-- Styles referenced in the app -->
@@ -43,8 +56,16 @@
 
     <style name="TextAppearance.Title" parent="Gini.TextAppearance.Title" />
 
+    <style name="TextAppearance.Title.White" parent="Gini.TextAppearance.Title.White" />
+
     <style name="TextAppearance.Body" parent="Gini.TextAppearance.Body" />
 
+    <style name="TextAppearance.Body.White" parent="Gini.TextAppearance.Body.White" />
+
     <style name="ThemeOverlay.Button.Colored" parent="Gini.ThemeOverlay.Button.Colored"/>
+
+    <style name="TextAppearance.InfoHeader" parent="Gini.TextAppearance.InfoHeader"/>
+
+    <style name="TextAppearance.InfoLabel" parent="Gini.TextAppearance.InfoLabel"/>
 
 </resources>
