@@ -37,12 +37,16 @@ public abstract class BindingAdapter extends
 
     public abstract Object getObjForPosition(int position);
 
-    static class BindingViewHolder extends RecyclerView.ViewHolder {
+    public static class BindingViewHolder extends RecyclerView.ViewHolder {
         private final ViewDataBinding binding;
 
         BindingViewHolder(ViewDataBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+        }
+
+        public ViewDataBinding getBinding() {
+            return binding;
         }
 
         void bind(Object obj) {

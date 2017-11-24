@@ -3,6 +3,7 @@ package net.gini.android.gvlexample.results;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -62,6 +63,16 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
         }
 
         @Override
+        public void onBindViewHolder(final BindingAdapter.BindingViewHolder holder,
+                final int position) {
+            final TextInputLayout textInputLayout =
+                    holder.getBinding().getRoot().findViewById(R.id.textInputLayout);
+            textInputLayout.setHintAnimationEnabled(false);
+            super.onBindViewHolder(holder, position);
+            textInputLayout.setHintAnimationEnabled(true);
+        }
+
+        @Override
         public int getLayoutIdForPosition(final int position) {
             return R.layout.item_extraction;
         }
@@ -75,7 +86,5 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
             mExtractions = extractions;
             notifyDataSetChanged();
         }
-
-
     }
 }
