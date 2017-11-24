@@ -32,6 +32,10 @@
         <item name="android:textColor">@color/text_title</item>
     </style>
 
+    <style name="Gini.TextAppearance.Title.Header" parent="Gini.TextAppearance.Title">
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="Gini.TextAppearance.Body" parent="Gini.TextAppearance">
         <item name="android:lineSpacingExtra">4sp</item>
     </style>
@@ -67,6 +71,8 @@
     <style name="TextAppearance.Title" parent="Gini.TextAppearance.Title" />
 
     <style name="TextAppearance.Title.White" parent="Gini.TextAppearance.Title.White" />
+
+    <style name="TextAppearance.Title.Header" parent="Gini.TextAppearance.Title.Header"/>
 
     <style name="TextAppearance.Body" parent="Gini.TextAppearance.Body" />
 
