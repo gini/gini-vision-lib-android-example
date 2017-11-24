@@ -55,7 +55,7 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
 
     static class ExtractionsAdapter extends BindingAdapter {
 
-        private List<Extraction> mExtractions = new ArrayList<>();
+        private List<ObservableExtraction> mExtractions = new ArrayList<>();
 
         @Override
         public int getItemCount() {
@@ -83,7 +83,10 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
         }
 
         void showExtractions(final List<Extraction> extractions) {
-            mExtractions = extractions;
+            mExtractions.clear();
+            for (final Extraction extraction : extractions) {
+                mExtractions.add(new ObservableExtraction(extraction));
+            }
             notifyDataSetChanged();
         }
     }

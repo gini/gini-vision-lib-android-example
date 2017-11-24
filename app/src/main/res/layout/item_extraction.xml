@@ -10,7 +10,7 @@
 
         <variable
             name="obj"
-            type="net.gini.android.gvlexample.gini.Extraction" />
+            type="net.gini.android.gvlexample.results.ObservableExtraction" />
     </data>
 
     <android.support.constraint.ConstraintLayout
