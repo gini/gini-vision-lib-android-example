@@ -13,6 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Created by Alpar Szotyori on 22.11.2017.
+ *
+ * Copyright (c) 2017 Gini GmbH.
+ */
+
 public class InfoActivity extends AppCompatActivity implements InfoContract.View {
 
     private RecyclerView mInfoItemsRecycler;

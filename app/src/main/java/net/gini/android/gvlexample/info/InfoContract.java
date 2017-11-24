@@ -6,7 +6,9 @@ import net.gini.android.gvlexample.ViewContract;
 import java.util.Map;
 
 /**
- * Created by aszotyori on 22.11.17.
+ * Created by Alpar Szotyori on 22.11.2017.
+ *
+ * Copyright (c) 2017 Gini GmbH.
  */
 
 abstract class InfoContract {
