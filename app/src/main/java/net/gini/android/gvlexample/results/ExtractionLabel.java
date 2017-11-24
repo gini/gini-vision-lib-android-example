@@ -5,7 +5,9 @@ import android.content.Context;
 import net.gini.android.gvlexample.R;
 
 /**
- * Created by aszotyori on 23.11.17.
+ * Created by Alpar Szotyori on 23.11.2017.
+ *
+ * Copyright (c) 2017 Gini GmbH.
  */
 
 public class ExtractionLabel {

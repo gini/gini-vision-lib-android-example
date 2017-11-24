@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by aszotyori on 23.11.17.
+ * Created by Alpar Szotyori on 23.11.2017.
+ *
+ * Copyright (c) 2017 Gini GmbH.
  */
 
 class ResultsPresenter extends ResultsContract.Presenter {

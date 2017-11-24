@@ -9,7 +9,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Created by aszotyori on 22.11.17.
+ * Created by Alpar Szotyori on 22.11.2017.
+ *
+ * Copyright (c) 2017 Gini GmbH.
  */
 
 class InfoPresenter extends InfoContract.Presenter {
@@ -27,25 +29,25 @@ class InfoPresenter extends InfoContract.Presenter {
 
     @Override
     public void start() {
-        getView().showVersions(getView().getContext().getString(R.string.info_links_header), getVersions());
-        getView().showLinks(getView().getContext().getString(R.string.info_versions_header), getLinks());
+        getView().showVersions(getView().getContext().getString(R.string.info_versions_header), getVersions());
+        getView().showLinks(getView().getContext().getString(R.string.info_links_header), getLinks());
     }
 
     private Map<String, String> getLinks() {
         final Map<String, String> links = new LinkedHashMap<>();
         links.put(getView().getContext().getString(R.string.info_links_changelog),
-                "http://developer.gini.net/gini-vision-lib-android/html/changelog.html");
+                getView().getContext().getString(R.string.gvl_changelog_link));
         links.put(getView().getContext().getString(R.string.info_links_documentation),
-                "http://developer.gini.net/gini-vision-lib-android/html/index.html");
+                getView().getContext().getString(R.string.gvl_documentation_link));
         links.put(getView().getContext().getString(R.string.info_links_github),
-                "https://github.com/gini/gini-vision-lib-android");
+                getView().getContext().getString(R.string.gvl_github_link));
         return links;
     }
 
     private Map<String, String> getVersions() {
         final Map<String, String> versions = new LinkedHashMap<>();
-        versions.put("Gini Vision Library", "2.4.2");
-        versions.put("Gini API SDK", "1.3.92");
+        versions.put(getView().getContext().getString(R.string.gvl_display_name), "2.4.2");
+        versions.put(getView().getContext().getString(R.string.api_sdk_display_name), "1.3.92");
         return versions;
     }
 

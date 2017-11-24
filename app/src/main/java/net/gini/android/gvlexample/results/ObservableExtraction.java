@@ -11,6 +11,7 @@ import net.gini.android.gvlexample.gini.Extraction;
  *
  * Copyright (c) 2017 Gini GmbH.
  */
+
 public class ObservableExtraction extends BaseObservable {
 
     private final Extraction mExtraction;

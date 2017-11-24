@@ -1,7 +1,9 @@
 package net.gini.android.gvlexample;
 
 /**
- * Created by aszotyori on 22.11.17.
+ * Created by Alpar Szotyori on 22.11.2017.
+ *
+ * Copyright (c) 2017 Gini GmbH.
  */
 
 public abstract class PresenterContract<V extends ViewContract> {

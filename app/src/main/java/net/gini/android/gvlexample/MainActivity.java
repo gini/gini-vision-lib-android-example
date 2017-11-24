@@ -10,6 +10,12 @@ import android.view.View;
 import net.gini.android.gvlexample.info.InfoActivity;
 import net.gini.android.gvlexample.results.ResultsActivity;
 
+/**
+ * Created by Alpar Szotyori on 20.11.2017.
+ *
+ * Copyright (c) 2017 Gini GmbH.
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

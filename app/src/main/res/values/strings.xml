@@ -11,6 +11,11 @@
     <string name="info_links_changelog">Changelog</string>
     <string name="info_links_documentation">Documentation</string>
     <string name="info_links_github">GitHub</string>
+    <string name="gvl_changelog_link">http://developer.gini.net/gini-vision-lib-android/html/changelog.html</string>
+    <string name="gvl_documentation_link">http://developer.gini.net/gini-vision-lib-android/html/index.html</string>
+    <string name="gvl_github_link">https://github.com/gini/gini-vision-lib-android</string>
+    <string name="gvl_display_name">Gini Vision Library</string>
+    <string name="api_sdk_display_name">Gini API SDK</string>
     <string name="results_activity_title">Results</string>
     <string name="done_button">Done</string>
     <string name="amount_label">Amount</string>
