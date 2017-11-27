@@ -1,5 +1,6 @@
 package net.gini.android.gvlexample.results;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import java.util.List;
  */
 
 public class ResultsActivity extends AppCompatActivity implements ResultsContract.View {
+
+    public static final String EXTRA_IN_EXTRACTIONS = "EXTRA_IN_EXTRACTIONS";
 
     private RecyclerView mExtractionsRecycler;
     private ResultsContract.Presenter mPresenter;
@@ -54,6 +57,11 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
     public void showExtractions(final List<Extraction> extractions) {
         final ExtractionsAdapter adapter = (ExtractionsAdapter) mExtractionsRecycler.getAdapter();
         adapter.showExtractions(extractions);
+    }
+
+    @Override
+    public Activity getActivity() {
+        return this;
     }
 
 

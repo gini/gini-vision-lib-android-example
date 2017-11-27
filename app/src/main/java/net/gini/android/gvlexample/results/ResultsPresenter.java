@@ -1,11 +1,13 @@
 package net.gini.android.gvlexample.results;
 
-import android.content.Intent;
+import static net.gini.android.gvlexample.results.ResultsActivity.EXTRA_IN_EXTRACTIONS;
+
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import net.gini.android.gvlexample.NoPdfResultsActivity;
 import net.gini.android.gvlexample.gini.Extraction;
+import net.gini.android.models.SpecificExtraction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,31 +20,33 @@ import java.util.List;
 
 class ResultsPresenter extends ResultsContract.Presenter {
 
-    private List<Extraction> mExtractions;
+    private final List<Extraction> mExtractions;
 
     ResultsPresenter(final ResultsContract.View view) {
         super(view);
         mExtractions = new ArrayList<>();
-        mExtractions.add(new Extraction("amount", "19.99:EUR"));
-        mExtractions.add(new Extraction("paymentRecipient", "Etepetete"));
-        mExtractions.add(new Extraction("iban", "DE123124123123124"));
-        mExtractions.add(new Extraction("bic", "COBADEXXX"));
-        mExtractions.add(new Extraction("paymentReference", "RefNr 94839"));
-        mExtractions.add(new Extraction("docType", "invoice"));
-        mExtractions.add(new Extraction("payed", "false"));
-        mExtractions.add(new Extraction("date", "2017.01.30"));
+        readExtractions();
     }
 
-    @Override
-    public void start() {
-        getView().showExtractions(mExtractions);
+    private void readExtractions() {
+        Bundle extras = getView().getIntent().getExtras();
+        if (extras != null) {
+            Bundle extractionsBundle = extras.getParcelable(EXTRA_IN_EXTRACTIONS);
+            if (extractionsBundle != null) {
+                for (String key : extractionsBundle.keySet()) {
+                    final SpecificExtraction specificExtraction = extractionsBundle.getParcelable(key);
+                    if (specificExtraction != null) {
+                        mExtractions.add(new Extraction(key, specificExtraction.getValue()));
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public void onDoneClicked(final View view) {
         logExtractions();
-        final Intent intent = new Intent(getView().getContext(), NoPdfResultsActivity.class);
-        getView().getContext().startActivity(intent);
+        getView().getActivity().finish();
     }
 
     private void logExtractions() {
@@ -54,12 +58,17 @@ class ResultsPresenter extends ResultsContract.Presenter {
                 stringBuilder.append("  },\n");
             }
             first = false;
-            stringBuilder.append("  {\n")
-                    .append("    \"name\": \"").append(extraction.getName()).append("\"\n")
-                    .append("    \"value\": \"").append(extraction.getValue()).append("\"\n");
+            stringBuilder.append("  {\n").append("    \"name\": \"").append(
+                    extraction.getName()).append("\"\n").append("    \"value\": \"").append(
+                    extraction.getValue()).append("\"\n");
         }
         stringBuilder.append("  }\n");
         stringBuilder.append("]");
         Log.d("extractions", stringBuilder.toString());
+    }
+
+    @Override
+    public void start() {
+        getView().showExtractions(mExtractions);
     }
 }

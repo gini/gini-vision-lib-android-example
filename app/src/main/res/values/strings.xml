@@ -29,4 +29,5 @@
     <string name="pdf_tip_native">Use native PDFs</string>
     <string name="pdf_tip_scanned">Avoid scanned document PDFs</string>
     <string name="no_pdf_results_activity_title">No PDF Results</string>
+    <string name="retry_button">Retry</string>
 </resources>
