@@ -17,15 +17,15 @@ public class ExtractionLabel {
             return "";
         }
         switch (extractionName) {
-            case "amount":
+            case Pay5.AMOUNT_TO_PAY:
                 return context.getString(R.string.amount_label);
-            case "paymentRecipient":
+            case Pay5.PAYMENT_RECIPIENT:
                 return context.getString(R.string.payment_recipient_label);
-            case "iban":
+            case Pay5.IBAN:
                 return context.getString(R.string.iban_label);
-            case "bic":
+            case Pay5.BIC:
                 return context.getString(R.string.bic_label);
-            case "paymentReference":
+            case Pay5.PAYMENT_REFERENCE:
                 return context.getString(R.string.payment_reference_label);
         }
         return extractionName;

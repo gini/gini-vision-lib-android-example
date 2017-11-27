@@ -58,6 +58,18 @@
         <item name="android:textColor">@color/primary</item>
     </style>
 
+    <style name="Gini.TextAppearance.EditText.Hint.Secondary" parent="Gini.TextAppearance.EditText.Hint">
+        <item name="android:textColorHint">@color/secondary_extraction_hint</item>
+    </style>
+
+    <style name="Gini.TextAppearance.EditText.CollapsedHint.Secondary" parent="Gini.TextAppearance">
+        <item name="android:textColor">@color/secondary_extraction_hint</item>
+    </style>
+
+    <style name="Gini.TextAppearance.EditText.Secondary" parent="Gini.TextAppearance">
+        <item name="android:textColor">@color/secondary_extraction</item>
+    </style>
+
     <!-- Styles referenced in the app -->
 
     <style name="AppTheme" parent="Gini.AppTheme" />
@@ -72,7 +84,7 @@
 
     <style name="TextAppearance.Title.White" parent="Gini.TextAppearance.Title.White" />
 
-    <style name="TextAppearance.Title.Header" parent="Gini.TextAppearance.Title.Header"/>
+    <style name="TextAppearance.Title.Header" parent="Gini.TextAppearance.Title.Header" />
 
     <style name="TextAppearance.Body" parent="Gini.TextAppearance.Body" />
 
@@ -87,5 +99,11 @@
     <style name="TextAppearance.EditText.Hint" parent="Gini.TextAppearance.EditText.Hint" />
 
     <style name="TextAppearance.EditText.CollapsedHint" parent="Gini.TextAppearance.EditText.CollapsedHint" />
+
+    <style name="TextAppearance.EditText.Hint.Secondary" parent="Gini.TextAppearance.EditText.Hint.Secondary" />
+
+    <style name="TextAppearance.EditText.CollapsedHint.Secondary" parent="Gini.TextAppearance.EditText.CollapsedHint.Secondary" />
+
+    <style name="TextAppearance.EditText.Secondary" parent="Gini.TextAppearance.EditText.Secondary" />
 
 </resources>

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="presenter"
-            type="net.gini.android.gvlexample.results.ResultsContract.Presenter"/>
+            type="net.gini.android.gvlexample.results.ResultsContract.Presenter" />
     </data>
 
-    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="net.gini.android.gvlexample.results.ResultsActivity">
@@ -16,7 +18,7 @@
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true" />
 
         <LinearLayout
             android:id="@+id/descriptionLayout"
@@ -34,8 +36,8 @@
                 style="@style/Gini.TextAppearance.Body.White"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:text="Lorem ipsum explanarum" />
         </LinearLayout>
@@ -44,26 +46,27 @@
             android:id="@+id/extractionsRecycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/results_list_bottom_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionLayout"
-            android:paddingBottom="@dimen/results_list_bottom_padding"
-            android:clipToPadding="false">
+            app:layout_constraintTop_toBottomOf="@+id/descriptionLayout">
 
         </android.support.v7.widget.RecyclerView>
 
-        <Button
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/doneButton"
             style="@style/Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_margin="@dimen/default_margin"
+            android:onClick="@{presenter::onDoneClicked}"
             android:text="@string/done_button"
+            app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="@id/extractionsRecycler"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:onClick="@{presenter::onDoneClicked}"/>
+            app:srcCompat="@drawable/tip_do_icon_foreground" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

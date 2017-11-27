@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputLayout;
 import net.gini.android.gvlexample.R;
 import net.gini.android.gvlexample.databinding.BindingAdapter;
 import net.gini.android.gvlexample.gini.Extraction;
+import net.gini.android.gvlexample.gini.ExtractionUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,11 @@ public class ExtractionsAdapter extends BindingAdapter {
 
     @Override
     public int getLayoutIdForPosition(final int position) {
-        return R.layout.item_extraction;
+        if (ExtractionUtil.isPay5Extraction(mExtractions.get(position).getName())) {
+            return R.layout.item_extraction_pay5;
+        } else {
+            return R.layout.item_extraction;
+        }
     }
 
     @Override

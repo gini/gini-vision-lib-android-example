@@ -1,16 +1,20 @@
 package net.gini.android.gvlexample.results;
 
+import static net.gini.android.gvlexample.gini.ExtractionUtil.isPay5Extraction;
 import static net.gini.android.gvlexample.results.ResultsActivity.EXTRA_IN_EXTRACTIONS;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 
 import net.gini.android.gvlexample.gini.Extraction;
 import net.gini.android.models.SpecificExtraction;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Alpar Szotyori on 23.11.2017.
@@ -20,11 +24,22 @@ import java.util.List;
 
 class ResultsPresenter extends ResultsContract.Presenter {
 
-    private final List<Extraction> mExtractions;
+    private static final Map<String, Integer> PAY5_INDEX;
+
+    static {
+        PAY5_INDEX = new HashMap<>();
+        PAY5_INDEX.put(Pay5.AMOUNT_TO_PAY, 0);
+        PAY5_INDEX.put(Pay5.PAYMENT_RECIPIENT, 1);
+        PAY5_INDEX.put(Pay5.IBAN, 2);
+        PAY5_INDEX.put(Pay5.BIC, 3);
+        PAY5_INDEX.put(Pay5.PAYMENT_REFERENCE, 4);
+    }
+
+    private final SparseArray<Extraction> mExtractions;
 
     ResultsPresenter(final ResultsContract.View view) {
         super(view);
-        mExtractions = new ArrayList<>();
+        mExtractions = new SparseArray<>(20);
         readExtractions();
     }
 
@@ -33,10 +48,19 @@ class ResultsPresenter extends ResultsContract.Presenter {
         if (extras != null) {
             Bundle extractionsBundle = extras.getParcelable(EXTRA_IN_EXTRACTIONS);
             if (extractionsBundle != null) {
+                int nonPay5Index = 5;
                 for (String key : extractionsBundle.keySet()) {
                     final SpecificExtraction specificExtraction = extractionsBundle.getParcelable(key);
                     if (specificExtraction != null) {
-                        mExtractions.add(new Extraction(key, specificExtraction.getValue()));
+                        if (isPay5Extraction(key)) {
+                            final Integer pay5Index = PAY5_INDEX.get(key);
+                            mExtractions.append(
+                                    pay5Index, new Extraction(key, specificExtraction.getValue()));
+                        } else {
+                            mExtractions.append(
+                                    nonPay5Index, new Extraction(key, specificExtraction.getValue()));
+                            nonPay5Index++;
+                        }
                     }
                 }
             }
@@ -53,7 +77,8 @@ class ResultsPresenter extends ResultsContract.Presenter {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[\n");
         boolean first = true;
-        for (final Extraction extraction : mExtractions) {
+        for (int i = 0; i < mExtractions.size(); i++) {
+            final Extraction extraction = mExtractions.valueAt(i);
             if (!first) {
                 stringBuilder.append("  },\n");
             }
@@ -69,6 +94,10 @@ class ResultsPresenter extends ResultsContract.Presenter {
 
     @Override
     public void start() {
-        getView().showExtractions(mExtractions);
+        final List<Extraction> extractions = new ArrayList<>(mExtractions.size());
+        for (int i = 0; i < mExtractions.size(); i++) {
+            extractions.add(mExtractions.valueAt(i));
+        }
+        getView().showExtractions(extractions);
     }
 }
