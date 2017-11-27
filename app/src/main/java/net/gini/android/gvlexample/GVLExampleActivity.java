@@ -30,6 +30,10 @@ import net.gini.android.gvlexample.info.InfoActivity;
 import net.gini.android.gvlexample.results.ResultsActivity;
 import net.gini.android.vision.GiniVisionError;
 import net.gini.android.vision.camera.CameraActivity;
+import net.gini.android.vision.requirements.RequirementReport;
+import net.gini.android.vision.requirements.RequirementsReport;
+
+import java.util.List;
 
 /**
  * Created by Alpar Szotyori on 20.11.2017.
@@ -166,6 +170,29 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
                         })
                 .create();
         alertDialog.show();
+    }
+
+    @Override
+    public void showUnfulfilledRequirements(final RequirementsReport report) {
+        StringBuilder stringBuilder = new StringBuilder();
+        List<RequirementReport> requirementReports = report.getRequirementReports();
+        for (int i = 0; i < requirementReports.size(); i++) {
+            RequirementReport requirementReport = requirementReports.get(i);
+            if (!requirementReport.isFulfilled()) {
+                if (stringBuilder.length() > 0) {
+                    stringBuilder.append("\n");
+                }
+                stringBuilder.append(requirementReport.getRequirementId());
+                if (!requirementReport.getDetails().isEmpty()) {
+                    stringBuilder.append(": ");
+                    stringBuilder.append(requirementReport.getDetails());
+                }
+            }
+        }
+        new AlertDialog.Builder(this)
+                .setMessage("Requirements not fulfilled:\n" + stringBuilder)
+                .setPositiveButton("OK", null)
+                .show();
     }
 
     @Override

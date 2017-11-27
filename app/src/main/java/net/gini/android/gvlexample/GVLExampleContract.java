@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import net.gini.android.vision.GiniVisionError;
+import net.gini.android.vision.requirements.RequirementsReport;
 
 /**
  * Created by Alpar Szotyori on 27.11.2017.
@@ -27,6 +28,8 @@ class GVLExampleContract {
         void showError(final String errorMessage);
 
         void showImportedFileError(final String errorMessage);
+
+        void showUnfulfilledRequirements(final RequirementsReport report);
 
         void finish();
 

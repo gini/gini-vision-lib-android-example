@@ -15,6 +15,8 @@ import net.gini.android.vision.GiniVisionFeatureConfiguration;
 import net.gini.android.vision.GiniVisionFileImport;
 import net.gini.android.vision.ImportedFileValidationException;
 import net.gini.android.vision.camera.CameraActivity;
+import net.gini.android.vision.requirements.GiniVisionRequirements;
+import net.gini.android.vision.requirements.RequirementsReport;
 
 /**
  * Created by Alpar Szotyori on 27.11.2017.
@@ -50,34 +52,17 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
     }
 
     private void doLaunchGVL() {
-        // Uncomment to enable requirements check.
         // NOTE: on Android 6.0 and later the camera permission is required before checking the requirements
-//        RequirementsReport report = GiniVisionRequirements.checkRequirements(this);
-//        if (!report.isFulfilled()) {
-//            showUnfulfilledRequirementsToast(report);
-//            return;
-//        }
+        RequirementsReport report = GiniVisionRequirements.checkRequirements(getView().getContext());
+        if (!report.isFulfilled()) {
+            getView().showUnfulfilledRequirements(report);
+            return;
+        }
 
         final Context context = getView().getContext();
 
         Intent intent = new Intent(context, CameraActivity.class);
 
-        // Uncomment to add an extra page to the Onboarding pages
-//        intent.putParcelableArrayListExtra(CameraActivity.EXTRA_IN_ONBOARDING_PAGES, getOnboardingPages());
-
-        // Set EXTRA_IN_SHOW_ONBOARDING_AT_FIRST_RUN to false to disable automatically showing the OnboardingActivity the
-        // first time the CameraActivity is launched - we highly recommend letting the Gini Vision Library show the
-        // OnboardingActivity at first run
-        //intent.putExtra(CameraActivity.EXTRA_IN_SHOW_ONBOARDING_AT_FIRST_RUN, false);
-
-        // Set EXTRA_IN_SHOW_ONBOARDING to true, to show the OnboardingActivity when the CameraActivity starts
-        //intent.putExtra(CameraActivity.EXTRA_IN_SHOW_ONBOARDING, true);
-
-        // Set EXTRA_IN_BACK_BUTTON_SHOULD_CLOSE_LIBRARY to true, to close library on pressing the back
-        // button from any Activity in the library
-        //intent.putExtra(CameraActivity.EXTRA_IN_BACK_BUTTON_SHOULD_CLOSE_LIBRARY, true);
-
-        // Configure the features you would like to use
         final GiniVisionFeatureConfiguration giniVisionFeatureConfiguration =
                 GiniVisionFeatureConfiguration.buildNewConfiguration()
                                               .setDocumentImportEnabledFileTypes(
@@ -89,15 +74,8 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
         intent.putExtra(CameraActivity.EXTRA_IN_GINI_VISION_FEATURE_CONFIGURATION,
                 giniVisionFeatureConfiguration);
 
-        // Set your ReviewActivity subclass
         CameraActivity.setReviewActivityExtra(intent, context, ReviewActivity.class);
-
-        // Set your AnalysisActivity subclass
         CameraActivity.setAnalysisActivityExtra(intent, context, AnalysisActivity.class);
-
-        // Start for result in order to receive the error result, in case something went wrong, or the extractions
-        // To receive the extractions add it to the result Intent in ReviewActivity#onAddDataToResult(Intent) or
-        // AnalysisActivity#onAddDataToResult(Intent) and retrieve them here in onActivityResult()
 
         getView().showGVL(intent);
     }
@@ -118,6 +96,13 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
     }
 
     private void doLaunchGVLForImportedFile(final Intent intent) {
+        // NOTE: on Android 6.0 and later the camera permission is required before checking the requirements
+        RequirementsReport report = GiniVisionRequirements.checkRequirements(getView().getContext());
+        if (!report.isFulfilled()) {
+            getView().showUnfulfilledRequirements(report);
+            return;
+        }
+
         try {
             final Intent giniVisionIntent =
                     GiniVisionFileImport.createIntentForImportedFile(intent, getView().getContext(),
