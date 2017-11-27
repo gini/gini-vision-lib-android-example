@@ -1,8 +1,10 @@
 package net.gini.android.gvlexample;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +15,6 @@ import net.gini.android.gvlexample.info.InfoActivity;
 import net.gini.android.gvlexample.results.ResultsActivity;
 import net.gini.android.vision.GiniVisionError;
 import net.gini.android.vision.camera.CameraActivity;
-import net.gini.android.vision.noresults.NoResultsActivity;
 
 /**
  * Created by Alpar Szotyori on 20.11.2017.
@@ -26,6 +27,7 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
     public static final String EXTRA_OUT_EXTRACTIONS = "EXTRA_OUT_EXTRACTIONS";
     private static final int REQUEST_GINI_VISION = 1;
     private GVLExamplePresenter mPresenter;
+    private boolean mRestoredInstance;
 
     @Override
     public Context getContext() {
@@ -39,8 +41,14 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
         if (requestCode == REQUEST_GINI_VISION) {
             switch (resultCode) {
                 case RESULT_OK:
-                    final Bundle extractionsBundle = data.getBundleExtra(EXTRA_OUT_EXTRACTIONS);
+                    Bundle extractionsBundle = null;
+                    if (data != null) {
+                        extractionsBundle = data.getBundleExtra(EXTRA_OUT_EXTRACTIONS);
+                    }
                     mPresenter.onGVLResultsReceived(extractionsBundle);
+                    break;
+                case RESULT_CANCELED:
+                    mPresenter.onGVLWasCanceled();
                     break;
                 case CameraActivity.RESULT_ERROR:
                     final GiniVisionError error =
@@ -52,9 +60,28 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
     }
 
     @Override
+    protected void onNewIntent(final Intent intent) {
+        super.onNewIntent(intent);
+        if (isIntentActionViewOrSend(intent)) {
+            mPresenter.launchGVLForImportedFile(intent);
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         mPresenter.start();
+        if (!mRestoredInstance) {
+            final Intent intent = getIntent();
+            if (isIntentActionViewOrSend(intent)) {
+                mPresenter.launchGVLForImportedFile(intent);
+            }
+        }
+    }
+
+    private boolean isIntentActionViewOrSend(final Intent intent) {
+        String action = intent.getAction();
+        return Intent.ACTION_VIEW.equals(action) || Intent.ACTION_SEND.equals(action);
     }
 
     @Override
@@ -62,6 +89,7 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mPresenter = new GVLExamplePresenter(this);
+        mRestoredInstance = savedInstanceState != null;
     }
 
     @Override
@@ -92,8 +120,8 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
     }
 
     @Override
-    public void showNoResults() {
-        final Intent intent = new Intent(this, NoResultsActivity.class);
+    public void showNoPdfResults() {
+        final Intent intent = new Intent(this, NoPdfResultsActivity.class);
         startActivity(intent);
     }
 
@@ -106,6 +134,17 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
     @Override
     public void showError(final String errorMessage) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showImportedFileError(final String errorMessage) {
+        new AlertDialog.Builder(this).setMessage(errorMessage).setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(final DialogInterface dialogInterface, final int i) {
+                        mPresenter.onImportedFileErrorAcknowledged();
+                    }
+                }).show();
     }
 
     public void launchGiniVision(View view) {

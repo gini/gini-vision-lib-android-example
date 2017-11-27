@@ -2,6 +2,7 @@ package net.gini.android.gvlexample;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import net.gini.android.vision.GiniVisionError;
 
@@ -19,11 +20,15 @@ class GVLExampleContract {
 
         void showResults(final Bundle extractions);
 
-        void showNoResults();
+        void showNoPdfResults();
 
         void showInfos();
 
         void showError(final String errorMessage);
+
+        void showImportedFileError(final String errorMessage);
+
+        void finish();
     }
 
     abstract static class Presenter extends PresenterContract<View> {
@@ -36,8 +41,14 @@ class GVLExampleContract {
 
         abstract void launchGVL();
 
-        abstract void onGVLResultsReceived(final Bundle extractions);
+        abstract void launchGVLForImportedFile(final Intent intent);
+
+        abstract void onGVLResultsReceived(@Nullable final Bundle extractions);
 
         abstract void onGVLErrorReceived(final GiniVisionError error);
+
+        abstract void onGVLWasCanceled();
+
+        abstract void onImportedFileErrorAcknowledged();
     }
 }

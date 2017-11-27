@@ -31,4 +31,8 @@
     <string name="no_pdf_results_activity_title">No PDF Results</string>
     <string name="retry_button">Retry</string>
     <string name="gvl_general_error">Something went wrong.</string>
+    <string name="imported_file_cannot_analyze_error">File cannot be analyzed</string>
+    <string name="imported_file_type_not_supported_error">File type not supported.</string>
+    <string name="imported_file_too_large_error">File too large, must be less than 10 MB.</string>
+    <string name="imported_file_pdf_too_many_pages_error">Pdf must have less than 10 pages.</string>
 </resources>
