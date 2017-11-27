@@ -12,7 +12,7 @@ import net.gini.android.gvlexample.gini.SingleDocumentAnalyzer;
  * Copyright (c) 2017 Gini GmbH.
  */
 
-public class App extends Application {
+public class GVLExampleApp extends Application {
 
     private Gini mGiniApi;
     private SingleDocumentAnalyzer mSingleDocumentAnalyzer;

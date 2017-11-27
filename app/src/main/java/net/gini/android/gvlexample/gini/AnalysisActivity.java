@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import net.gini.android.gvlexample.App;
-import net.gini.android.gvlexample.MainActivity;
+import net.gini.android.gvlexample.GVLExampleApp;
+import net.gini.android.gvlexample.GVLExampleActivity;
 import net.gini.android.gvlexample.R;
 import net.gini.android.models.SpecificExtraction;
 import net.gini.android.vision.Document;
@@ -31,9 +31,9 @@ public class AnalysisActivity extends net.gini.android.vision.analysis.AnalysisA
         LOG.debug("Add data to result");
         // We add the extraction results here to the Intent. The payload format is up to you.
         // For the example we add the extractions as key-value pairs to a Bundle
-        // We retrieve them when the CameraActivity has finished in MainActivity#onActivityResult()
+        // We retrieve them when the CameraActivity has finished in GVLExampleActivity#onActivityResult()
         Bundle extractionsBundle = getExtractionsBundle();
-        result.putExtra(MainActivity.EXTRA_OUT_EXTRACTIONS, extractionsBundle);
+        result.putExtra(GVLExampleActivity.EXTRA_OUT_EXTRACTIONS, extractionsBundle);
     }
 
     @Override
@@ -83,13 +83,13 @@ public class AnalysisActivity extends net.gini.android.vision.analysis.AnalysisA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mSingleDocumentAnalyzer = ((App) getApplication()).getSingleDocumentAnalyzer();
+        mSingleDocumentAnalyzer = ((GVLExampleApp) getApplication()).getSingleDocumentAnalyzer();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ((App) getApplication()).getSingleDocumentAnalyzer().cancelAnalysis();
+        ((GVLExampleApp) getApplication()).getSingleDocumentAnalyzer().cancelAnalysis();
     }
 
     private Bundle getExtractionsBundle() {

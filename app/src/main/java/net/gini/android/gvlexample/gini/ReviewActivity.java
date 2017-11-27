@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import net.gini.android.gvlexample.App;
-import net.gini.android.gvlexample.MainActivity;
+import net.gini.android.gvlexample.GVLExampleApp;
+import net.gini.android.gvlexample.GVLExampleActivity;
 import net.gini.android.models.SpecificExtraction;
 import net.gini.android.vision.Document;
 import net.gini.android.vision.GiniVisionDebug;
@@ -27,7 +27,7 @@ public class ReviewActivity extends net.gini.android.vision.review.ReviewActivit
 
     private SingleDocumentAnalyzer getSingleDocumentAnalyzer() {
         if (mSingleDocumentAnalyzer == null) {
-            mSingleDocumentAnalyzer = ((App) getApplication()).getSingleDocumentAnalyzer();
+            mSingleDocumentAnalyzer = ((GVLExampleApp) getApplication()).getSingleDocumentAnalyzer();
         }
         return mSingleDocumentAnalyzer;
     }
@@ -42,10 +42,10 @@ public class ReviewActivity extends net.gini.android.vision.review.ReviewActivit
         LOG.debug("Add data to result");
         // We add the extraction results here to the Intent. The payload format is up to you.
         // For the example we add the extractions as key-value pairs to a Bundle
-        // We retrieve them when the CameraActivity has finished in MainActivity#onActivityResult()
+        // We retrieve them when the CameraActivity has finished in GVLExampleActivity#onActivityResult()
         Bundle extractionsBundle = getExtractionsBundle();
         if (extractionsBundle != null) {
-            result.putExtra(MainActivity.EXTRA_OUT_EXTRACTIONS, extractionsBundle);
+            result.putExtra(GVLExampleActivity.EXTRA_OUT_EXTRACTIONS, extractionsBundle);
         }
     }
 
