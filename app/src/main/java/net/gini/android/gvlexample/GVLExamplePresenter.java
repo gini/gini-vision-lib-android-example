@@ -37,7 +37,20 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
 
     @Override
     void launchGVL() {
-// Uncomment to enable requirements check.
+        getView().requestCameraPermission(new GVLExampleContract.View.PermissionRequestListener() {
+            @Override
+            public void permissionGranted() {
+                doLaunchGVL();
+            }
+
+            @Override
+            public void permissionDenied() {
+            }
+        });
+    }
+
+    private void doLaunchGVL() {
+        // Uncomment to enable requirements check.
         // NOTE: on Android 6.0 and later the camera permission is required before checking the requirements
 //        RequirementsReport report = GiniVisionRequirements.checkRequirements(this);
 //        if (!report.isFulfilled()) {
@@ -66,9 +79,12 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
 
         // Configure the features you would like to use
         final GiniVisionFeatureConfiguration giniVisionFeatureConfiguration =
-                GiniVisionFeatureConfiguration.buildNewConfiguration().setDocumentImportEnabledFileTypes(
-                        DocumentImportEnabledFileTypes.PDF_AND_IMAGES).setFileImportEnabled(
-                        true).build();
+                GiniVisionFeatureConfiguration.buildNewConfiguration()
+                                              .setDocumentImportEnabledFileTypes(
+                                                      DocumentImportEnabledFileTypes.PDF_AND_IMAGES)
+                                              .setFileImportEnabled(
+                                                      true)
+                                              .build();
 
         intent.putExtra(CameraActivity.EXTRA_IN_GINI_VISION_FEATURE_CONFIGURATION,
                 giniVisionFeatureConfiguration);
@@ -88,6 +104,20 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
 
     @Override
     void launchGVLForImportedFile(final Intent intent) {
+        getView().requestStoragePermission(new GVLExampleContract.View.PermissionRequestListener() {
+            @Override
+            public void permissionGranted() {
+                doLaunchGVLForImportedFile(intent);
+            }
+
+            @Override
+            public void permissionDenied() {
+                getView().finish();
+            }
+        });
+    }
+
+    private void doLaunchGVLForImportedFile(final Intent intent) {
         try {
             final Intent giniVisionIntent =
                     GiniVisionFileImport.createIntentForImportedFile(intent, getView().getContext(),

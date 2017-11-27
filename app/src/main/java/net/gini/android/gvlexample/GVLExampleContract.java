@@ -29,6 +29,15 @@ class GVLExampleContract {
         void showImportedFileError(final String errorMessage);
 
         void finish();
+
+        void requestCameraPermission(final PermissionRequestListener listener);
+
+        void requestStoragePermission(final PermissionRequestListener listener);
+
+        interface PermissionRequestListener {
+            void permissionGranted();
+            void permissionDenied();
+        }
     }
 
     abstract static class Presenter extends PresenterContract<View> {

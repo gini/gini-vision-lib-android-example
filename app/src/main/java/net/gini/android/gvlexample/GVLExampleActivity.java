@@ -1,15 +1,30 @@
 package net.gini.android.gvlexample;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.DexterError;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.PermissionRequestErrorListener;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import net.gini.android.gvlexample.info.InfoActivity;
 import net.gini.android.gvlexample.results.ResultsActivity;
@@ -67,18 +82,6 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mPresenter.start();
-        if (!mRestoredInstance) {
-            final Intent intent = getIntent();
-            if (isIntentActionViewOrSend(intent)) {
-                mPresenter.launchGVLForImportedFile(intent);
-            }
-        }
-    }
-
     private boolean isIntentActionViewOrSend(final Intent intent) {
         String action = intent.getAction();
         return Intent.ACTION_VIEW.equals(action) || Intent.ACTION_SEND.equals(action);
@@ -90,6 +93,18 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
         setContentView(R.layout.activity_main);
         mPresenter = new GVLExamplePresenter(this);
         mRestoredInstance = savedInstanceState != null;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPresenter.start();
+        if (!mRestoredInstance) {
+            final Intent intent = getIntent();
+            if (isIntentActionViewOrSend(intent)) {
+                mPresenter.launchGVLForImportedFile(intent);
+            }
+        }
     }
 
     @Override
@@ -138,13 +153,177 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
 
     @Override
     public void showImportedFileError(final String errorMessage) {
-        new AlertDialog.Builder(this).setMessage(errorMessage).setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
+        final AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setMessage(errorMessage)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(
+                                    final DialogInterface dialog,
+                                    final int which) {
+                                mPresenter.onImportedFileErrorAcknowledged();
+                            }
+                        })
+                .create();
+        alertDialog.show();
+    }
+
+    @Override
+    public void requestCameraPermission(final PermissionRequestListener listener) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            listener.permissionGranted();
+            return;
+        }
+        Dexter.withActivity(this)
+              .withPermission(Manifest.permission.CAMERA)
+              .withListener(new PermissionListener() {
+                  @Override
+                  public void onPermissionGranted(final PermissionGrantedResponse response) {
+                      listener.permissionGranted();
+                  }
+
+                  @Override
+                  public void onPermissionDenied(final PermissionDeniedResponse response) {
+                      showCameraPermissionDeniedDialog(listener);
+                  }
+
+                  @Override
+                  public void onPermissionRationaleShouldBeShown(final PermissionRequest permission,
+                          final PermissionToken token) {
+                      showCameraPermissionRationale(token);
+                  }
+              })
+              .withErrorListener(new PermissionRequestErrorListener() {
+                  @Override
+                  public void onError(final DexterError error) {
+                      Log.e("dexter", error.name());
+                  }
+              })
+              .check();
+    }
+
+    @SuppressLint("InlinedApi")
+    @Override
+    public void requestStoragePermission(final PermissionRequestListener listener) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            listener.permissionGranted();
+            return;
+        }
+        Dexter.withActivity(this)
+              .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+              .withListener(new PermissionListener() {
+                  @Override
+                  public void onPermissionGranted(final PermissionGrantedResponse response) {
+                      listener.permissionGranted();
+                  }
+
+                  @Override
+                  public void onPermissionDenied(final PermissionDeniedResponse response) {
+                      showStoragePermissionDeniedDialog(listener);
+                  }
+
+                  @Override
+                  public void onPermissionRationaleShouldBeShown(final PermissionRequest permission,
+                          final PermissionToken token) {
+                      showStoragePermissionRationale(token);
+                  }
+              })
+              .check();
+    }
+
+    private void showStoragePermissionDeniedDialog(final PermissionRequestListener listener) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setMessage("Stored images and PDFs can be analyzed only with storage access.")
+                .setPositiveButton("Grant Access",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog, final int which) {
+                                showAppDetailsSettingsScreen();
+                            }
+                        })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(final DialogInterface dialogInterface, final int i) {
-                        mPresenter.onImportedFileErrorAcknowledged();
+                    public void onClick(final DialogInterface dialog, final int which) {
+                        listener.permissionDenied();
                     }
-                }).show();
+                })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(final DialogInterface dialog) {
+                        listener.permissionDenied();
+                    }
+                })
+                .create();
+        alertDialog.show();
+    }
+
+    private void showStoragePermissionRationale(final PermissionToken token) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setMessage("To analyze images and PDFs from the device storage access is needed.")
+                .setPositiveButton("Grant Access",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog, final int which) {
+                                token.continuePermissionRequest();
+                            }
+                        })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(final DialogInterface dialog) {
+                        token.cancelPermissionRequest();
+                    }
+                })
+                .create();
+        alertDialog.show();
+    }
+
+    private void showCameraPermissionDeniedDialog(final PermissionRequestListener listener) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setMessage(
+                        "You need to grant access to the camera in order to use the Gini Vision Library.")
+                .setPositiveButton(
+                        "Grant Access", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog, final int which) {
+                                showAppDetailsSettingsScreen();
+                            }
+                        })
+                .setNegativeButton("Cancel", null)
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(final DialogInterface dialog) {
+                        listener.permissionDenied();
+                    }
+                })
+                .create();
+        alertDialog.show();
+    }
+
+    private void showAppDetailsSettingsScreen() {
+        final Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        final Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
+    }
+
+    private void showCameraPermissionRationale(final PermissionToken token) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setMessage("Allow access to your camera to be able to take pictures of documents.")
+                .setPositiveButton("Grant Access",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog, final int which) {
+                                token.continuePermissionRequest();
+                            }
+                        })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(final DialogInterface dialog) {
+                        token.cancelPermissionRequest();
+                    }
+                })
+                .create();
+        alertDialog.show();
     }
 
     public void launchGiniVision(View view) {
