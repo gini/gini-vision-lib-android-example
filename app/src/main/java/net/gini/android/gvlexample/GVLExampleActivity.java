@@ -1,5 +1,7 @@
 package net.gini.android.gvlexample;
 
+import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -94,6 +96,7 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        forcePortraitOrientationOnPhones(this);
         setContentView(R.layout.activity_main);
         mPresenter = new GVLExamplePresenter(this);
         mRestoredInstance = savedInstanceState != null;

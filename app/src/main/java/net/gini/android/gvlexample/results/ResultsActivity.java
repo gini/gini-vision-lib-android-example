@@ -1,12 +1,13 @@
 package net.gini.android.gvlexample.results;
 
+import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
+
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import net.gini.android.gvlexample.R;
 import net.gini.android.gvlexample.databinding.ActivityResultsBinding;
@@ -35,6 +36,7 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        forcePortraitOrientationOnPhones(this);
         ActivityResultsBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_results);
         mPresenter = new ResultsPresenter(this,

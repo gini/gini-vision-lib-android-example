@@ -1,5 +1,7 @@
 package net.gini.android.gvlexample.info;
 
+import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -32,6 +34,7 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        forcePortraitOrientationOnPhones(this);
         setContentView(R.layout.activity_info);
         mPresenter = new InfoPresenter(this);
         mInfoItemsRecycler = findViewById(R.id.infoItemsRecycler);
