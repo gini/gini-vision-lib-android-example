@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
-            android:onClick="@{presenter::onDoneClicked}"
+            android:onClick="@{presenter::sendFeedback}"
             android:text="@string/done_button"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="@id/extractionsRecycler"

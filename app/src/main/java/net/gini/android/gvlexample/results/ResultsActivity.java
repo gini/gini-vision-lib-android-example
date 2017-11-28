@@ -1,12 +1,12 @@
 package net.gini.android.gvlexample.results;
 
-import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import net.gini.android.gvlexample.R;
 import net.gini.android.gvlexample.databinding.ActivityResultsBinding;
@@ -37,7 +37,8 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
         super.onCreate(savedInstanceState);
         ActivityResultsBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_results);
-        mPresenter = new ResultsPresenter(this);
+        mPresenter = new ResultsPresenter(this,
+                (Bundle) getIntent().getParcelableExtra(EXTRA_IN_EXTRACTIONS));
         binding.setPresenter(mPresenter);
 
         mExtractionsRecycler = findViewById(R.id.extractionsRecycler);
@@ -58,11 +59,5 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
         final ExtractionsAdapter adapter = (ExtractionsAdapter) mExtractionsRecycler.getAdapter();
         adapter.showExtractions(extractions);
     }
-
-    @Override
-    public Activity getActivity() {
-        return this;
-    }
-
 
 }
