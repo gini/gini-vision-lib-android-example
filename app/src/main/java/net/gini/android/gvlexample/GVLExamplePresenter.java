@@ -96,13 +96,6 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
     }
 
     private void doLaunchGVLForImportedFile(final Intent intent) {
-        // NOTE: on Android 6.0 and later the camera permission is required before checking the requirements
-        RequirementsReport report = GiniVisionRequirements.checkRequirements(getView().getContext());
-        if (!report.isFulfilled()) {
-            getView().showUnfulfilledRequirements(report);
-            return;
-        }
-
         try {
             final Intent giniVisionIntent =
                     GiniVisionFileImport.createIntentForImportedFile(intent, getView().getContext(),
