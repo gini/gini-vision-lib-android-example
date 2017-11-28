@@ -116,6 +116,20 @@ class ResultsPresenter extends ResultsContract.Presenter {
         }
     }
 
+    @Override
+    public void updateExtractions(final List<Extraction> extractions) {
+        for (int i = 0; i < mExtractions.size(); i++) {
+            final ExtractionContainer extractionContainer = mExtractions.valueAt(i);
+            for (final Extraction updatedExtraction : extractions) {
+                final Extraction extraction = extractionContainer.extraction;
+                if (extraction.getName().equals(updatedExtraction.getName())) {
+                    extraction.setValue(updatedExtraction.getValue());
+                    break;
+                }
+            }
+        }
+    }
+
     private void syncSpecificExtractions() {
         for (int i = 0; i < mExtractions.size(); i++) {
             final ExtractionContainer extraction = mExtractions.valueAt(i);
