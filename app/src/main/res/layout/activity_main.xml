@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:overScrollMode="ifContentScrolls"
-    tools:context="net.gini.android.gvlexample.MainActivity">
+    tools:context="net.gini.android.gvlexample.GVLExampleActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

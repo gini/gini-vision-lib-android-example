@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import net.gini.android.gvlexample.R;
+import net.gini.android.vision.BuildConfig;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -29,8 +30,10 @@ class InfoPresenter extends InfoContract.Presenter {
 
     @Override
     public void start() {
-        getView().showVersions(getView().getContext().getString(R.string.info_versions_header), getVersions());
-        getView().showLinks(getView().getContext().getString(R.string.info_links_header), getLinks());
+        getView().showVersions(getView().getContext().getString(R.string.info_versions_header),
+                getVersions());
+        getView().showLinks(getView().getContext().getString(R.string.info_links_header),
+                getLinks());
     }
 
     private Map<String, String> getLinks() {
@@ -46,8 +49,11 @@ class InfoPresenter extends InfoContract.Presenter {
 
     private Map<String, String> getVersions() {
         final Map<String, String> versions = new LinkedHashMap<>();
-        versions.put(getView().getContext().getString(R.string.gvl_display_name), "2.4.2");
-        versions.put(getView().getContext().getString(R.string.api_sdk_display_name), "1.3.92");
+
+        versions.put(getView().getContext().getString(R.string.gvl_display_name),
+                BuildConfig.VERSION_NAME);
+        versions.put(getView().getContext().getString(R.string.api_sdk_display_name),
+                net.gini.android.BuildConfig.VERSION_NAME);
         return versions;
     }
 

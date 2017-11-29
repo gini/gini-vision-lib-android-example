@@ -9,4 +9,6 @@
     <color name="start_button">#1ae2ae</color>
     <color name="tip_dont_icon_background">#ff4f65</color>
     <color name="tip_do_icon_background">#b8e986</color>
+    <color name="secondary_extraction_hint">#afb2b3</color>
+    <color name="secondary_extraction">#9a9d9e</color>
 </resources>

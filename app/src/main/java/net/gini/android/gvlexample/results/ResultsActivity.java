@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import net.gini.android.gvlexample.R;
 import net.gini.android.gvlexample.databinding.ActivityResultsBinding;
@@ -21,6 +22,8 @@ import java.util.List;
 
 public class ResultsActivity extends AppCompatActivity implements ResultsContract.View {
 
+    public static final String EXTRA_IN_EXTRACTIONS = "EXTRA_IN_EXTRACTIONS";
+
     private RecyclerView mExtractionsRecycler;
     private ResultsContract.Presenter mPresenter;
 
@@ -34,7 +37,8 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
         super.onCreate(savedInstanceState);
         ActivityResultsBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_results);
-        mPresenter = new ResultsPresenter(this);
+        mPresenter = new ResultsPresenter(this,
+                (Bundle) getIntent().getParcelableExtra(EXTRA_IN_EXTRACTIONS));
         binding.setPresenter(mPresenter);
 
         mExtractionsRecycler = findViewById(R.id.extractionsRecycler);
@@ -55,6 +59,5 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
         final ExtractionsAdapter adapter = (ExtractionsAdapter) mExtractionsRecycler.getAdapter();
         adapter.showExtractions(extractions);
     }
-
 
 }

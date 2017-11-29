@@ -1,5 +1,7 @@
 package net.gini.android.gvlexample.results;
 
+import android.app.Application;
+
 import net.gini.android.gvlexample.PresenterContract;
 import net.gini.android.gvlexample.ViewContract;
 import net.gini.android.gvlexample.gini.Extraction;
@@ -17,6 +19,10 @@ public abstract class ResultsContract {
     interface View extends ViewContract {
 
         void showExtractions(List<Extraction> extractions);
+
+        void finish();
+
+        Application getApplication();
     }
 
     public static abstract class Presenter extends PresenterContract<View> {
@@ -25,6 +31,6 @@ public abstract class ResultsContract {
             super(view);
         }
 
-        public abstract void onDoneClicked(final android.view.View view);
+        public abstract void sendFeedback(final android.view.View view);
     }
 }
