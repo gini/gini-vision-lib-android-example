@@ -44,7 +44,7 @@ public class AnalysisActivity extends net.gini.android.vision.analysis.AnalysisA
         startScanAnimation();
         // We can start analyzing the document by sending it to the Gini API
         mSingleDocumentAnalyzer.analyzeDocument(document,
-                new SingleDocumentAnalyzer.DocumentAnalysisListener() {
+                new DocumentAnalyzer.Listener() {
                     @Override
                     public void onException(Exception exception) {
                         stopScanAnimation();
@@ -52,7 +52,7 @@ public class AnalysisActivity extends net.gini.android.vision.analysis.AnalysisA
                         if (exception != null) {
                             message += exception.getMessage();
                         }
-                        final SingleDocumentAnalyzer.DocumentAnalysisListener listener = this;
+                        final DocumentAnalyzer.Listener listener = this;
                         showError(message, getString(R.string.retry_button),
                                 new View.OnClickListener() {
                                     @Override
