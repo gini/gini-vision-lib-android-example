@@ -23,13 +23,17 @@
 
     <style name="Gini.TextAppearance" parent="TextAppearance.AppCompat" />
 
+    <style name="Gini.TextAppearance.Inverted" parent="Gini.TextAppearance">
+        <item name="android:textColor">@color/text_body_inverted</item>
+    </style>
+
     <style name="Gini.TextAppearance.Title" parent="Gini.TextAppearance">
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Gini.TextAppearance.Title.White" parent="Gini.TextAppearance.Title">
-        <item name="android:textColor">@color/text_title</item>
+    <style name="Gini.TextAppearance.Title.Inverted" parent="Gini.TextAppearance.Title">
+        <item name="android:textColor">@color/text_title_inverted</item>
     </style>
 
     <style name="Gini.TextAppearance.Title.Header" parent="Gini.TextAppearance.Title">
@@ -40,8 +44,8 @@
         <item name="android:lineSpacingExtra">4sp</item>
     </style>
 
-    <style name="Gini.TextAppearance.Body.White" parent="Gini.TextAppearance.Body">
-        <item name="android:textColor">@color/text_body</item>
+    <style name="Gini.TextAppearance.Body.Inverted" parent="Gini.TextAppearance.Body">
+        <item name="android:textColor">@color/text_body_inverted</item>
     </style>
 
     <style name="Gini.TextAppearance.InfoHeader" parent="Gini.TextAppearance.Title">
@@ -80,15 +84,17 @@
 
     <style name="TextAppearance" parent="Gini.TextAppearance" />
 
+    <style name="TextAppearance.Inverted" parent="Gini.TextAppearance.Inverted" />
+
     <style name="TextAppearance.Title" parent="Gini.TextAppearance.Title" />
 
-    <style name="TextAppearance.Title.White" parent="Gini.TextAppearance.Title.White" />
+    <style name="TextAppearance.Title.Inverted" parent="Gini.TextAppearance.Title.Inverted" />
 
     <style name="TextAppearance.Title.Header" parent="Gini.TextAppearance.Title.Header" />
 
     <style name="TextAppearance.Body" parent="Gini.TextAppearance.Body" />
 
-    <style name="TextAppearance.Body.White" parent="Gini.TextAppearance.Body.White" />
+    <style name="TextAppearance.Body.Inverted" parent="Gini.TextAppearance.Body.Inverted" />
 
     <style name="ThemeOverlay.Button.Colored" parent="Gini.ThemeOverlay.Button.Colored" />
 

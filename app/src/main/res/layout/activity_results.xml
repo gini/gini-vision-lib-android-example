@@ -23,7 +23,7 @@
         <LinearLayout
             android:id="@+id/descriptionLayout"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:background="@color/primary"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/extractionsRecycler"
@@ -33,13 +33,15 @@
 
             <TextView
                 android:id="@+id/textView"
-                style="@style/Gini.TextAppearance.Body.White"
+                style="@style/Gini.TextAppearance.Inverted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:text="Lorem ipsum explanarum" />
+                android:layout_margin="@dimen/default_margin"
+                android:layout_marginLeft="@dimen/default_screen_horizontal_padding"
+                android:layout_marginStart="@dimen/default_screen_horizontal_padding"
+                android:layout_marginRight="@dimen/default_screen_horizontal_padding"
+                android:layout_marginEnd="@dimen/default_screen_horizontal_padding"
+                android:text="@string/results_header" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

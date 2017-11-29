@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/mainGreeting"
-            style="@style/TextAppearance.Body.White"
+            style="@style/TextAppearance.Body.Inverted"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"

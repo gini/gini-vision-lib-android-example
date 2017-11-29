@@ -42,4 +42,5 @@
     <string name="camera_permission_denied_message">You need to grant access to the camera in order to use the Gini Vision Library.</string>
     <string name="camera_permission_rationale">Allow access to your camera to be able to take pictures of documents.</string>
     <string name="ok">OK</string>
+    <string name="results_header">Results are ordered to show payment transaction relevant information first.  Please verify the results for correctness before proceeding.</string>
 </resources>
