@@ -32,5 +32,7 @@ public abstract class ResultsContract {
         }
 
         public abstract void sendFeedback(final android.view.View view);
+
+        public abstract void updateExtractions(final List<Extraction> extractions);
     }
 }
