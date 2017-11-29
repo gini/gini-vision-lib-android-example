@@ -27,6 +27,10 @@
         <item name="android:textColor">@color/text_body_inverted</item>
     </style>
 
+    <style name="Gini.TextAppearance.AppVersion" parent="Gini.TextAppearance">
+        <item name="android:textColor">@color/text_app_version</item>
+    </style>
+
     <style name="Gini.TextAppearance.Title" parent="Gini.TextAppearance">
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
@@ -86,6 +90,8 @@
 
     <style name="TextAppearance.Inverted" parent="Gini.TextAppearance.Inverted" />
 
+    <style name="TextAppearance.AppVersion" parent="Gini.TextAppearance.AppVersion" />
+
     <style name="TextAppearance.Title" parent="Gini.TextAppearance.Title" />
 
     <style name="TextAppearance.Title.Inverted" parent="Gini.TextAppearance.Title.Inverted" />
@@ -111,5 +117,4 @@
     <style name="TextAppearance.EditText.CollapsedHint.Secondary" parent="Gini.TextAppearance.EditText.CollapsedHint.Secondary" />
 
     <style name="TextAppearance.EditText.Secondary" parent="Gini.TextAppearance.EditText.Secondary" />
-
 </resources>

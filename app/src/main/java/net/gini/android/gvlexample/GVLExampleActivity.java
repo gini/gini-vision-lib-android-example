@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
@@ -100,6 +101,9 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
         setContentView(R.layout.activity_main);
         mPresenter = new GVLExamplePresenter(this);
         mRestoredInstance = savedInstanceState != null;
+
+        final TextView appVersion = findViewById(R.id.appVersion);
+        appVersion.setText(BuildConfig.VERSION_NAME);
     }
 
     @Override

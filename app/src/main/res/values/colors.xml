@@ -11,4 +11,5 @@
     <color name="tip_do_icon_background">#b8e986</color>
     <color name="secondary_extraction_hint">#afb2b3</color>
     <color name="secondary_extraction">#9a9d9e</color>
+    <color name="text_app_version">#0078a7</color>
 </resources>
