@@ -37,7 +37,9 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="image/*" />
+                <data android:mimeType="image/png" />
+                <data android:mimeType="image/jpeg" />
+                <data android:mimeType="image/gif" />
                 <data android:mimeType="application/pdf" />
             </intent-filter>
         </activity>
