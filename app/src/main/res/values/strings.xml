@@ -35,4 +35,11 @@
     <string name="imported_file_type_not_supported_error">File type not supported.</string>
     <string name="imported_file_too_large_error">File too large, must be less than 10 MB.</string>
     <string name="imported_file_pdf_too_many_pages_error">Pdf must have less than 10 pages.</string>
+    <string name="storage_permission_denied_message">Stored images and PDFs can be analyzed only with storage access.</string>
+    <string name="grant_access">Grant Access</string>
+    <string name="cancel">Cancel</string>
+    <string name="storage_permission_rationale">To analyze images and PDFs from the device storage access is needed.</string>
+    <string name="camera_permission_denied_message">You need to grant access to the camera in order to use the Gini Vision Library.</string>
+    <string name="camera_permission_rationale">Allow access to your camera to be able to take pictures of documents.</string>
+    <string name="ok">OK</string>
 </resources>

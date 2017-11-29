@@ -159,7 +159,7 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
     public void showImportedFileError(final String errorMessage) {
         final AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setMessage(errorMessage)
-                .setPositiveButton("OK",
+                .setPositiveButton(R.string.ok,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(
@@ -260,15 +260,15 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
 
     private void showStoragePermissionDeniedDialog(final PermissionRequestListener listener) {
         final AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setMessage("Stored images and PDFs can be analyzed only with storage access.")
-                .setPositiveButton("Grant Access",
+                .setMessage(R.string.storage_permission_denied_message)
+                .setPositiveButton(getString(R.string.grant_access),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(final DialogInterface dialog, final int which) {
                                 showAppDetailsSettingsScreen();
                             }
                         })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(final DialogInterface dialog, final int which) {
                         listener.permissionDenied();
@@ -286,8 +286,8 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
 
     private void showStoragePermissionRationale(final PermissionToken token) {
         final AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setMessage("To analyze images and PDFs from the device storage access is needed.")
-                .setPositiveButton("Grant Access",
+                .setMessage(R.string.storage_permission_rationale)
+                .setPositiveButton(getString(R.string.grant_access),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(final DialogInterface dialog, final int which) {
@@ -307,15 +307,15 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
     private void showCameraPermissionDeniedDialog(final PermissionRequestListener listener) {
         final AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setMessage(
-                        "You need to grant access to the camera in order to use the Gini Vision Library.")
+                        R.string.camera_permission_denied_message)
                 .setPositiveButton(
-                        "Grant Access", new DialogInterface.OnClickListener() {
+                        getString(R.string.grant_access), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(final DialogInterface dialog, final int which) {
                                 showAppDetailsSettingsScreen();
                             }
                         })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(getString(R.string.cancel), null)
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(final DialogInterface dialog) {
@@ -335,8 +335,8 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
 
     private void showCameraPermissionRationale(final PermissionToken token) {
         final AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setMessage("Allow access to your camera to be able to take pictures of documents.")
-                .setPositiveButton("Grant Access",
+                .setMessage(R.string.camera_permission_rationale)
+                .setPositiveButton(getString(R.string.grant_access),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(final DialogInterface dialog, final int which) {
