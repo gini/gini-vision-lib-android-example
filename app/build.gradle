@@ -9,7 +9,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "net.gini.android.gvlexample"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 26
         versionCode appVersionCode
         versionName appVersionName
@@ -28,14 +28,15 @@ android {
         debug {
             resValue 'string', 'gini_api_client_id', clientId
             resValue 'string', 'gini_api_client_secret', clientSecret
+            manifestPlaceholders = [HOCKEYAPP_APP_ID: ""]
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-
             resValue 'string', 'gini_api_client_id', clientId
             resValue 'string', 'gini_api_client_secret', clientSecret
+            manifestPlaceholders = [HOCKEYAPP_APP_ID: "972db965d54d43ceaa6509f63e7208c5"]
         }
     }
     dataBinding {
@@ -60,6 +61,9 @@ dependencies {
         transitive = true
     }
     implementation 'com.karumi:dexter:4.2.0'
+    implementation 'net.hockeyapp.android:HockeySDK:5.0.4'
+    implementation "android.arch.lifecycle:runtime:1.0.3"
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

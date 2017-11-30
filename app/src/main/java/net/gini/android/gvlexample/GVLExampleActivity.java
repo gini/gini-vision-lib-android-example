@@ -48,6 +48,7 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
 
     public static final String EXTRA_OUT_EXTRACTIONS = "EXTRA_OUT_EXTRACTIONS";
     private static final int REQUEST_GINI_VISION = 1;
+    private Hockeyapp mHockeyapp;
     private GVLExamplePresenter mPresenter;
     private boolean mRestoredInstance;
 
@@ -104,6 +105,8 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
 
         final TextView appVersion = findViewById(R.id.appVersion);
         appVersion.setText(BuildConfig.VERSION_NAME);
+
+        getLifecycle().addObserver(new Hockeyapp(this));
     }
 
     @Override
