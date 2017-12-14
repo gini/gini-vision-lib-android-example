@@ -8,13 +8,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import net.gini.android.gvlexample.gini.AnalysisActivity;
+import net.gini.android.gvlexample.gini.CameraActivity;
 import net.gini.android.gvlexample.gini.ReviewActivity;
 import net.gini.android.vision.DocumentImportEnabledFileTypes;
 import net.gini.android.vision.GiniVisionError;
 import net.gini.android.vision.GiniVisionFeatureConfiguration;
 import net.gini.android.vision.GiniVisionFileImport;
 import net.gini.android.vision.ImportedFileValidationException;
-import net.gini.android.vision.camera.CameraActivity;
 import net.gini.android.vision.requirements.GiniVisionRequirements;
 import net.gini.android.vision.requirements.RequirementsReport;
 
@@ -67,8 +67,8 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
                 GiniVisionFeatureConfiguration.buildNewConfiguration()
                                               .setDocumentImportEnabledFileTypes(
                                                       DocumentImportEnabledFileTypes.PDF_AND_IMAGES)
-                                              .setFileImportEnabled(
-                                                      true)
+                                              .setFileImportEnabled(true)
+                                              .setQRCodeScanningEnabled(true)
                                               .build();
 
         intent.putExtra(CameraActivity.EXTRA_IN_GINI_VISION_FEATURE_CONFIGURATION,

@@ -57,8 +57,18 @@
         <activity
             android:name=".NoPdfResultsActivity"
             android:label="@string/no_pdf_results_activity_title" />
-        <activity android:name=".gini.AnalysisActivity" />
-        <activity android:name=".gini.ReviewActivity" />
+        <activity
+            android:name=".gini.CameraActivity"
+            android:label="@string/gv_title_camera"
+            android:theme="@style/GiniVisionTheme" />
+        <activity
+            android:name=".gini.AnalysisActivity"
+            android:label="@string/gv_title_analysis"
+            android:theme="@style/GiniVisionTheme" />
+        <activity
+            android:name=".gini.ReviewActivity"
+            android:label="@string/gv_title_review"
+            android:theme="@style/GiniVisionTheme" />
     </application>
 
 </manifest>
