@@ -2,10 +2,10 @@
 pipeline {
     agent any
     environment {
-        SIGNING_KEYSTORE_PSW = credentials('gvl-example-app-release-keystore-password')
-        SIGNING_KEY_PSW = credentials('gvl-example-app-release-key-password')
-        CLIENT_CREDENTIALS = credentials('gvl-example-app-gini-api-client-credentials')
-        HOCKEYAPP_API_TOKEN = credentials('gvl-example-app-hockeyapp-api-token')
+        SIGNING_KEYSTORE_PSW = credentials('gvl-android_example-app-release-keystore-password')
+        SIGNING_KEY_PSW = credentials('gvl-android_gvl-example-app-release-key-password')
+        CLIENT_CREDENTIALS = credentials('gvl-android_gvl-example-app-gini-api-client-credentials')
+        HOCKEYAPP_API_TOKEN = credentials('gvl-android_gvl-example-app-hockeyapp-api-token')
     }
     stages {
         stage('Build') {
