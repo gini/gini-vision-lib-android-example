@@ -43,5 +43,6 @@
     <string name="camera_permission_rationale">Um Rechnungen fotografieren zu können, wird Kamera-Zugriff benötigt.</string>
     <string name="ok">OK</string>
     <string name="results_header">Ergebnisse, die für Zahlungsüberweisungen wichtig sind, befinden sich am Anfang der Liste.\n\nBitte überprüfen Sie die Ergebnisse.</string>
+    <string name="qrcode_error">Could not use the QR Code. Try again or take a picture of your document.</string>
 </resources>
 

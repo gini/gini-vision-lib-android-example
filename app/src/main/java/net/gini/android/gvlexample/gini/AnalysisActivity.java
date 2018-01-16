@@ -1,5 +1,6 @@
 package net.gini.android.gvlexample.gini;
 
+import static net.gini.android.gvlexample.gini.ExtractionUtil.getExtractionsBundle;
 import static net.gini.android.gvlexample.gini.ExtractionUtil.hasNoPay5Extractions;
 
 import android.content.Intent;
@@ -32,7 +33,7 @@ public class AnalysisActivity extends net.gini.android.vision.analysis.AnalysisA
         // We add the extraction results here to the Intent. The payload format is up to you.
         // For the example we add the extractions as key-value pairs to a Bundle
         // We retrieve them when the CameraActivity has finished in GVLExampleActivity#onActivityResult()
-        Bundle extractionsBundle = getExtractionsBundle();
+        Bundle extractionsBundle = getExtractionsBundle(mExtractions);
         result.putExtra(GVLExampleActivity.EXTRA_OUT_EXTRACTIONS, extractionsBundle);
     }
 
@@ -90,13 +91,5 @@ public class AnalysisActivity extends net.gini.android.vision.analysis.AnalysisA
     protected void onDestroy() {
         super.onDestroy();
         ((GVLExampleApp) getApplication()).getSingleDocumentAnalyzer().cancelAnalysis();
-    }
-
-    private Bundle getExtractionsBundle() {
-        final Bundle extractionsBundle = new Bundle();
-        for (Map.Entry<String, SpecificExtraction> entry : mExtractions.entrySet()) {
-            extractionsBundle.putParcelable(entry.getKey(), entry.getValue());
-        }
-        return extractionsBundle;
     }
 }

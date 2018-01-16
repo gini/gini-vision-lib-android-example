@@ -1,15 +1,20 @@
 package net.gini.android.gvlexample.gini;
 
+import static net.gini.android.gvlexample.gini.ExtractionUtil.getExtractionsBundle;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import net.gini.android.gvlexample.GVLExampleActivity;
+import net.gini.android.gvlexample.GVLExampleApp;
+import net.gini.android.gvlexample.R;
 import net.gini.android.models.Box;
 import net.gini.android.models.SpecificExtraction;
-import net.gini.android.vision.PaymentData;
+import net.gini.android.vision.document.QRCodeDocument;
 
 import java.util.Collections;
+import java.util.Map;
 
 /**
  * Created by Alpar Szotyori on 14.12.2017.
@@ -19,34 +24,37 @@ import java.util.Collections;
 
 public class CameraActivity extends net.gini.android.vision.camera.CameraActivity {
 
+    private SingleDocumentAnalyzer mSingleDocumentAnalyzer;
+
     @Override
-    public void onPaymentDataAvailable(@NonNull final PaymentData paymentData) {
-        super.onPaymentDataAvailable(paymentData);
-        final Intent result = new Intent();
-        final Bundle extractionsBundle = getExtractionsBundle(paymentData);
-        result.putExtra(GVLExampleActivity.EXTRA_OUT_EXTRACTIONS, extractionsBundle);
-        setResult(RESULT_OK, result);
-        finish();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mSingleDocumentAnalyzer = ((GVLExampleApp) getApplication()).getSingleDocumentAnalyzer();
     }
 
-    private Bundle getExtractionsBundle(@NonNull final PaymentData paymentData) {
-        final Bundle extractionsBundle = new Bundle();
-        extractionsBundle.putParcelable("paymentReference",
-                createSpecificExtraction("paymentReference",
-                        paymentData.getPaymentReference()));
-        extractionsBundle.putParcelable("paymentRecipient",
-                createSpecificExtraction("paymentRecipient",
-                        paymentData.getPaymentRecipient()));
-        extractionsBundle.putParcelable("amountToPay",
-                createSpecificExtraction("amountToPay",
-                        paymentData.getAmount()));
-        extractionsBundle.putParcelable("iban",
-                createSpecificExtraction("iban",
-                        paymentData.getIBAN()));
-        extractionsBundle.putParcelable("bic",
-                createSpecificExtraction("bic",
-                        paymentData.getBIC()));
-        return extractionsBundle;
+    @Override
+    public void onQRCodeAvailable(@NonNull final QRCodeDocument qrCodeDocument) {
+        showActivityIndicatorAndDisableInteraction();
+        mSingleDocumentAnalyzer.cancelAnalysis();
+        mSingleDocumentAnalyzer.analyzeDocument(qrCodeDocument,
+                new DocumentAnalyzer.Listener() {
+                    @Override
+                    public void onException(final Exception exception) {
+                        hideActivityIndicatorAndEnableInteraction();
+                        showError(getString(R.string.qrcode_error), 4000);
+                    }
+
+                    @Override
+                    public void onExtractionsReceived(
+                            final Map<String, SpecificExtraction> extractions) {
+                        hideActivityIndicatorAndEnableInteraction();
+                        final Intent result = new Intent();
+                        final Bundle extractionsBundle = getExtractionsBundle(extractions);
+                        result.putExtra(GVLExampleActivity.EXTRA_OUT_EXTRACTIONS, extractionsBundle);
+                        setResult(RESULT_OK, result);
+                        finish();
+                    }
+                });
     }
 
     @NonNull

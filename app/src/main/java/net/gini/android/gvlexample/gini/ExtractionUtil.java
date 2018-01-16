@@ -1,5 +1,10 @@
 package net.gini.android.gvlexample.gini;
 
+import android.os.Bundle;
+
+import net.gini.android.models.SpecificExtraction;
+
+import java.util.Map;
 import java.util.Set;
 
 public final class ExtractionUtil {
@@ -19,5 +24,13 @@ public final class ExtractionUtil {
                 extractionName.equals("iban") ||
                 extractionName.equals("paymentReference") ||
                 extractionName.equals("paymentRecipient");
+    }
+
+    public static Bundle getExtractionsBundle(Map<String, SpecificExtraction> extractions) {
+        final Bundle extractionsBundle = new Bundle();
+        for (Map.Entry<String, SpecificExtraction> entry : extractions.entrySet()) {
+            extractionsBundle.putParcelable(entry.getKey(), entry.getValue());
+        }
+        return extractionsBundle;
     }
 }

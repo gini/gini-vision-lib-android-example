@@ -48,16 +48,29 @@ repositories {
     maven {
         url 'https://repo.gini.net/nexus/content/repositories/open'
     }
+    flatDir{
+        dirs 'libs'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation ('net.gini:gini-vision-lib:2.5.0-beta.2') {
+
+    // Use a local build of the Gini Vision Library
+    // 1. copy a Gini Vision Library release build to the libs folder
+    // 2. uncomment the lines below
+    // 3. comment out the dependency declaration of the released version
+//    implementation(name:'ginivision-release', ext:'aar')
+//    implementation 'com.google.android.gms:play-services-vision:11.6.0'
+//    implementation 'org.slf4j:slf4j-api:1.7.21'
+//    implementation 'org.glassfish.jersey.bundles.repackaged:jersey-jsr166e:2.23.1'
+
+    implementation ('net.gini:gini-vision-lib:2.5.0-beta.3') {
         exclude group: 'com.android.support', module: 'support-v13'
     }
-    implementation ('net.gini:gini-android-sdk:1.3.92@aar') {
+    implementation ('net.gini:gini-android-sdk:1.4.1@aar') {
         transitive = true
     }
     implementation 'com.karumi:dexter:4.2.0'
