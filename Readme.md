@@ -1,4 +1,4 @@
-Gini Vision Lib Android Example App
+Gini Vision Library Android Example App
 ====
 
 The GVL Android Example App showcases the features of the Gini Vision Library.
