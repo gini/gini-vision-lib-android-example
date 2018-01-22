@@ -67,7 +67,7 @@ dependencies {
 //    implementation 'org.slf4j:slf4j-api:1.7.21'
 //    implementation 'org.glassfish.jersey.bundles.repackaged:jersey-jsr166e:2.23.1'
 
-    implementation ('net.gini:gini-vision-lib:2.5.0-beta.4') {
+    implementation ('net.gini:gini-vision-lib:2.5.0') {
         exclude group: 'com.android.support', module: 'support-v13'
     }
     implementation ('net.gini:gini-android-sdk:1.4.1@aar') {
