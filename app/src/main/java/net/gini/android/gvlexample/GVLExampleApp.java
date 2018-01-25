@@ -36,7 +36,8 @@ public class GVLExampleApp extends Application {
         final String clientSecret = this.getString(R.string.gini_api_client_secret);
         SdkBuilder builder = new SdkBuilder(this, clientId,
                 clientSecret,
-                "gvlexample.net");
+                "gvlexample.net",
+                new String[]{"*.gini.net.cer"});
         mGiniApi = builder.build();
     }
 }
