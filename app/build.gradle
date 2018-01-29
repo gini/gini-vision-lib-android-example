@@ -6,11 +6,11 @@ def appVersionCode = gitTagCount() > 0 ? gitTagCount() : 1
 def appVersionName = "${gitDescribe() ?: '0.0.0'} (${appVersionCode})"
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "net.gini.android.gvlexample"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode appVersionCode
         versionName appVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -55,8 +55,13 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support:design:27.0.2'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.karumi:dexter:4.2.0'
+    implementation 'net.hockeyapp.android:HockeySDK:5.0.4'
+    implementation "android.arch.lifecycle:runtime:1.1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
 
     // Use a local build of the Gini Vision Library
     // 1. copy a Gini Vision Library release build to the libs folder
@@ -70,15 +75,11 @@ dependencies {
     implementation ('net.gini:gini-vision-lib:2.5.0') {
         exclude group: 'com.android.support', module: 'support-v13'
     }
-    implementation ('net.gini:gini-android-sdk:1.4.1@aar') {
+    implementation ('net.gini:gini-android-sdk:1.4.2@aar') {
         transitive = true
     }
-    implementation 'com.karumi:dexter:4.2.0'
-    implementation 'net.hockeyapp.android:HockeySDK:5.0.4'
-    implementation "android.arch.lifecycle:runtime:1.0.3"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation 'com.android.support:design:26.1.0'
 }
