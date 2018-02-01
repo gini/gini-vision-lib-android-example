@@ -29,14 +29,25 @@ android {
             resValue 'string', 'gini_api_client_id', clientId
             resValue 'string', 'gini_api_client_secret', clientSecret
             manifestPlaceholders = [HOCKEYAPP_APP_ID: ""]
+            versionNameSuffix "-debug"
         }
         release {
+            initWith debug
+            versionNameSuffix ""
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            resValue 'string', 'gini_api_client_id', clientId
-            resValue 'string', 'gini_api_client_secret', clientSecret
             manifestPlaceholders = [HOCKEYAPP_APP_ID: "972db965d54d43ceaa6509f63e7208c5"]
+        }
+    }
+    flavorDimensions "app"
+    productFlavors {
+        legacy {
+            dimension "app"
+        }
+        newest {
+            dimension "app"
+            versionNameSuffix "-newest"
         }
     }
     dataBinding {
@@ -45,10 +56,12 @@ android {
 }
 
 repositories {
+    // Use repo on filesystem for using local builds
+    mavenLocal()
     maven {
         url 'https://repo.gini.net/nexus/content/repositories/open'
     }
-    flatDir{
+    flatDir {
         dirs 'libs'
     }
 }
@@ -63,19 +76,11 @@ dependencies {
     implementation "android.arch.lifecycle:runtime:1.1.0"
     annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
 
-    // Use a local build of the Gini Vision Library
-    // 1. copy a Gini Vision Library release build to the libs folder
-    // 2. uncomment the lines below
-    // 3. comment out the dependency declaration of the released version
-//    implementation(name:'ginivision-release', ext:'aar')
-//    implementation 'com.google.android.gms:play-services-vision:11.6.0'
-//    implementation 'org.slf4j:slf4j-api:1.7.21'
-//    implementation 'org.glassfish.jersey.bundles.repackaged:jersey-jsr166e:2.23.1'
-
-    implementation ('net.gini:gini-vision-lib:2.5.0') {
+    implementation('net.gini:gini-vision-lib:2.6.0-alpha.1') {
         exclude group: 'com.android.support', module: 'support-v13'
     }
-    implementation ('net.gini:gini-android-sdk:1.4.2@aar') {
+    newestImplementation 'net.gini:gini-vision-lib-network:2.6.0-alpha.1'
+    legacyImplementation('net.gini:gini-android-sdk:1.4.2@aar') {
         transitive = true
     }
 
