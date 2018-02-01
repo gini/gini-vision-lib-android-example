@@ -48,6 +48,7 @@ android {
         newest {
             dimension "app"
             versionNameSuffix "-newest"
+            applicationIdSuffix ".newest"
         }
     }
     dataBinding {
