@@ -24,6 +24,7 @@ pipeline {
             steps {
                 sh "git log --format='format:- %s' --no-merges \$(git describe --abbrev=0 --tags \$(git rev-list --tags --skip=1  --max-count=1))..HEAD >> changelog.md"
                 step([$class: 'HockeyappRecorder', applications: [[apiToken: HOCKEYAPP_API_TOKEN, downloadAllowed: true, dsymPath: 'app/build/outputs/mapping/legacy/release/mapping.txt', filePath: 'app/build/outputs/apk/legacy/release/app-legacy-release.apk', mandatory: false, notifyTeam: false, releaseNotesMethod: [$class: 'FileReleaseNotes', fileName: 'changelog.md', isMarkdown: true], uploadMethod: [$class: 'AppCreation', publicPage: true]]], debugMode: false, failGracefully: false])
+                step([$class: 'HockeyappRecorder', applications: [[apiToken: HOCKEYAPP_API_TOKEN, downloadAllowed: true, dsymPath: 'app/build/outputs/mapping/newest/release/mapping.txt', filePath: 'app/build/outputs/apk/legacy/newest/app-newest-release.apk', mandatory: false, notifyTeam: false, releaseNotesMethod: [$class: 'FileReleaseNotes', fileName: 'changelog.md', isMarkdown: true], uploadMethod: [$class: 'AppCreation', publicPage: true]]], debugMode: false, failGracefully: false])
             }
             post {
                 always {

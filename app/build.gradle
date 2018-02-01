@@ -44,11 +44,12 @@ android {
     productFlavors {
         legacy {
             dimension "app"
+            versionCode 2000 + android.defaultConfig.versionCode
         }
         newest {
             dimension "app"
             versionNameSuffix "-newest"
-            applicationIdSuffix ".newest"
+            versionCode 1000 + android.defaultConfig.versionCode
         }
     }
     dataBinding {
