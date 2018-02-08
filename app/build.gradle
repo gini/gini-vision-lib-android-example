@@ -75,7 +75,7 @@ dependencies {
     implementation ('net.gini:gini-vision-lib:2.5.0') {
         exclude group: 'com.android.support', module: 'support-v13'
     }
-    implementation ('net.gini:gini-android-sdk:1.4.2@aar') {
+    implementation ('net.gini:gini-android-sdk:1.5.0@aar') {
         transitive = true
     }
 
