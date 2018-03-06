@@ -1,22 +1,15 @@
 package net.gini.android.gvlexample;
 
-import static net.gini.android.gvlexample.gini.ExtractionUtil.isPay5Extraction;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import net.gini.android.gvlexample.gini.AnalysisActivity;
-import net.gini.android.gvlexample.gini.CameraActivity;
-import net.gini.android.gvlexample.gini.ReviewActivity;
-import net.gini.android.vision.DocumentImportEnabledFileTypes;
 import net.gini.android.vision.GiniVisionError;
-import net.gini.android.vision.GiniVisionFeatureConfiguration;
 import net.gini.android.vision.GiniVisionFileImport;
 import net.gini.android.vision.ImportedFileValidationException;
-import net.gini.android.vision.requirements.GiniVisionRequirements;
-import net.gini.android.vision.requirements.RequirementsReport;
+import net.gini.android.vision.analysis.AnalysisActivity;
+import net.gini.android.vision.review.ReviewActivity;
 
 /**
  * Created by Alpar Szotyori on 27.11.2017.
@@ -24,11 +17,11 @@ import net.gini.android.vision.requirements.RequirementsReport;
  * Copyright (c) 2017 Gini GmbH.
  */
 
-class GVLExamplePresenter extends GVLExampleContract.Presenter {
+abstract class BaseGVLExamplePresenter extends GVLExampleContract.Presenter {
 
     private boolean mGVLLaunchedForImportedFile = false;
 
-    GVLExamplePresenter(final GVLExampleContract.View view) {
+    BaseGVLExamplePresenter(final GVLExampleContract.View view) {
         super(view);
     }
 
@@ -42,6 +35,7 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
         getView().requestCameraPermission(new GVLExampleContract.View.PermissionRequestListener() {
             @Override
             public void permissionGranted() {
+                initGiniVision();
                 doLaunchGVL();
             }
 
@@ -51,34 +45,9 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
         });
     }
 
-    private void doLaunchGVL() {
-        // NOTE: on Android 6.0 and later the camera permission is required before checking the requirements
-        RequirementsReport report = GiniVisionRequirements.checkRequirements(getView().getContext());
-        if (!report.isFulfilled()) {
-            getView().showUnfulfilledRequirements(report);
-            return;
-        }
+    protected abstract void doLaunchGVL();
 
-        final Context context = getView().getContext();
-
-        Intent intent = new Intent(context, CameraActivity.class);
-
-        final GiniVisionFeatureConfiguration giniVisionFeatureConfiguration =
-                GiniVisionFeatureConfiguration.buildNewConfiguration()
-                                              .setDocumentImportEnabledFileTypes(
-                                                      DocumentImportEnabledFileTypes.PDF_AND_IMAGES)
-                                              .setFileImportEnabled(true)
-                                              .setQRCodeScanningEnabled(true)
-                                              .build();
-
-        intent.putExtra(CameraActivity.EXTRA_IN_GINI_VISION_FEATURE_CONFIGURATION,
-                giniVisionFeatureConfiguration);
-
-        CameraActivity.setReviewActivityExtra(intent, context, ReviewActivity.class);
-        CameraActivity.setAnalysisActivityExtra(intent, context, AnalysisActivity.class);
-
-        getView().showGVL(intent);
-    }
+    protected abstract void initGiniVision();
 
     @Override
     void launchGVLForImportedFile(final Intent intent) {
@@ -127,7 +96,7 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
 
     @Override
     void onGVLResultsReceived(@Nullable final Bundle extractions) {
-        if (extractions != null && pay5ExtractionsAvailable(extractions)) {
+        if (extractions != null) {
             getView().showResults(extractions);
         } else {
             getView().showNoPdfResults();
@@ -159,15 +128,6 @@ class GVLExamplePresenter extends GVLExampleContract.Presenter {
     @Override
     void onImportedFileErrorAcknowledged() {
         getView().finish();
-    }
-
-    private boolean pay5ExtractionsAvailable(Bundle extractionsBundle) {
-        for (String key : extractionsBundle.keySet()) {
-            if (isPay5Extraction(key)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override

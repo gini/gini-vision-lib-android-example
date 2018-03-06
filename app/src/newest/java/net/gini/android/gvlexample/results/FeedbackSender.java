@@ -2,9 +2,9 @@ package net.gini.android.gvlexample.results;
 
 import android.util.Log;
 
-import net.gini.android.vision.GiniVisionApplication;
+import net.gini.android.vision.GiniVision;
 import net.gini.android.vision.network.Error;
-import net.gini.android.vision.network.GiniVisionNetwork;
+import net.gini.android.vision.network.GiniVisionNetworkCallback;
 import net.gini.android.vision.network.model.GiniVisionSpecificExtraction;
 
 import java.util.Map;
@@ -20,11 +20,8 @@ class FeedbackSender extends BaseFeedbackSender<GiniVisionSpecificExtraction> {
     @Override
     void doSendFeedback(final Map<String, GiniVisionSpecificExtraction> extractionsMap,
             final ResultsContract.View view) {
-        final GiniVisionApplication app = (GiniVisionApplication) view.getApplication();
-        final GiniVisionNetwork giniVisionNetwork = app.getGiniVisionNetwork();
-
-        giniVisionNetwork.sendFeedback(extractionsMap,
-                new GiniVisionNetwork.Callback<Void, Error>() {
+        GiniVision.getInstance().getGiniVisionNetworkApi().sendFeedback(extractionsMap,
+                new GiniVisionNetworkCallback<Void, Error>() {
                     @Override
                     public void failure(final Error error) {
                         Log.e("feedback", error.getMessage());

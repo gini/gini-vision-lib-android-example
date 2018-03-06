@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="net.gini.android.gvlexample">
+
+    <application>
+        <activity
+            android:name=".gini.CameraActivity"
+            android:label="@string/gv_title_camera"
+            android:theme="@style/GiniVisionTheme" />
+        <activity
+            android:name=".gini.AnalysisActivity"
+            android:label="@string/gv_title_analysis"
+            android:theme="@style/GiniVisionTheme" />
+        <activity
+            android:name=".gini.ReviewActivity"
+            android:label="@string/gv_title_review"
+            android:theme="@style/GiniVisionTheme" />
+    </application>
+
+</manifest>

@@ -3,7 +3,7 @@ package net.gini.android.gvlexample;
 import android.content.Intent;
 import android.os.Bundle;
 
-import net.gini.android.gvlexample.gini.CameraActivity;
+import net.gini.android.vision.camera.CameraActivity;
 
 /**
  * Created by Alpar Szotyori on 20.11.2017.
