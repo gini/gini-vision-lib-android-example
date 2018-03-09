@@ -2,12 +2,9 @@ package net.gini.android.gvlexample;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import net.gini.android.vision.DocumentImportEnabledFileTypes;
 import net.gini.android.vision.GiniVision;
-import net.gini.android.vision.GiniVisionError;
 import net.gini.android.vision.camera.CameraActivity;
 import net.gini.android.vision.network.GiniVisionDefaultNetworkApi;
 import net.gini.android.vision.network.GiniVisionDefaultNetworkService;
@@ -59,24 +56,6 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
         Intent intent = new Intent(context, CameraActivity.class);
 
         getView().showGVL(intent);
-    }
-
-    @Override
-    void onGVLResultsReceived(@Nullable final Bundle extractions) {
-        super.onGVLResultsReceived(extractions);
-        GiniVision.cleanup();
-    }
-
-    @Override
-    void onGVLErrorReceived(final GiniVisionError error) {
-        super.onGVLErrorReceived(error);
-        GiniVision.cleanup();
-    }
-
-    @Override
-    void onGVLWasCanceled() {
-        super.onGVLWasCanceled();
-        GiniVision.cleanup();
     }
 
     @Override

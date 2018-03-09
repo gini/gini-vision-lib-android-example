@@ -25,16 +25,19 @@ class FeedbackSender extends BaseFeedbackSender<GiniVisionSpecificExtraction> {
                     @Override
                     public void failure(final Error error) {
                         Log.e("feedback", error.getMessage());
+                        GiniVision.cleanup();
                         view.finish();
                     }
 
                     @Override
                     public void success(final Void result) {
+                        GiniVision.cleanup();
                         view.finish();
                     }
 
                     @Override
                     public void cancelled() {
+                        GiniVision.cleanup();
                         view.finish();
                     }
                 });
