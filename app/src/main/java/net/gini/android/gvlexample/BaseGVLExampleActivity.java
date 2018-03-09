@@ -44,9 +44,8 @@ import java.util.List;
  * Copyright (c) 2017 Gini GmbH.
  */
 
-public class GVLExampleActivity extends AppCompatActivity implements GVLExampleContract.View {
+public abstract class BaseGVLExampleActivity extends AppCompatActivity implements GVLExampleContract.View {
 
-    public static final String EXTRA_OUT_EXTRACTIONS = "EXTRA_OUT_EXTRACTIONS";
     private static final int REQUEST_GINI_VISION = 1;
     private Hockeyapp mHockeyapp;
     private GVLExamplePresenter mPresenter;
@@ -66,7 +65,7 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
                 case RESULT_OK:
                     Bundle extractionsBundle = null;
                     if (data != null) {
-                        extractionsBundle = data.getBundleExtra(EXTRA_OUT_EXTRACTIONS);
+                        extractionsBundle = getExtractions(data);
                     }
                     mPresenter.onGVLResultsReceived(extractionsBundle);
                     break;
@@ -81,6 +80,8 @@ public class GVLExampleActivity extends AppCompatActivity implements GVLExampleC
             }
         }
     }
+
+    abstract Bundle getExtractions(final Intent data);
 
     @Override
     protected void onNewIntent(final Intent intent) {
