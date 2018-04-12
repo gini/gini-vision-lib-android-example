@@ -92,4 +92,9 @@ public class ResultsActivity extends AppCompatActivity implements ResultsContrac
         adapter.showExtractions(extractions);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.stop();
+    }
 }

@@ -9,6 +9,8 @@ import android.util.SparseArray;
 import android.view.View;
 
 import net.gini.android.gvlexample.gini.Extraction;
+import net.gini.android.vision.network.Error;
+import net.gini.android.vision.network.GiniVisionNetworkCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +23,7 @@ import java.util.Map;
  * Copyright (c) 2017 Gini GmbH.
  */
 
-class ResultsPresenter extends ResultsContract.Presenter {
+abstract class BaseResultsPresenter extends ResultsContract.Presenter {
 
     private static final Map<String, Integer> PAY5_INDEX;
 
@@ -38,7 +40,7 @@ class ResultsPresenter extends ResultsContract.Presenter {
     private final BaseFeedbackSender mFeedbackSender;
     private final ExtractionContainerFactory mExtractionContainerFactory;
 
-    ResultsPresenter(final ResultsContract.View view, final Bundle extractionsBundle) {
+    BaseResultsPresenter(final ResultsContract.View view, final Bundle extractionsBundle) {
         super(view);
         mExtractions = new SparseArray<>(20);
         mFeedbackSender = new FeedbackSender();
