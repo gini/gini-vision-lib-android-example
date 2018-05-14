@@ -28,10 +28,10 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
         // NOTE: on Android 6.0 and later the camera permission is required before checking the requirements
         RequirementsReport report =
                 GiniVisionRequirements.checkRequirements(getView().getContext());
-        if (!report.isFulfilled()) {
-            getView().showUnfulfilledRequirements(report);
-            return;
-        }
+//        if (!report.isFulfilled()) {
+//            getView().showUnfulfilledRequirements(report);
+//            return;
+//        }
 
         final Context context = getView().getContext();
 

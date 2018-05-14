@@ -68,7 +68,7 @@ repositories {
     }
 }
 
-def giniVisionVersion = '2.6.0-alpha.5'
+def giniVisionVersion = '2.6.0-beta.1'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -83,8 +83,11 @@ dependencies {
     implementation("net.gini:gini-vision-lib:$giniVisionVersion") {
         exclude group: 'com.android.support', module: 'support-v13'
     }
-    newestImplementation "net.gini:gini-vision-lib-network:$giniVisionVersion"
-    legacyImplementation('net.gini:gini-android-sdk:1.4.2@aar') {
+//    newestImplementation "net.gini:gini-vision-lib-network:$giniVisionVersion"
+    newestImplementation('net.gini:gini-android-sdk:1.5.0@aar') {
+        transitive = true
+    }
+    legacyImplementation('net.gini:gini-android-sdk:1.5.0@aar') {
         transitive = true
     }
 
