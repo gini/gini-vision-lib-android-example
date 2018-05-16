@@ -17,4 +17,11 @@ public class GVLExampleActivity extends BaseGVLExampleActivity implements GVLExa
     Bundle getExtractions(final Intent data) {
         return data.getBundleExtra(CameraActivity.EXTRA_OUT_EXTRACTIONS);
     }
+
+    boolean isIntentActionViewOrSend(final Intent intent) {
+        String action = intent.getAction();
+        return Intent.ACTION_VIEW.equals(action)
+                || Intent.ACTION_SEND.equals(action)
+                || Intent.ACTION_SEND_MULTIPLE.equals(action);
+    }
 }

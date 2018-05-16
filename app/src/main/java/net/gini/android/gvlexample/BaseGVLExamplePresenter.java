@@ -8,8 +8,6 @@ import android.support.annotation.Nullable;
 import net.gini.android.vision.GiniVisionError;
 import net.gini.android.vision.GiniVisionFileImport;
 import net.gini.android.vision.ImportedFileValidationException;
-import net.gini.android.vision.analysis.AnalysisActivity;
-import net.gini.android.vision.review.ReviewActivity;
 
 /**
  * Created by Alpar Szotyori on 27.11.2017.
@@ -54,6 +52,7 @@ abstract class BaseGVLExamplePresenter extends GVLExampleContract.Presenter {
         getView().requestStoragePermission(new GVLExampleContract.View.PermissionRequestListener() {
             @Override
             public void permissionGranted() {
+                initGiniVision();
                 doLaunchGVLForImportedFile(intent);
             }
 
@@ -67,8 +66,7 @@ abstract class BaseGVLExamplePresenter extends GVLExampleContract.Presenter {
     private void doLaunchGVLForImportedFile(final Intent intent) {
         try {
             final Intent giniVisionIntent =
-                    GiniVisionFileImport.createIntentForImportedFile(intent, getView().getContext(),
-                            ReviewActivity.class, AnalysisActivity.class);
+                    GiniVisionFileImport.createIntentForImportedFile(intent, getView().getContext());
             getView().showGVL(giniVisionIntent);
             mGVLLaunchedForImportedFile = true;
         } catch (ImportedFileValidationException e) {

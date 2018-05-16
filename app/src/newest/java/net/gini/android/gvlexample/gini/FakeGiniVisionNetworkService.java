@@ -116,4 +116,10 @@ public class FakeGiniVisionNetworkService implements GiniVisionNetworkService {
             }
         };
     }
+
+    @Override
+    public void cleanup() {
+        mSingleDocumentAnalyzer.cancelAnalysis();
+        mGiniDocuments.clear();
+    }
 }

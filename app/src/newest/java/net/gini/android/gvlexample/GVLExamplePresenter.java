@@ -69,6 +69,7 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                   .setGiniVisionNetworkApi(mGiniVisionNetworkApi)
                   .setQRCodeScanningEnabled(true)
                   .setFileImportEnabled(true)
+                  .setMultiPageEnabled(true)
                   .setDocumentImportEnabledFileTypes(DocumentImportEnabledFileTypes.PDF_AND_IMAGES)
                   .build();
     }

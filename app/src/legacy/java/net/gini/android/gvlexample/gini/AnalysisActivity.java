@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import net.gini.android.gvlexample.GVLExampleApp;
 import net.gini.android.gvlexample.GVLExampleActivity;
+import net.gini.android.gvlexample.GVLExampleApp;
 import net.gini.android.gvlexample.R;
 import net.gini.android.models.SpecificExtraction;
 import net.gini.android.vision.Document;

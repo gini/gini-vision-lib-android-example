@@ -91,7 +91,7 @@ public abstract class BaseGVLExampleActivity extends AppCompatActivity implement
         }
     }
 
-    private boolean isIntentActionViewOrSend(final Intent intent) {
+    boolean isIntentActionViewOrSend(final Intent intent) {
         String action = intent.getAction();
         return Intent.ACTION_VIEW.equals(action) || Intent.ACTION_SEND.equals(action);
     }
