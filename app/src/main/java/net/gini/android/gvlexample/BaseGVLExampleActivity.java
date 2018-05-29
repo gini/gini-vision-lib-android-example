@@ -87,7 +87,7 @@ public abstract class BaseGVLExampleActivity extends AppCompatActivity implement
     protected void onNewIntent(final Intent intent) {
         super.onNewIntent(intent);
         if (isIntentActionViewOrSend(intent)) {
-            mPresenter.launchGVLForImportedFile(intent);
+            mPresenter.launchGVLForIntent(intent);
         }
     }
 
@@ -117,7 +117,7 @@ public abstract class BaseGVLExampleActivity extends AppCompatActivity implement
         if (!mRestoredInstance) {
             final Intent intent = getIntent();
             if (isIntentActionViewOrSend(intent)) {
-                mPresenter.launchGVLForImportedFile(intent);
+                mPresenter.launchGVLForIntent(intent);
             }
         }
     }
@@ -135,6 +135,12 @@ public abstract class BaseGVLExampleActivity extends AppCompatActivity implement
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.stop();
     }
 
     @Override

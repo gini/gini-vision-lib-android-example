@@ -49,11 +49,13 @@ class GVLExampleContract {
             super(view);
         }
 
+        abstract void stop();
+
         abstract void presentInfos();
 
         abstract void launchGVL();
 
-        abstract void launchGVLForImportedFile(final Intent intent);
+        abstract void launchGVLForIntent(final Intent intent);
 
         abstract void onGVLResultsReceived(@Nullable final Bundle extractions);
 

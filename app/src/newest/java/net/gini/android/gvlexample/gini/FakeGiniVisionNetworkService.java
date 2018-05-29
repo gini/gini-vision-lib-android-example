@@ -11,12 +11,12 @@ import net.gini.android.gvlexample.R;
 import net.gini.android.models.SpecificExtraction;
 import net.gini.android.vision.Document;
 import net.gini.android.vision.network.AnalysisResult;
-import net.gini.android.vision.network.CancellationToken;
 import net.gini.android.vision.network.Error;
 import net.gini.android.vision.network.GiniVisionNetworkCallback;
 import net.gini.android.vision.network.GiniVisionNetworkService;
 import net.gini.android.vision.network.Result;
 import net.gini.android.vision.network.model.GiniVisionSpecificExtraction;
+import net.gini.android.vision.util.CancellationToken;
 
 import java.util.Date;
 import java.util.HashMap;

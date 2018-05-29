@@ -2,14 +2,17 @@ package net.gini.android.gvlexample;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 
+import net.gini.android.gvlexample.gini.AnalysisActivity;
+import net.gini.android.gvlexample.gini.CameraActivity;
+import net.gini.android.gvlexample.gini.ReviewActivity;
 import net.gini.android.vision.DocumentImportEnabledFileTypes;
 import net.gini.android.vision.GiniVisionFeatureConfiguration;
+import net.gini.android.vision.GiniVisionFileImport;
+import net.gini.android.vision.ImportedFileValidationException;
 import net.gini.android.vision.requirements.GiniVisionRequirements;
 import net.gini.android.vision.requirements.RequirementsReport;
-import net.gini.android.gvlexample.gini.ReviewActivity;
-import net.gini.android.gvlexample.gini.CameraActivity;
-import net.gini.android.gvlexample.gini.AnalysisActivity;
 
 /**
  * Created by Alpar Szotyori on 22.02.2018.
@@ -56,5 +59,42 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
 
     @Override
     protected void initGiniVision() {
+    }
+
+    @Override
+    void doLaunchGVLForIntent(@NonNull final Intent intent) {
+        try {
+            final Intent giniVisionIntent =
+                    GiniVisionFileImport.createIntentForImportedFile(intent, getView().getContext(),
+                            ReviewActivity.class, AnalysisActivity.class);
+            getView().showGVL(giniVisionIntent);
+            setGVLLaunchedForImportedFile(true);
+        } catch (ImportedFileValidationException e) {
+            e.printStackTrace();
+            final Context context = getView().getContext();
+            String errorMessage = context.getString(R.string.imported_file_cannot_analyze_error);
+            if (e.getValidationError() != null) {
+                switch (e.getValidationError()) {
+                    case TYPE_NOT_SUPPORTED:
+                        errorMessage =
+                                context.getString(R.string.imported_file_type_not_supported_error);
+                        break;
+                    case SIZE_TOO_LARGE:
+                        errorMessage = context.getString(R.string.imported_file_too_large_error);
+                        break;
+                    case TOO_MANY_PDF_PAGES:
+                        errorMessage =
+                                context.getString(R.string.imported_file_pdf_too_many_pages_error);
+                        break;
+                }
+            }
+            getView().showImportedFileError(errorMessage);
+        }
+
+    }
+
+    @Override
+    void stop() {
+
     }
 }
