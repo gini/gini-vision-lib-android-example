@@ -4,14 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
-import net.gini.android.gvlexample.gini.FakeGiniVisionNetworkService;
-import net.gini.android.gvlexample.gini.StubGiniVisionNetworkApi;
 import net.gini.android.vision.AsyncCallback;
 import net.gini.android.vision.DocumentImportEnabledFileTypes;
 import net.gini.android.vision.GiniVision;
 import net.gini.android.vision.ImportedFileValidationException;
 import net.gini.android.vision.analysis.AnalysisActivity;
 import net.gini.android.vision.camera.CameraActivity;
+import net.gini.android.vision.network.GiniVisionDefaultNetworkApi;
+import net.gini.android.vision.network.GiniVisionDefaultNetworkService;
 import net.gini.android.vision.network.GiniVisionNetworkApi;
 import net.gini.android.vision.network.GiniVisionNetworkService;
 import net.gini.android.vision.requirements.GiniVisionRequirements;
@@ -38,17 +38,18 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
         final String clientId = context.getString(R.string.gini_api_client_id);
         final String clientSecret = context.getString(R.string.gini_api_client_secret);
 
-//        mGiniVisionNetworkService = GiniVisionDefaultNetworkService
-//                .builder(context)
-//                .setClientCredentials(clientId, clientSecret, "gvlexample.net")
-//                .build();
-        mGiniVisionNetworkService = new FakeGiniVisionNetworkService(context);
+        mGiniVisionNetworkService = GiniVisionDefaultNetworkService
+                .builder(context)
+                .setBaseUrl("https://api.stage.gini.net")
+                .setUserCenterBaseUrl("https://user.stage.gini.net")
+                .setClientCredentials(clientId, clientSecret, "gvlexample.net")
+                .build();
 
-//        mGiniVisionNetworkApi = GiniVisionDefaultNetworkApi
-//                .builder()
-//                .withGiniVisionDefaultNetworkService(mGiniVisionNetworkService)
-//                .build();
-        mGiniVisionNetworkApi = new StubGiniVisionNetworkApi();
+        mGiniVisionNetworkApi = GiniVisionDefaultNetworkApi
+                .builder()
+                .withGiniVisionDefaultNetworkService(
+                        (GiniVisionDefaultNetworkService) mGiniVisionNetworkService)
+                .build();
     }
 
     @Override
