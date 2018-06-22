@@ -64,7 +64,7 @@
             android:name=".NoPdfResultsActivity"
             android:label="@string/no_pdf_results_activity_title" />
         <activity
-            android:name=".settings.ConfigurationActivity"
+            android:name=".configuration.ConfigurationActivity"
             android:label="@string/configuration_activity_title"
             android:parentActivityName=".info.InfoActivity"
             tools:ignore="UnusedAttribute">

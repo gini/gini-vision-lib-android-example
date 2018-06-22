@@ -3,10 +3,9 @@ package net.gini.android.gvlexample;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-
+import net.gini.android.gvlexample.configuration.ConfigurationManager;
 import net.gini.android.vision.AsyncCallback;
 import net.gini.android.vision.DocumentImportEnabledFileTypes;
 import net.gini.android.vision.GiniVision;
@@ -70,8 +69,7 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
 
         initNetworking();
 
-        SharedPreferences configuration = PreferenceManager.getDefaultSharedPreferences(
-                context);
+        SharedPreferences configuration = ConfigurationManager.getConfigurationPreferences(context);
         final boolean showOnboardingOnFirstRun = configuration.getBoolean(
                 context.getString(R.string.pref_key_gvl_show_onboarding_on_first_run), true);
         final boolean alwaysShowOnboarding = configuration.getBoolean(
@@ -103,7 +101,7 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
     @NonNull
     private void initNetworking() {
         final Context context = getView().getContext();
-        SharedPreferences configuration = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences configuration = ConfigurationManager.getConfigurationPreferences(context);
         final String clientId = configuration.getString(
                 context.getString(R.string.pref_key_api_sdk_client_id), "");
         String clientSecret = configuration.getString(

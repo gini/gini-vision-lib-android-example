@@ -1,4 +1,4 @@
-package net.gini.android.gvlexample.settings;
+package net.gini.android.gvlexample.configuration;
 
 import android.os.Bundle;
 

@@ -1,11 +1,14 @@
 package net.gini.android.gvlexample.info;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-
+import android.widget.Toast;
 import net.gini.android.gvlexample.R;
-import net.gini.android.gvlexample.settings.ConfigurationActivity;
+import net.gini.android.gvlexample.configuration.ConfigurationActivity;
+import net.gini.android.gvlexample.configuration.ConfigurationManager;
 import net.gini.android.vision.BuildConfig;
 
 import java.util.LinkedHashMap;
@@ -13,7 +16,7 @@ import java.util.Map;
 
 /**
  * Created by Alpar Szotyori on 22.11.2017.
- *
+ * <p>
  * Copyright (c) 2017 Gini GmbH.
  */
 
@@ -21,6 +24,7 @@ class InfoPresenter extends InfoContract.Presenter {
 
     private static final String GVL_CONFIGURATION_ITEM = "GVL_CONFIGURATION_ITEM";
     private static final String API_SDK_CONFIGURATION_ITEM = "API_SDK_CONFIGURATION_ITEM";
+    private static final String RESET_ALL_CONFIGURATION_ITEM = "RESET_ALL_CONFIGURATION_ITEM";
 
     InfoPresenter(final InfoContract.View view) {
         super(view);
@@ -41,10 +45,29 @@ class InfoPresenter extends InfoContract.Presenter {
             case API_SDK_CONFIGURATION_ITEM:
                 launchConfigurationActivity(ConfigurationActivity.ConfigurationSubject.API_SDK);
                 break;
+            case RESET_ALL_CONFIGURATION_ITEM:
+                confirmResetConfiguration();
+                break;
             default:
                 throw new UnsupportedOperationException(
                         "Unknown configuration item: " + configurationItem);
         }
+    }
+
+    private void confirmResetConfiguration() {
+        final Context context = getView().getContext();
+        new AlertDialog.Builder(context)
+                .setMessage("Alle Anpassungen werden zurückgesetzt.")
+                .setPositiveButton("Fortfahren", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ConfigurationManager.resetDefaultValues(context);
+                        Toast.makeText(context, "Konfiguration wurde zurückgesetzt", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Abbrechen", null)
+                .create()
+                .show();
     }
 
     private void launchConfigurationActivity(
@@ -95,6 +118,7 @@ class InfoPresenter extends InfoContract.Presenter {
         final Map<String, String> links = new LinkedHashMap<>();
         links.put("Gini Vision Library", GVL_CONFIGURATION_ITEM);
         links.put("Gini API SDK", API_SDK_CONFIGURATION_ITEM);
+        links.put("Alles zurücksetzen", RESET_ALL_CONFIGURATION_ITEM);
         return links;
     }
 }
