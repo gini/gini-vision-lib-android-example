@@ -23,6 +23,8 @@ import net.gini.android.vision.requirements.RequirementsReport;
 import net.gini.android.vision.review.ReviewActivity;
 import net.gini.android.vision.util.CancellationToken;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by Alpar Szotyori on 22.02.2018.
  *
@@ -124,12 +126,22 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 context.getString(R.string.pref_key_api_sdk_gini_api_base_url), "");
         final String userCenterBaseUrl = configuration.getString(
                 context.getString(R.string.pref_key_api_sdk_user_center_base_url), "");
+        final String connectionTimeout = configuration.getString(
+                context.getString(R.string.pref_key_api_sdk_connection_timeout), "60");
+        final String nrOfRetries = configuration.getString(
+                context.getString(R.string.pref_key_api_sdk_nr_of_retries), "3");
+        final String backoffMultiplier = configuration.getString(
+                context.getString(R.string.pref_key_api_sdk_backoff_multiplier), "1");
 
         mGiniVisionNetworkService = GiniVisionDefaultNetworkService
                 .builder(context)
                 .setBaseUrl(apiBaseUrl)
                 .setUserCenterBaseUrl(userCenterBaseUrl)
                 .setClientCredentials(clientId, clientSecret, emailDomain)
+                .setConnectionTimeout(Long.parseLong(connectionTimeout))
+                .setConnectionTimeoutUnit(TimeUnit.MILLISECONDS)
+                .setMaxNumberOfRetries(Integer.parseInt(nrOfRetries))
+                .setBackoffMultiplier(Float.parseFloat(backoffMultiplier))
                 .build();
 
         mGiniVisionNetworkApi = GiniVisionDefaultNetworkApi

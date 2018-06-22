@@ -54,10 +54,19 @@ public class GVLExampleApp extends Application {
                 this.getString(R.string.pref_key_api_sdk_gini_api_base_url), "");
         final String userCenterBaseUrl = configuration.getString(
                 this.getString(R.string.pref_key_api_sdk_user_center_base_url), "");
+        final String connectionTimeout = configuration.getString(
+                this.getString(R.string.pref_key_api_sdk_connection_timeout), "60");
+        final String nrOfRetries = configuration.getString(
+                this.getString(R.string.pref_key_api_sdk_nr_of_retries), "3");
+        final String backoffMultiplier = configuration.getString(
+                this.getString(R.string.pref_key_api_sdk_backoff_multiplier), "1");
 
-        SdkBuilder builder = new SdkBuilder(this, clientId, clientSecret, emailDomain);
-        builder.setApiBaseUrl(apiBaseUrl);
-        builder.setUserCenterApiBaseUrl(userCenterBaseUrl);
+        SdkBuilder builder = new SdkBuilder(this, clientId, clientSecret, emailDomain)
+                .setApiBaseUrl(apiBaseUrl)
+                .setUserCenterApiBaseUrl(userCenterBaseUrl)
+                .setConnectionTimeoutInMs(Integer.parseInt(connectionTimeout))
+                .setMaxNumberOfRetries(Integer.parseInt(nrOfRetries))
+                .setConnectionBackOffMultiplier(Float.parseFloat(backoffMultiplier));
         mGiniApi = builder.build();
     }
 }

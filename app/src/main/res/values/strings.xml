@@ -55,9 +55,9 @@
     <string name="pref_title_api_url">Gini Api Url</string>
     <string name="pref_title_user_center_url">Gini User Center Url</string>
     <string name="pref_category_requests">Netzwerk</string>
-    <string name="pref_title_connection_timeout">Timeout</string>
+    <string name="pref_title_connection_timeout">Timeout (ms)</string>
     <string name="pref_title_nr_of_retries">Wiederholungen</string>
-    <string name="pref_title_backoff_multiplier">Verzögerungsmultiplikator</string>
+    <string name="pref_title_backoff_multiplier">Verzögerungsmultiplikator (float)</string>
     <string name="pref_category_onboarding">Onboarding</string>
     <string name="pref_title_show_onboarding_on_first_run">Beim ersten Start anzeigen</string>
     <string name="pref_title_always_show_onboarding">Immer anzeigen</string>
