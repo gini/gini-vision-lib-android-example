@@ -65,7 +65,6 @@
     <string name="pref_title_enable_qr_code_scanning">QR Code Scan einschalten</string>
     <string name="pref_title_enable_file_import">Datei Import einschalten</string>
     <string name="pref_title_document_import_file_types">Dokument Import Dateitypen</string>
-    <string name="pref_title_enable_multi_page">Multi-Page einschalten</string>
     <string name="gvl_configuration_item_title">Gini Vision Library</string>
     <string name="api_sdk_configuration_item_title">Gini API SDK</string>
     <string name="reset_all_configuration_item_title">Alles zurücksetzen</string>

@@ -1,0 +1,46 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory android:title="@string/pref_category_onboarding">
+
+        <SwitchPreference
+            android:defaultValue="@string/show_onboarding_on_first_run"
+            android:key="@string/pref_key_gvl_show_onboarding_on_first_run"
+            android:title="@string/pref_title_show_onboarding_on_first_run" />
+
+        <SwitchPreference
+            android:defaultValue="@string/always_show_onboarding"
+            android:key="@string/pref_key_gvl_always_show_onboarding"
+            android:title="@string/pref_title_always_show_onboarding" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_category_features">
+
+        <SwitchPreference
+            android:defaultValue="@string/enable_qr_code_scanning"
+            android:key="@string/pref_key_gvl_enable_qr_code_scanning"
+            android:title="@string/pref_title_enable_qr_code_scanning" />
+
+        <SwitchPreference
+            android:defaultValue="@string/enable_file_import"
+            android:key="@string/pref_key_gvl_enable_file_import"
+            android:title="@string/pref_title_enable_file_import" />
+
+        <ListPreference
+            android:defaultValue="@string/document_import_file_types"
+            android:entries="@array/pref_key_gvl_document_import_file_type_titles"
+            android:entryValues="@array/pref_key_gvl_document_import_file_type_values"
+            android:key="@string/pref_key_gvl_document_import_file_types"
+            android:title="@string/pref_title_document_import_file_types" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_category_debug">
+        <SwitchPreference
+            android:defaultValue="@string/enable_gvl_debugging"
+            android:key="@string/pref_key_gvl_enable_debugging"
+            android:title="@string/pref_title_enable_gvl_debugging" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

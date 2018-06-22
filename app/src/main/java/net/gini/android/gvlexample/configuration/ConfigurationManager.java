@@ -14,15 +14,14 @@ import net.gini.android.gvlexample.R;
 public final class ConfigurationManager {
 
     public static void initDefaultValues(@NonNull final Context context) {
-        PreferenceManager.setDefaultValues(context, R.xml.pref_api_sdk, false);
-        PreferenceManager.setDefaultValues(context, R.xml.pref_gvl, false);
+        PreferenceManager.setDefaultValues(context, R.xml.pref_api_sdk, true);
+        PreferenceManager.setDefaultValues(context, R.xml.pref_gvl, true);
     }
 
     public static void resetDefaultValues(@NonNull final Context context) {
         SharedPreferences configuration = PreferenceManager.getDefaultSharedPreferences(context);
         configuration.edit().clear().apply();
-        PreferenceManager.setDefaultValues(context, R.xml.pref_api_sdk, true);
-        PreferenceManager.setDefaultValues(context, R.xml.pref_gvl, true);
+        initDefaultValues(context);
     }
 
     public static SharedPreferences getConfigurationPreferences(@NonNull final Context context) {
