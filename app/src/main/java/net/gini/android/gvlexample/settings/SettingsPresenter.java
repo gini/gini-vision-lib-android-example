@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.widget.Toast;
+
 import net.gini.android.gvlexample.R;
 import net.gini.android.gvlexample.configuration.ConfigurationActivity;
 import net.gini.android.gvlexample.configuration.ConfigurationManager;
@@ -46,7 +48,7 @@ class SettingsPresenter extends SettingsContract.Presenter {
                 launchConfigurationActivity(ConfigurationActivity.ConfigurationSubject.API_SDK);
                 break;
             case RESET_ALL_CONFIGURATION_ITEM:
-                confirmResetConfiguration();
+                confirmResetAll();
                 break;
             default:
                 throw new UnsupportedOperationException(
@@ -54,20 +56,32 @@ class SettingsPresenter extends SettingsContract.Presenter {
         }
     }
 
-    private void confirmResetConfiguration() {
+    private void confirmResetAll() {
         final Context context = getView().getContext();
         new AlertDialog.Builder(context)
                 .setMessage("Alle Anpassungen werden zurückgesetzt.")
                 .setPositiveButton("Fortfahren", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ConfigurationManager.resetDefaultValues(context);
+                        resetAll(context);
                         Toast.makeText(context, "Konfiguration wurde zurückgesetzt", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton("Abbrechen", null)
                 .create()
                 .show();
+    }
+
+    private void resetAll(@NonNull final Context context) {
+        ConfigurationManager.resetDefaultValues(context);
+        // These are GVL and API SDK internal non-public SharedPreferences
+        clearSharedPreference(context, "GV_SHARED_PREFS");
+        clearSharedPreference(context, "GV_ONCE_PER_INSTALL_EVENTS");
+        clearSharedPreference(context, "Gini");
+    }
+
+    private void clearSharedPreference(@NonNull final Context context, @NonNull final String name) {
+        context.getSharedPreferences(name, Context.MODE_PRIVATE).edit().clear().apply();
     }
 
     private void launchConfigurationActivity(
@@ -116,9 +130,10 @@ class SettingsPresenter extends SettingsContract.Presenter {
 
     private Map<String, String> getConfigurationItems() {
         final Map<String, String> links = new LinkedHashMap<>();
-        links.put("Gini Vision Library", GVL_CONFIGURATION_ITEM);
-        links.put("Gini API SDK", API_SDK_CONFIGURATION_ITEM);
-        links.put("Alles zurücksetzen", RESET_ALL_CONFIGURATION_ITEM);
+        final Context context = getView().getContext();
+        links.put(context.getString(R.string.gvl_configuration_item_title), GVL_CONFIGURATION_ITEM);
+        links.put(context.getString(R.string.api_sdk_configuration_item_title), API_SDK_CONFIGURATION_ITEM);
+        links.put(context.getString(R.string.reset_all_configuration_item_title), RESET_ALL_CONFIGURATION_ITEM);
         return links;
     }
 }
