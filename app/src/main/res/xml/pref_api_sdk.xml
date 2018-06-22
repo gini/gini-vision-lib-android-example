@@ -1,53 +1,53 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="Client Credentials">
+    <PreferenceCategory android:title="@string/pref_category_client_credentials">
 
         <EditTextPreference
             android:defaultValue="@string/gini_api_client_id"
             android:key="@string/pref_key_api_sdk_client_id"
-            android:title="Cient ID" />
+            android:title="@string/pref_title_client_id" />
 
         <EditTextPreference
             android:key="@string/pref_key_api_sdk_client_secret"
             android:summary="******"
-            android:title="Cient Secret" />
+            android:title="@string/pref_title_client_secret" />
 
         <EditTextPreference
             android:defaultValue="@string/api_email_domain"
             android:key="@string/pref_key_api_sdk_email_domain"
-            android:title="E-mail Domain" />
+            android:title="@string/pref_title_email_domain" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Base URLs">
+    <PreferenceCategory android:title="@string/pref_category_base_urls">
 
         <EditTextPreference
             android:defaultValue="@string/api_base_url"
             android:key="@string/pref_key_api_sdk_gini_api_base_url"
-            android:title="Gini Api Base Url" />
+            android:title="@string/pref_title_api_url" />
 
         <EditTextPreference
             android:defaultValue="@string/user_center_base_url"
             android:key="@string/pref_key_api_sdk_user_center_base_url"
-            android:title="Gini User Center Base Url" />
+            android:title="@string/pref_title_user_center_url" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Connection">
+    <PreferenceCategory android:title="@string/pref_category_requests">
 
         <EditTextPreference
             android:defaultValue="@string/connection_timeout"
             android:key="@string/pref_key_api_sdk_connection_timeout"
-            android:title="Connection Timeout" />
+            android:title="@string/pref_title_connection_timeout" />
 
         <EditTextPreference
             android:defaultValue="@string/nr_of_retries"
             android:key="@string/pref_key_api_sdk_nr_of_retries"
-            android:title="Number of Retries" />
+            android:title="@string/pref_title_nr_of_retries" />
 
         <EditTextPreference
             android:defaultValue="@string/backoff_multiplier"
             android:key="@string/pref_key_api_sdk_backoff_multiplier"
-            android:title="Backoff Multiplier" />
+            android:title="@string/pref_title_backoff_multiplier" />
 
     </PreferenceCategory>
 

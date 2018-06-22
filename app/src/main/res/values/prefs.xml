@@ -15,6 +15,7 @@
     <string name="pref_key_gvl_enable_file_import">pref_key_gvl_enable_file_import</string>
     <string name="pref_key_gvl_enable_multi_page">pref_key_gvl_enable_multi_page</string>
     <string name="pref_key_gvl_document_import_file_types">pref_key_gvl_document_import_file_types</string>
+    <string name="pref_key_gvl_enable_debugging">pref_key_gvl_enable_debugging</string>
     <string-array name="pref_key_gvl_document_import_file_type_titles">
         <item>None</item>
         <item>PDFs</item>
@@ -43,4 +44,5 @@
     <string name="enable_file_import">true</string>
     <!-- Index in the DocumentImportEnabledFileTypes enum -->
     <string name="document_import_file_types">3</string>
+    <string name="enable_gvl_debugging">false</string>
 </resources>

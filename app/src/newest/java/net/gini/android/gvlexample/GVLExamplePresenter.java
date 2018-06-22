@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
 import net.gini.android.gvlexample.configuration.ConfigurationManager;
 import net.gini.android.vision.AsyncCallback;
 import net.gini.android.vision.DocumentImportEnabledFileTypes;
 import net.gini.android.vision.GiniVision;
+import net.gini.android.vision.GiniVisionDebug;
 import net.gini.android.vision.ImportedFileValidationException;
 import net.gini.android.vision.analysis.AnalysisActivity;
 import net.gini.android.vision.camera.CameraActivity;
@@ -85,6 +87,14 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                         documentImportFileTypesIndex)];
         final boolean enableMultiPage = configuration.getBoolean(
                 context.getString(R.string.pref_key_gvl_enable_multi_page), true);
+        final boolean enableDebugging = configuration.getBoolean(
+                context.getString(R.string.pref_key_gvl_enable_debugging), true);
+
+        if (enableDebugging) {
+            GiniVisionDebug.enable();
+        } else {
+            GiniVisionDebug.disable();
+        }
 
         GiniVision.newInstance()
                 .setGiniVisionNetworkService(mGiniVisionNetworkService)
