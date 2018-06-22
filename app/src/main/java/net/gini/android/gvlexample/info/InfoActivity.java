@@ -3,6 +3,7 @@ package net.gini.android.gvlexample.info;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +35,7 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         forcePortraitOrientationOnPhones(this);
+        setupActionBar();
         setContentView(R.layout.activity_info);
         mPresenter = new InfoPresenter(this);
         mInfoItemsRecycler = findViewById(R.id.infoItemsRecycler);
@@ -54,6 +56,14 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
             }
         });
         mInfoItemsRecycler.setAdapter(adapter);
+    }
+
+    private void setupActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override

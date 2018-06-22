@@ -12,6 +12,8 @@ import android.view.MenuItem;
 
 import net.gini.android.gvlexample.R;
 
+import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
+
 public class ConfigurationActivity extends AppCompatActivity {
 
     public static final String EXTRA_IN_CONFIGURATION_SUBJECT = "EXTRA_IN_CONFIGURATION_SUBJECT";
@@ -29,6 +31,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuration);
+        forcePortraitOrientationOnPhones(this);
         setupActionBar();
         readExtras();
         showConfigurationFragment();

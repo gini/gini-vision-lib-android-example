@@ -49,7 +49,13 @@
         </activity>
         <activity
             android:name=".info.InfoActivity"
-            android:label="@string/info_activity_title" />
+            android:label="@string/info_activity_title"
+            android:parentActivityName=".GVLExampleActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="net.gini.android.gvlexample.GVLExampleActivity" />
+        </activity>
         <activity
             android:name=".results.ResultsActivity"
             android:label="@string/results_activity_title"
