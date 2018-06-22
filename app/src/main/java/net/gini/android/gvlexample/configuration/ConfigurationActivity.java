@@ -1,5 +1,7 @@
 package net.gini.android.gvlexample.configuration;
 
+import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
+
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import net.gini.android.gvlexample.R;
-
-import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
 
 public class ConfigurationActivity extends AppCompatActivity {
 
@@ -34,6 +34,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         forcePortraitOrientationOnPhones(this);
         setupActionBar();
         readExtras();
+        validateExtras();
         showConfigurationFragment();
     }
 
@@ -41,9 +42,11 @@ public class ConfigurationActivity extends AppCompatActivity {
         final Fragment configurationFragment;
         switch (mConfigurationSubject) {
             case VISION_LIBRARY:
+                setTitle(R.string.gvl_configuration_title);
                 configurationFragment = new GVLConfigurationFragment();
                 break;
             case API_SDK:
+                setTitle(R.string.api_sdk_configuration_title);
                 configurationFragment = new APISDKConfigurationFragment();
                 break;
             default:
@@ -67,6 +70,9 @@ public class ConfigurationActivity extends AppCompatActivity {
         mConfigurationSubject =
                 (ConfigurationSubject) getIntent().getSerializableExtra(
                         EXTRA_IN_CONFIGURATION_SUBJECT);
+    }
+
+    private void validateExtras() {
         if (mConfigurationSubject == null) {
             throw new IllegalStateException("Missing configuration subject.");
         }
