@@ -11,6 +11,7 @@
     <string name="info_links_changelog">GVL Changelog</string>
     <string name="info_links_documentation">GVL Dokumentation</string>
     <string name="info_links_github">GVL GitHub</string>
+    <string name="configuration_activity_title">Konfiguration</string>
     <string name="gvl_changelog_link">http://developer.gini.net/gini-vision-lib-android/html/changelog.html</string>
     <string name="gvl_documentation_link">http://developer.gini.net/gini-vision-lib-android/html/index.html</string>
     <string name="gvl_github_link">https://github.com/gini/gini-vision-lib-android</string>

@@ -2,7 +2,10 @@ package net.gini.android.gvlexample;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import net.gini.android.vision.AsyncCallback;
 import net.gini.android.vision.DocumentImportEnabledFileTypes;
@@ -27,29 +30,12 @@ import net.gini.android.vision.util.CancellationToken;
 
 public class GVLExamplePresenter extends BaseGVLExamplePresenter {
 
-    private final GiniVisionNetworkApi mGiniVisionNetworkApi;
-    private final GiniVisionNetworkService mGiniVisionNetworkService;
+    private GiniVisionNetworkApi mGiniVisionNetworkApi;
+    private GiniVisionNetworkService mGiniVisionNetworkService;
     private CancellationToken mFileImportCancellationToken;
 
     GVLExamplePresenter(final GVLExampleContract.View view) {
         super(view);
-
-        final Context context = view.getContext();
-        final String clientId = context.getString(R.string.gini_api_client_id);
-        final String clientSecret = context.getString(R.string.gini_api_client_secret);
-
-        mGiniVisionNetworkService = GiniVisionDefaultNetworkService
-                .builder(context)
-                .setBaseUrl("https://api.stage.gini.net")
-                .setUserCenterBaseUrl("https://user.stage.gini.net")
-                .setClientCredentials(clientId, clientSecret, "gvlexample.net")
-                .build();
-
-        mGiniVisionNetworkApi = GiniVisionDefaultNetworkApi
-                .builder()
-                .withGiniVisionDefaultNetworkService(
-                        (GiniVisionDefaultNetworkService) mGiniVisionNetworkService)
-                .build();
     }
 
     @Override
@@ -79,15 +65,70 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
 
     @Override
     protected void initGiniVision() {
-        GiniVision.cleanup(getView().getContext());
+        final Context context = getView().getContext();
+        GiniVision.cleanup(context);
+
+        initNetworking();
+
+        SharedPreferences configuration = PreferenceManager.getDefaultSharedPreferences(
+                context);
+        final boolean showOnboardingOnFirstRun = configuration.getBoolean(
+                context.getString(R.string.pref_key_gvl_show_onboarding_on_first_run), true);
+        final boolean alwaysShowOnboarding = configuration.getBoolean(
+                context.getString(R.string.pref_key_gvl_always_show_onboarding), true);
+        final boolean enableQRCodeScanning = configuration.getBoolean(
+                context.getString(R.string.pref_key_gvl_enable_qr_code_scanning), true);
+        final boolean enableFileImport = configuration.getBoolean(
+                context.getString(R.string.pref_key_gvl_enable_file_import), true);
+        final String documentImportFileTypesIndex = configuration.getString(
+                context.getString(R.string.pref_key_gvl_document_import_file_types), "0");
+        final DocumentImportEnabledFileTypes documentImportFileTypes =
+                DocumentImportEnabledFileTypes.values()[Integer.valueOf(
+                        documentImportFileTypesIndex)];
+        final boolean enableMultiPage = configuration.getBoolean(
+                context.getString(R.string.pref_key_gvl_enable_multi_page), true);
+
         GiniVision.newInstance()
-                  .setGiniVisionNetworkService(mGiniVisionNetworkService)
-                  .setGiniVisionNetworkApi(mGiniVisionNetworkApi)
-                  .setQRCodeScanningEnabled(true)
-                  .setFileImportEnabled(true)
-                  .setMultiPageEnabled(true)
-                  .setDocumentImportEnabledFileTypes(DocumentImportEnabledFileTypes.PDF_AND_IMAGES)
-                  .build();
+                .setGiniVisionNetworkService(mGiniVisionNetworkService)
+                .setGiniVisionNetworkApi(mGiniVisionNetworkApi)
+                .setShouldShowOnboardingAtFirstRun(showOnboardingOnFirstRun)
+                .setShouldShowOnboarding(alwaysShowOnboarding)
+                .setQRCodeScanningEnabled(enableQRCodeScanning)
+                .setFileImportEnabled(enableFileImport)
+                .setMultiPageEnabled(enableMultiPage)
+                .setDocumentImportEnabledFileTypes(documentImportFileTypes)
+                .build();
+    }
+
+    @NonNull
+    private void initNetworking() {
+        final Context context = getView().getContext();
+        SharedPreferences configuration = PreferenceManager.getDefaultSharedPreferences(context);
+        final String clientId = configuration.getString(
+                context.getString(R.string.pref_key_api_sdk_client_id), "");
+        String clientSecret = configuration.getString(
+                context.getString(R.string.pref_key_api_sdk_client_secret), "");
+        clientSecret = TextUtils.isEmpty(clientSecret) ? context.getString(
+                R.string.gini_api_client_secret) : clientSecret;
+        final String emailDomain = configuration.getString(
+                context.getString(R.string.pref_key_api_sdk_email_domain), "");
+        final String apiBaseUrl = configuration.getString(
+                context.getString(R.string.pref_key_api_sdk_gini_api_base_url), "");
+        final String userCenterBaseUrl = configuration.getString(
+                context.getString(R.string.pref_key_api_sdk_user_center_base_url), "");
+
+        mGiniVisionNetworkService = GiniVisionDefaultNetworkService
+                .builder(context)
+                .setBaseUrl(apiBaseUrl)
+                .setUserCenterBaseUrl(userCenterBaseUrl)
+                .setClientCredentials(clientId, clientSecret, emailDomain)
+                .build();
+
+        mGiniVisionNetworkApi = GiniVisionDefaultNetworkApi
+                .builder()
+                .withGiniVisionDefaultNetworkService(
+                        (GiniVisionDefaultNetworkService) mGiniVisionNetworkService)
+                .build();
     }
 
     @Override
@@ -107,19 +148,23 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                         @Override
                         public void onError(final ImportedFileValidationException exception) {
                             mFileImportCancellationToken = null;
-                            String errorMessage = context.getString(R.string.imported_file_cannot_analyze_error);
+                            String errorMessage = context.getString(
+                                    R.string.imported_file_cannot_analyze_error);
                             if (exception.getValidationError() != null) {
                                 switch (exception.getValidationError()) {
                                     case TYPE_NOT_SUPPORTED:
                                         errorMessage =
-                                                context.getString(R.string.imported_file_type_not_supported_error);
+                                                context.getString(
+                                                        R.string.imported_file_type_not_supported_error);
                                         break;
                                     case SIZE_TOO_LARGE:
-                                        errorMessage = context.getString(R.string.imported_file_too_large_error);
+                                        errorMessage = context.getString(
+                                                R.string.imported_file_too_large_error);
                                         break;
                                     case TOO_MANY_PDF_PAGES:
                                         errorMessage =
-                                                context.getString(R.string.imported_file_pdf_too_many_pages_error);
+                                                context.getString(
+                                                        R.string.imported_file_pdf_too_many_pages_error);
                                         break;
                                 }
                             }
@@ -142,19 +187,23 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 setGVLLaunchedForImportedFile(true);
             } catch (ImportedFileValidationException e) {
                 e.printStackTrace();
-                String errorMessage = context.getString(R.string.imported_file_cannot_analyze_error);
+                String errorMessage = context.getString(
+                        R.string.imported_file_cannot_analyze_error);
                 if (e.getValidationError() != null) {
                     switch (e.getValidationError()) {
                         case TYPE_NOT_SUPPORTED:
                             errorMessage =
-                                    context.getString(R.string.imported_file_type_not_supported_error);
+                                    context.getString(
+                                            R.string.imported_file_type_not_supported_error);
                             break;
                         case SIZE_TOO_LARGE:
-                            errorMessage = context.getString(R.string.imported_file_too_large_error);
+                            errorMessage = context.getString(
+                                    R.string.imported_file_too_large_error);
                             break;
                         case TOO_MANY_PDF_PAGES:
                             errorMessage =
-                                    context.getString(R.string.imported_file_pdf_too_many_pages_error);
+                                    context.getString(
+                                            R.string.imported_file_pdf_too_many_pages_error);
                             break;
                     }
                 }

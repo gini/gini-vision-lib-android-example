@@ -1,0 +1,44 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory android:title="Onboarding">
+
+        <SwitchPreference
+            android:defaultValue="@string/show_onboarding_on_first_run"
+            android:key="@string/pref_key_gvl_show_onboarding_on_first_run"
+            android:title="Show onboarding on first run" />
+
+        <SwitchPreference
+            android:defaultValue="@string/always_show_onboarding"
+            android:key="@string/pref_key_gvl_always_show_onboarding"
+            android:title="Always show onboarding" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Features">
+
+        <SwitchPreference
+            android:defaultValue="@string/enable_qr_code_scanning"
+            android:key="@string/pref_key_gvl_enable_qr_code_scanning"
+            android:title="Enable QR Code scanning" />
+
+        <SwitchPreference
+            android:defaultValue="@string/enable_file_import"
+            android:key="@string/pref_key_gvl_enable_file_import"
+            android:title="Enable file import" />
+
+        <ListPreference
+            android:defaultValue="@string/document_import_file_types"
+            android:entries="@array/pref_key_gvl_document_import_file_type_titles"
+            android:entryValues="@array/pref_key_gvl_document_import_file_type_values"
+            android:key="@string/pref_key_gvl_document_import_file_types"
+            android:title="Document import file types" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_key_gvl_enable_multi_page"
+            android:title="Enable multi-page" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

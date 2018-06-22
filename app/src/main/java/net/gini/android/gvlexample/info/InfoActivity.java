@@ -1,19 +1,18 @@
 package net.gini.android.gvlexample.info;
 
-import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import net.gini.android.gvlexample.R;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
 
 /**
  * Created by Alpar Szotyori on 22.11.2017.
@@ -43,10 +42,15 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         final InfoAdapter adapter = new InfoAdapter();
-        adapter.setLinkClickedListener(new InfoAdapter.LinkClickedListener() {
+        adapter.setItemClickListener(new InfoAdapter.ItemClickListener() {
             @Override
             public void onLinkClicked(final String link) {
                 mPresenter.onLinkClicked(link);
+            }
+
+            @Override
+            public void onConfigurationItemClicked(final String activityName) {
+                mPresenter.onConfigurationItemClicked(activityName);
             }
         });
         mInfoItemsRecycler.setAdapter(adapter);
@@ -60,10 +64,26 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
 
     @Override
     public void showVersions(final String header, final Map<String, String> versions) {
+        showSection(header, versions, InfoAdapter.Cell.Type.VERSION);
+    }
+
+    @Override
+    public void showLinks(final String header, final Map<String, String> links) {
+        showSection(header, links, InfoAdapter.Cell.Type.LINK);
+    }
+
+    @Override
+    public void showConfigurationItems(final String header,
+            final Map<String, String> configurationItems) {
+        showSection(header, configurationItems, InfoAdapter.Cell.Type.ACTIVITY);
+    }
+
+    private void showSection(final String header, final Map<String, String> configurationLinks,
+            final InfoAdapter.Cell.Type cellType) {
         final InfoAdapter adapter = (InfoAdapter) mInfoItemsRecycler.getAdapter();
         adapter.getTable().putSection(new InfoAdapter.Table.Section(
                 new InfoAdapter.Cell(header, InfoAdapter.Cell.Type.HEADER),
-                toCellList(versions, InfoAdapter.Cell.Type.VERSION)
+                toCellList(configurationLinks, cellType)
         ));
         adapter.notifyDataSetChanged();
     }
@@ -79,18 +99,5 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
         }
         return items;
     }
-
-    @Override
-    public void showLinks(final String header, final Map<String, String> links) {
-        final InfoAdapter adapter = (InfoAdapter) mInfoItemsRecycler.getAdapter();
-        adapter.getTable().putSection(new InfoAdapter.Table.Section(
-                new InfoAdapter.Cell(header, InfoAdapter.Cell.Type.HEADER),
-                toCellList(links, InfoAdapter.Cell.Type.LINK)
-        ));
-        adapter.notifyDataSetChanged();
-    }
-
-
-
 
 }

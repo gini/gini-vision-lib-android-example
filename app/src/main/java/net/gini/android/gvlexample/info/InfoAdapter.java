@@ -22,9 +22,14 @@ import java.util.Map;
 
 class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
 
-    private LinkClickedListener mLinkClickedListener = new LinkClickedListener() {
+    private ItemClickListener mItemClickListener = new ItemClickListener() {
         @Override
         public void onLinkClicked(final String link) {
+
+        }
+
+        @Override
+        public void onConfigurationItemClicked(final String activityName) {
 
         }
     };
@@ -42,6 +47,7 @@ class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
             case VERSION:
                 layoutId = R.layout.item_info_label_and_value;
                 break;
+            case ACTIVITY:
             case LINK:
                 layoutId = R.layout.item_info_label;
                 break;
@@ -66,7 +72,16 @@ class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
                 @Override
                 public void onClick(final View v) {
                     final int actualPosition = holder.getAdapterPosition();
-                    mLinkClickedListener.onLinkClicked(mTable.get(actualPosition).value);
+                    mItemClickListener.onLinkClicked(mTable.get(actualPosition).value);
+                }
+            });
+        }
+        if (holder.cellType == Cell.Type.ACTIVITY) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    final int actualPosition = holder.getAdapterPosition();
+                    mItemClickListener.onConfigurationItemClicked(mTable.get(actualPosition).value);
                 }
             });
         }
@@ -86,8 +101,8 @@ class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
         return mTable;
     }
 
-    void setLinkClickedListener(final LinkClickedListener listener) {
-        mLinkClickedListener = listener;
+    void setItemClickListener(final ItemClickListener listener) {
+        mItemClickListener = listener;
     }
 
     static class Cell {
@@ -110,7 +125,8 @@ class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
         enum Type {
             HEADER,
             VERSION,
-            LINK
+            LINK,
+            ACTIVITY
         }
     }
 
@@ -166,8 +182,10 @@ class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
         }
     }
 
-    interface LinkClickedListener {
+    interface ItemClickListener {
 
         void onLinkClicked(final String link);
+
+        void onConfigurationItemClicked(final String activityName);
     }
 }

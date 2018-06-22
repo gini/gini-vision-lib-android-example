@@ -18,6 +18,9 @@ abstract class InfoContract {
         void showVersions(final String header, final Map<String, String> versions);
 
         void showLinks(final String header, final Map<String, String> links);
+
+        void showConfigurationItems(final String header,
+                final Map<String, String> configurationItems);
     }
 
     static abstract class Presenter extends PresenterContract<View> {
@@ -27,5 +30,7 @@ abstract class InfoContract {
         }
 
         abstract void onLinkClicked(final String link);
+
+        abstract void onConfigurationItemClicked(final String configurationItem);
     }
 }

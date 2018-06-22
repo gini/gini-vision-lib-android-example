@@ -57,6 +57,15 @@
         <activity
             android:name=".NoPdfResultsActivity"
             android:label="@string/no_pdf_results_activity_title" />
+        <activity
+            android:name=".settings.ConfigurationActivity"
+            android:label="@string/configuration_activity_title"
+            android:parentActivityName=".info.InfoActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.gini.android.gvlexample.info.InfoActivity" />
+        </activity>
     </application>
 
 </manifest>

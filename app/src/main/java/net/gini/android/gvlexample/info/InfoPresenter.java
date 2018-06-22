@@ -1,9 +1,11 @@
 package net.gini.android.gvlexample.info;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
 import net.gini.android.gvlexample.R;
+import net.gini.android.gvlexample.settings.ConfigurationActivity;
 import net.gini.android.vision.BuildConfig;
 
 import java.util.LinkedHashMap;
@@ -17,12 +19,43 @@ import java.util.Map;
 
 class InfoPresenter extends InfoContract.Presenter {
 
+    private static final String GVL_CONFIGURATION_ITEM = "GVL_CONFIGURATION_ITEM";
+    private static final String API_SDK_CONFIGURATION_ITEM = "API_SDK_CONFIGURATION_ITEM";
+
     InfoPresenter(final InfoContract.View view) {
         super(view);
     }
 
     @Override
     void onLinkClicked(final String link) {
+        openLink(link);
+    }
+
+    @Override
+    void onConfigurationItemClicked(final String configurationItem) {
+        switch (configurationItem) {
+            case GVL_CONFIGURATION_ITEM:
+                launchConfigurationActivity(
+                        ConfigurationActivity.ConfigurationSubject.VISION_LIBRARY);
+                break;
+            case API_SDK_CONFIGURATION_ITEM:
+                launchConfigurationActivity(ConfigurationActivity.ConfigurationSubject.API_SDK);
+                break;
+            default:
+                throw new UnsupportedOperationException(
+                        "Unknown configuration item: " + configurationItem);
+        }
+    }
+
+    private void launchConfigurationActivity(
+            final ConfigurationActivity.ConfigurationSubject configurationSubject) {
+        final Context context = getView().getContext();
+        final Intent intent = ConfigurationActivity.newIntent(getView().getContext(),
+                configurationSubject);
+        context.startActivity(intent);
+    }
+
+    private void openLink(final String link) {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(link));
         getView().getContext().startActivity(intent);
@@ -30,6 +63,7 @@ class InfoPresenter extends InfoContract.Presenter {
 
     @Override
     public void start() {
+        getView().showConfigurationItems("Konfiguration", getConfigurationItems());
         getView().showVersions(getView().getContext().getString(R.string.info_versions_header),
                 getVersions());
         getView().showLinks(getView().getContext().getString(R.string.info_links_header),
@@ -57,5 +91,10 @@ class InfoPresenter extends InfoContract.Presenter {
         return versions;
     }
 
-
+    private Map<String, String> getConfigurationItems() {
+        final Map<String, String> links = new LinkedHashMap<>();
+        links.put("Gini Vision Library", GVL_CONFIGURATION_ITEM);
+        links.put("Gini API SDK", API_SDK_CONFIGURATION_ITEM);
+        return links;
+    }
 }
