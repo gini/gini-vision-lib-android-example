@@ -52,11 +52,11 @@
         <item name="android:textColor">@color/text_body_inverted</item>
     </style>
 
-    <style name="Gini.TextAppearance.InfoHeader" parent="Gini.TextAppearance.Title">
+    <style name="Gini.TextAppearance.SettingsHeader" parent="Gini.TextAppearance.Title">
         <item name="android:textColor">@color/primary</item>
     </style>
 
-    <style name="Gini.TextAppearance.InfoLabel" parent="Gini.TextAppearance" />
+    <style name="Gini.TextAppearance.SettingsLabel" parent="Gini.TextAppearance" />
 
     <style name="Gini.TextAppearance.EditText.Hint" parent="Gini.TextAppearance">
         <item name="android:textColorHint">@color/primary</item>
@@ -108,9 +108,9 @@
 
     <style name="ThemeOverlay.Button.Colored" parent="Gini.ThemeOverlay.Button.Colored" />
 
-    <style name="TextAppearance.InfoHeader" parent="Gini.TextAppearance.InfoHeader" />
+    <style name="TextAppearance.SettingsHeader" parent="Gini.TextAppearance.SettingsHeader" />
 
-    <style name="TextAppearance.InfoLabel" parent="Gini.TextAppearance.InfoLabel" />
+    <style name="TextAppearance.SettingsLabel" parent="Gini.TextAppearance.SettingsLabel" />
 
     <style name="TextAppearance.EditText.Hint" parent="Gini.TextAppearance.EditText.Hint" />
 

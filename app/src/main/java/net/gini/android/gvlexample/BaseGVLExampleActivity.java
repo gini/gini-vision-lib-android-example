@@ -1,7 +1,5 @@
 package net.gini.android.gvlexample;
 
-import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,24 +17,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.DexterError;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.PermissionRequestErrorListener;
+import com.karumi.dexter.listener.*;
 import com.karumi.dexter.listener.single.PermissionListener;
-
-import net.gini.android.gvlexample.info.InfoActivity;
 import net.gini.android.gvlexample.results.ResultsActivity;
+import net.gini.android.gvlexample.settings.SettingsActivity;
 import net.gini.android.vision.GiniVisionError;
 import net.gini.android.vision.camera.CameraActivity;
 import net.gini.android.vision.requirements.RequirementReport;
 import net.gini.android.vision.requirements.RequirementsReport;
 
 import java.util.List;
+
+import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
 
 /**
  * Created by Alpar Szotyori on 20.11.2017.
@@ -130,7 +124,7 @@ public abstract class BaseGVLExampleActivity extends AppCompatActivity implement
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        if (item.getItemId() == R.id.infoItem) {
+        if (item.getItemId() == R.id.settingsItem) {
             mPresenter.presentInfos();
             return true;
         }
@@ -163,7 +157,7 @@ public abstract class BaseGVLExampleActivity extends AppCompatActivity implement
 
     @Override
     public void showInfos() {
-        final Intent intent = new Intent(this, InfoActivity.class);
+        final Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 

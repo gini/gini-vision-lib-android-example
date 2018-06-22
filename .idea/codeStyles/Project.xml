@@ -1,6 +1,69 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
+    <option name="FIELD_NAME_PREFIX" value="m" />
+    <option name="STATIC_FIELD_NAME_PREFIX" value="s" />
+    <option name="GENERATE_FINAL_LOCALS" value="true" />
+    <option name="GENERATE_FINAL_PARAMETERS" value="true" />
+    <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="9999" />
+    <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="9999" />
+    <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
+      <value />
+    </option>
+    <option name="IMPORT_LAYOUT_TABLE">
+      <value>
+        <package name="android" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="com.android" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="dalvik" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="libcore" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="com" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="gov" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="junit" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="net" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="org" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="java" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="javax" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="" withSubpackages="true" static="true" />
+        <emptyLine />
+        <package name="android" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="com.android" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="dalvik" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="libcore" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="com" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="gov" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="junit" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="net" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="org" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="java" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="javax" withSubpackages="true" static="false" />
+        <emptyLine />
+        <package name="" withSubpackages="true" static="false" />
+      </value>
+    </option>
     <option name="RIGHT_MARGIN" value="100" />
+    <option name="ENABLE_JAVADOC_FORMATTING" value="false" />
+    <option name="JD_ADD_BLANK_AFTER_PARM_COMMENTS" value="true" />
+    <option name="JD_ADD_BLANK_AFTER_RETURN" value="true" />
     <option name="KEEP_CONTROL_STATEMENT_IN_ONE_LINE" value="false" />
     <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
     <option name="BLANK_LINES_AROUND_FIELD" value="1" />
@@ -133,16 +196,16 @@
       <option name="CONTINUATION_INDENT_SIZE" value="4" />
     </ADDITIONAL_INDENT_OPTIONS>
     <codeStyleSettings language="JAVA">
-      <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="true" />
+      <option name="BLANK_LINES_AFTER_CLASS_HEADER" value="1" />
       <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
       <option name="ALIGN_MULTILINE_FOR" value="false" />
       <option name="CALL_PARAMETERS_WRAP" value="1" />
+      <option name="PREFER_PARAMETERS_WRAP" value="true" />
       <option name="METHOD_PARAMETERS_WRAP" value="1" />
       <option name="RESOURCE_LIST_WRAP" value="1" />
       <option name="EXTENDS_LIST_WRAP" value="1" />
       <option name="THROWS_LIST_WRAP" value="1" />
       <option name="THROWS_KEYWORD_WRAP" value="1" />
-      <option name="METHOD_CALL_CHAIN_WRAP" value="5" />
       <option name="BINARY_OPERATION_WRAP" value="1" />
       <option name="BINARY_OPERATION_SIGN_ON_NEXT_LINE" value="true" />
       <option name="TERNARY_OPERATION_WRAP" value="1" />
@@ -181,7 +244,6 @@
                   <STATIC>true</STATIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -194,7 +256,6 @@
                   <STATIC>true</STATIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -207,7 +268,6 @@
                   <STATIC>true</STATIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -220,7 +280,6 @@
                   <STATIC>true</STATIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -232,7 +291,6 @@
                   <STATIC>true</STATIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -244,7 +302,6 @@
                   <STATIC>true</STATIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -256,7 +313,6 @@
                   <STATIC>true</STATIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -268,7 +324,6 @@
                   <STATIC>true</STATIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -290,7 +345,6 @@
                   <PUBLIC>true</PUBLIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -302,7 +356,6 @@
                   <PROTECTED>true</PROTECTED>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -314,7 +367,6 @@
                   <PACKAGE_PRIVATE>true</PACKAGE_PRIVATE>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -326,7 +378,6 @@
                   <PRIVATE>true</PRIVATE>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -337,7 +388,6 @@
                   <PUBLIC>true</PUBLIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -348,7 +398,6 @@
                   <PROTECTED>true</PROTECTED>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -359,7 +408,6 @@
                   <PACKAGE_PRIVATE>true</PACKAGE_PRIVATE>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -370,7 +418,6 @@
                   <PRIVATE>true</PRIVATE>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -378,13 +425,23 @@
               <match>
                 <FIELD>true</FIELD>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
             <rule>
               <match>
                 <INITIALIZER_BLOCK>true</INITIALIZER_BLOCK>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <METHOD>true</METHOD>
+                  <PUBLIC>true</PUBLIC>
+                  <STATIC>true</STATIC>
+                </AND>
               </match>
             </rule>
           </section>
@@ -398,21 +455,11 @@
           <section>
             <rule>
               <match>
-                <OVERRIDDEN />
-              </match>
-              <order>BY_NAME</order>
-            </rule>
-          </section>
-          <section>
-            <rule>
-              <match>
                 <AND>
                   <METHOD>true</METHOD>
-                  <PUBLIC>true</PUBLIC>
-                  <STATIC>true</STATIC>
+                  <OVERRIDDEN />
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -423,7 +470,6 @@
                   <PUBLIC>true</PUBLIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -434,7 +480,6 @@
                   <PROTECTED>true</PROTECTED>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -445,7 +490,6 @@
                   <PACKAGE_PRIVATE>true</PACKAGE_PRIVATE>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -456,7 +500,6 @@
                   <PRIVATE>true</PRIVATE>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -464,7 +507,6 @@
               <match>
                 <ENUM>true</ENUM>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -472,7 +514,6 @@
               <match>
                 <METHOD>true</METHOD>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -483,7 +524,6 @@
                   <PUBLIC>true</PUBLIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -494,7 +534,6 @@
                   <PRIVATE>true</PRIVATE>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -505,7 +544,6 @@
                   <STATIC>true</STATIC>
                 </AND>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
           <section>
@@ -513,7 +551,6 @@
               <match>
                 <CLASS>true</CLASS>
               </match>
-              <order>BY_NAME</order>
             </rule>
           </section>
         </rules>
