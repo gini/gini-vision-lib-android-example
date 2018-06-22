@@ -1,4 +1,4 @@
-package net.gini.android.gvlexample.info;
+package net.gini.android.gvlexample.settings;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -21,10 +21,10 @@ import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientatio
  * Copyright (c) 2017 Gini GmbH.
  */
 
-public class InfoActivity extends AppCompatActivity implements InfoContract.View {
+public class SettingsActivity extends AppCompatActivity implements SettingsContract.View {
 
-    private RecyclerView mInfoItemsRecycler;
-    private InfoContract.Presenter mPresenter;
+    private RecyclerView mSettingsItemsRecycler;
+    private SettingsContract.Presenter mPresenter;
 
     @Override
     public Context getContext() {
@@ -36,15 +36,15 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
         super.onCreate(savedInstanceState);
         forcePortraitOrientationOnPhones(this);
         setupActionBar();
-        setContentView(R.layout.activity_info);
-        mPresenter = new InfoPresenter(this);
-        mInfoItemsRecycler = findViewById(R.id.infoItemsRecycler);
+        setContentView(R.layout.activity_settings);
+        mPresenter = new SettingsPresenter(this);
+        mSettingsItemsRecycler = findViewById(R.id.settingsItemsRecycler);
 
-        mInfoItemsRecycler.setLayoutManager(
+        mSettingsItemsRecycler.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        final InfoAdapter adapter = new InfoAdapter();
-        adapter.setItemClickListener(new InfoAdapter.ItemClickListener() {
+        final SettingsAdapter adapter = new SettingsAdapter();
+        adapter.setItemClickListener(new SettingsAdapter.ItemClickListener() {
             @Override
             public void onLinkClicked(final String link) {
                 mPresenter.onLinkClicked(link);
@@ -55,7 +55,7 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
                 mPresenter.onConfigurationItemClicked(activityName);
             }
         });
-        mInfoItemsRecycler.setAdapter(adapter);
+        mSettingsItemsRecycler.setAdapter(adapter);
     }
 
     private void setupActionBar() {
@@ -74,37 +74,37 @@ public class InfoActivity extends AppCompatActivity implements InfoContract.View
 
     @Override
     public void showVersions(final String header, final Map<String, String> versions) {
-        showSection(header, versions, InfoAdapter.Cell.Type.VERSION);
+        showSection(header, versions, SettingsAdapter.Cell.Type.VERSION);
     }
 
     @Override
     public void showLinks(final String header, final Map<String, String> links) {
-        showSection(header, links, InfoAdapter.Cell.Type.LINK);
+        showSection(header, links, SettingsAdapter.Cell.Type.LINK);
     }
 
     @Override
     public void showConfigurationItems(final String header,
             final Map<String, String> configurationItems) {
-        showSection(header, configurationItems, InfoAdapter.Cell.Type.ACTIVITY);
+        showSection(header, configurationItems, SettingsAdapter.Cell.Type.ACTIVITY);
     }
 
     private void showSection(final String header, final Map<String, String> configurationLinks,
-            final InfoAdapter.Cell.Type cellType) {
-        final InfoAdapter adapter = (InfoAdapter) mInfoItemsRecycler.getAdapter();
-        adapter.getTable().putSection(new InfoAdapter.Table.Section(
-                new InfoAdapter.Cell(header, InfoAdapter.Cell.Type.HEADER),
+            final SettingsAdapter.Cell.Type cellType) {
+        final SettingsAdapter adapter = (SettingsAdapter) mSettingsItemsRecycler.getAdapter();
+        adapter.getTable().putSection(new SettingsAdapter.Table.Section(
+                new SettingsAdapter.Cell(header, SettingsAdapter.Cell.Type.HEADER),
                 toCellList(configurationLinks, cellType)
         ));
         adapter.notifyDataSetChanged();
     }
 
     @NonNull
-    private List<InfoAdapter.Cell> toCellList(final Map<String, String> map,
-            final InfoAdapter.Cell.Type cellType) {
-        List<InfoAdapter.Cell> items = new ArrayList<>(map.size());
+    private List<SettingsAdapter.Cell> toCellList(final Map<String, String> map,
+                                                  final SettingsAdapter.Cell.Type cellType) {
+        List<SettingsAdapter.Cell> items = new ArrayList<>(map.size());
         for (final Map.Entry<String, String> labelAndValue : map.entrySet()) {
             items.add(
-                    new InfoAdapter.Cell(labelAndValue.getKey(), labelAndValue.getValue(),
+                    new SettingsAdapter.Cell(labelAndValue.getKey(), labelAndValue.getValue(),
                             cellType));
         }
         return items;

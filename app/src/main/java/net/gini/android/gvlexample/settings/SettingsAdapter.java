@@ -1,4 +1,4 @@
-package net.gini.android.gvlexample.info;
+package net.gini.android.gvlexample.settings;
 
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +20,7 @@ import java.util.Map;
  * Copyright (c) 2017 Gini GmbH.
  */
 
-class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
+class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.SettingsItemHolder> {
 
     private ItemClickListener mItemClickListener = new ItemClickListener() {
         @Override
@@ -36,29 +36,29 @@ class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
     private Table mTable = new Table();
 
     @Override
-    public InfoHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+    public SettingsItemHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         final Cell.Type cellType = Cell.Type.values()[viewType];
         @LayoutRes
         int layoutId = 0;
         switch (cellType) {
             case HEADER:
-                layoutId = R.layout.item_info_header;
+                layoutId = R.layout.item_setttings_header;
                 break;
             case VERSION:
-                layoutId = R.layout.item_info_label_and_value;
+                layoutId = R.layout.item_settings_label_and_value;
                 break;
             case ACTIVITY:
             case LINK:
-                layoutId = R.layout.item_info_label;
+                layoutId = R.layout.item_settings_label;
                 break;
         }
         final View view =
                 LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
-        return new InfoHolder(view, cellType);
+        return new SettingsItemHolder(view, cellType);
     }
 
     @Override
-    public void onBindViewHolder(final InfoHolder holder, final int position) {
+    public void onBindViewHolder(final SettingsItemHolder holder, final int position) {
         final Cell item = mTable.get(position);
         if (holder.label != null) {
             holder.label.setText(item.label);
@@ -130,13 +130,13 @@ class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoHolder> {
         }
     }
 
-    static class InfoHolder extends RecyclerView.ViewHolder {
+    static class SettingsItemHolder extends RecyclerView.ViewHolder {
 
         final Cell.Type cellType;
         final TextView label;
         final TextView value;
 
-        InfoHolder(final View itemView, final Cell.Type cellType) {
+        SettingsItemHolder(final View itemView, final Cell.Type cellType) {
             super(itemView);
             label = itemView.findViewById(R.id.label);
             value = itemView.findViewById(R.id.value);

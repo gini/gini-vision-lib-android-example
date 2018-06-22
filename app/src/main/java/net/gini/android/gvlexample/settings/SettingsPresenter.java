@@ -1,4 +1,4 @@
-package net.gini.android.gvlexample.info;
+package net.gini.android.gvlexample.settings;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -20,13 +20,13 @@ import java.util.Map;
  * Copyright (c) 2017 Gini GmbH.
  */
 
-class InfoPresenter extends InfoContract.Presenter {
+class SettingsPresenter extends SettingsContract.Presenter {
 
     private static final String GVL_CONFIGURATION_ITEM = "GVL_CONFIGURATION_ITEM";
     private static final String API_SDK_CONFIGURATION_ITEM = "API_SDK_CONFIGURATION_ITEM";
     private static final String RESET_ALL_CONFIGURATION_ITEM = "RESET_ALL_CONFIGURATION_ITEM";
 
-    InfoPresenter(final InfoContract.View view) {
+    SettingsPresenter(final SettingsContract.View view) {
         super(view);
     }
 
@@ -87,19 +87,19 @@ class InfoPresenter extends InfoContract.Presenter {
     @Override
     public void start() {
         getView().showConfigurationItems("Konfiguration", getConfigurationItems());
-        getView().showVersions(getView().getContext().getString(R.string.info_versions_header),
+        getView().showVersions(getView().getContext().getString(R.string.settings_versions_header),
                 getVersions());
-        getView().showLinks(getView().getContext().getString(R.string.info_links_header),
+        getView().showLinks(getView().getContext().getString(R.string.settings_links_header),
                 getLinks());
     }
 
     private Map<String, String> getLinks() {
         final Map<String, String> links = new LinkedHashMap<>();
-        links.put(getView().getContext().getString(R.string.info_links_changelog),
+        links.put(getView().getContext().getString(R.string.settings_links_changelog),
                 getView().getContext().getString(R.string.gvl_changelog_link));
-        links.put(getView().getContext().getString(R.string.info_links_documentation),
+        links.put(getView().getContext().getString(R.string.settings_links_documentation),
                 getView().getContext().getString(R.string.gvl_documentation_link));
-        links.put(getView().getContext().getString(R.string.info_links_github),
+        links.put(getView().getContext().getString(R.string.settings_links_github),
                 getView().getContext().getString(R.string.gvl_github_link));
         return links;
     }

@@ -48,8 +48,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".info.InfoActivity"
-            android:label="@string/info_activity_title"
+            android:name=".settings.SettingsActivity"
+            android:label="@string/settings_activity_title"
             android:parentActivityName=".GVLExampleActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
@@ -66,11 +66,11 @@
         <activity
             android:name=".configuration.ConfigurationActivity"
             android:label="@string/configuration_activity_title"
-            android:parentActivityName=".info.InfoActivity"
+            android:parentActivityName=".settings.SettingsActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.gini.android.gvlexample.info.InfoActivity" />
+                android:value="net.gini.android.gvlexample.settings.SettingsActivity" />
         </activity>
     </application>
 

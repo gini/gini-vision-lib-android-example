@@ -1,4 +1,4 @@
-package net.gini.android.gvlexample.info;
+package net.gini.android.gvlexample.settings;
 
 import net.gini.android.gvlexample.PresenterContract;
 import net.gini.android.gvlexample.ViewContract;
@@ -11,7 +11,7 @@ import java.util.Map;
  * Copyright (c) 2017 Gini GmbH.
  */
 
-abstract class InfoContract {
+abstract class SettingsContract {
 
     interface View extends ViewContract {
 
