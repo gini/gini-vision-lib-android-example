@@ -7,7 +7,7 @@
     <dimen name="default_screen_horizontal_padding">16dp</dimen>
     <dimen name="settings_item_padding">8dp</dimen>
     <dimen name="settings_value_margin">4dp</dimen>
-    <dimen name="settings_header_bottom_padding">6dp</dimen>
-    <dimen name="settings_item_vertical_padding">8dp</dimen>
+    <dimen name="settings_header_bottom_padding">8dp</dimen>
+    <dimen name="settings_item_vertical_padding">16dp</dimen>
     <dimen name="results_list_bottom_padding">80dp</dimen>
 </resources>

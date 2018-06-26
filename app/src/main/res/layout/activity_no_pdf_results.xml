@@ -27,7 +27,7 @@
 
     <TextView
         android:id="@+id/headlineText"
-        style="@style/Gini.TextAppearance.Title.Header"
+        style="@style/Gini.TextAppearance.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/headerSeparator"

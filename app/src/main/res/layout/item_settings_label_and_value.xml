@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/value"
-        style="@style/TextAppearance"
+        style="@style/TextAppearance.SettingsValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/settings_value_margin"

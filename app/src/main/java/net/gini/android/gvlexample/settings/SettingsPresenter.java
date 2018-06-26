@@ -64,7 +64,8 @@ class SettingsPresenter extends SettingsContract.Presenter {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         resetAll(context);
-                        Toast.makeText(context, "Konfiguration wurde zurückgesetzt", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Konfiguration wurde zurückgesetzt",
+                                Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton("Abbrechen", null)
@@ -100,11 +101,11 @@ class SettingsPresenter extends SettingsContract.Presenter {
 
     @Override
     public void start() {
-        getView().showConfigurationItems("Konfiguration", getConfigurationItems());
-        getView().showVersions(getView().getContext().getString(R.string.settings_versions_header),
-                getVersions());
+        getView().showConfigurationItems(getView().getContext().getString(R.string.settings_configuration_header), getConfigurationItems());
         getView().showLinks(getView().getContext().getString(R.string.settings_links_header),
                 getLinks());
+        getView().showVersions(getView().getContext().getString(R.string.settings_versions_header),
+                getVersions());
     }
 
     private Map<String, String> getLinks() {
@@ -132,8 +133,10 @@ class SettingsPresenter extends SettingsContract.Presenter {
         final Map<String, String> links = new LinkedHashMap<>();
         final Context context = getView().getContext();
         links.put(context.getString(R.string.gvl_configuration_item_title), GVL_CONFIGURATION_ITEM);
-        links.put(context.getString(R.string.api_sdk_configuration_item_title), API_SDK_CONFIGURATION_ITEM);
-        links.put(context.getString(R.string.reset_all_configuration_item_title), RESET_ALL_CONFIGURATION_ITEM);
+        links.put(context.getString(R.string.api_sdk_configuration_item_title),
+                API_SDK_CONFIGURATION_ITEM);
+        links.put(context.getString(R.string.reset_all_configuration_item_title),
+                RESET_ALL_CONFIGURATION_ITEM);
         return links;
     }
 }

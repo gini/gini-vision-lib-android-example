@@ -8,6 +8,7 @@
     <string name="settings_activity_title">Einstellungen</string>
     <string name="settings_versions_header">Versionen</string>
     <string name="settings_links_header">Verknüpfungen</string>
+    <string name="settings_configuration_header">Konfiguration</string>
     <string name="settings_links_changelog">GVL Changelog</string>
     <string name="settings_links_documentation">GVL Dokumentation</string>
     <string name="settings_links_github">GVL GitHub</string>
