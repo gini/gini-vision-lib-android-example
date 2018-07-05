@@ -31,10 +31,10 @@
 
     <!-- Default configuration -->
     <!-- API SDK-->
-    <string name="api_base_url">https://api.stage.gini.net</string>
-    <string name="user_center_base_url">https://user.stage.gini.net</string>
+    <string name="api_base_url">https://api.gini.net</string>
+    <string name="user_center_base_url">https://user.gini.net</string>
     <string name="api_email_domain">gvlexample.net</string>
-    <string name="connection_timeout">60</string>
+    <string name="connection_timeout">60000</string>
     <string name="nr_of_retries">3</string>
     <string name="backoff_multiplier">1</string>
     <!-- GVL -->
