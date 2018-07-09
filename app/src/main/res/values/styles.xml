@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base styles to allow easy overriding for other resource qualifiers -->
     <style name="Gini.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -21,7 +21,9 @@
         <item name="colorAccent">@color/start_button</item>
     </style>
 
-    <style name="Gini.TextAppearance" parent="TextAppearance.AppCompat" />
+    <style name="Gini.TextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+    </style>
 
     <style name="Gini.TextAppearance.Inverted" parent="Gini.TextAppearance">
         <item name="android:textColor">@color/text_body_inverted</item>
@@ -32,16 +34,9 @@
     </style>
 
     <style name="Gini.TextAppearance.Title" parent="Gini.TextAppearance">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="Gini.TextAppearance.Title.Inverted" parent="Gini.TextAppearance.Title">
-        <item name="android:textColor">@color/text_title_inverted</item>
-    </style>
-
-    <style name="Gini.TextAppearance.Title.Header" parent="Gini.TextAppearance.Title">
-        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">sans-serif-light</item>
     </style>
 
     <style name="Gini.TextAppearance.Body" parent="Gini.TextAppearance">
@@ -52,11 +47,15 @@
         <item name="android:textColor">@color/text_body_inverted</item>
     </style>
 
-    <style name="Gini.TextAppearance.InfoHeader" parent="Gini.TextAppearance.Title">
+    <style name="Gini.TextAppearance.SettingsHeader" parent="Gini.TextAppearance.Title">
         <item name="android:textColor">@color/primary</item>
     </style>
 
-    <style name="Gini.TextAppearance.InfoLabel" parent="Gini.TextAppearance" />
+    <style name="Gini.TextAppearance.SettingsLabel" parent="Gini.TextAppearance" />
+
+    <style name="Gini.TextAppearance.SettingsValue" parent="Gini.TextAppearance">
+        <item name="android:textColor">@color/settings_value</item>
+    </style>
 
     <style name="Gini.TextAppearance.EditText.Hint" parent="Gini.TextAppearance">
         <item name="android:textColorHint">@color/primary</item>
@@ -98,19 +97,17 @@
 
     <style name="TextAppearance.Title" parent="Gini.TextAppearance.Title" />
 
-    <style name="TextAppearance.Title.Inverted" parent="Gini.TextAppearance.Title.Inverted" />
-
-    <style name="TextAppearance.Title.Header" parent="Gini.TextAppearance.Title.Header" />
-
     <style name="TextAppearance.Body" parent="Gini.TextAppearance.Body" />
 
     <style name="TextAppearance.Body.Inverted" parent="Gini.TextAppearance.Body.Inverted" />
 
     <style name="ThemeOverlay.Button.Colored" parent="Gini.ThemeOverlay.Button.Colored" />
 
-    <style name="TextAppearance.InfoHeader" parent="Gini.TextAppearance.InfoHeader" />
+    <style name="TextAppearance.SettingsHeader" parent="Gini.TextAppearance.SettingsHeader" />
 
-    <style name="TextAppearance.InfoLabel" parent="Gini.TextAppearance.InfoLabel" />
+    <style name="TextAppearance.SettingsLabel" parent="Gini.TextAppearance.SettingsLabel" />
+
+    <style name="TextAppearance.SettingsValue" parent="Gini.TextAppearance.SettingsValue" />
 
     <style name="TextAppearance.EditText.Hint" parent="Gini.TextAppearance.EditText.Hint" />
 

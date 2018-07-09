@@ -15,7 +15,7 @@ android {
         versionName appVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        multiDexEnabled true
+        multiDexEnabled = true
     }
     signingConfigs {
         release {
@@ -30,14 +30,28 @@ android {
             resValue 'string', 'gini_api_client_id', clientId
             resValue 'string', 'gini_api_client_secret', clientSecret
             manifestPlaceholders = [HOCKEYAPP_APP_ID: ""]
+            versionNameSuffix "-debug"
         }
         release {
+            initWith debug
+            versionNameSuffix ""
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            resValue 'string', 'gini_api_client_id', clientId
-            resValue 'string', 'gini_api_client_secret', clientSecret
             manifestPlaceholders = [HOCKEYAPP_APP_ID: "972db965d54d43ceaa6509f63e7208c5"]
+        }
+    }
+    flavorDimensions "app"
+    productFlavors {
+        legacy {
+            dimension "app"
+            applicationIdSuffix "legacy"
+            versionNameSuffix "-legacy"
+            resValue "string", "app_name", "Gini Vision (legacy)"
+        }
+        newest {
+            dimension "app"
+            resValue "string", "app_name", "Gini Vision"
         }
     }
     dataBinding {
@@ -46,33 +60,31 @@ android {
 }
 
 repositories {
+    // Use repo on filesystem for using local builds
+    mavenLocal()
     maven {
         url 'https://repo.gini.net/nexus/content/repositories/open'
     }
-    flatDir{
+    flatDir {
         dirs 'libs'
     }
 }
+
+def giniVisionVersion = '3.0.0'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'com.karumi:dexter:4.2.0'
-    implementation 'net.hockeyapp.android:HockeySDK:5.0.4'
+    implementation 'net.hockeyapp.android:HockeySDK:5.1.0'
 
-    // Use a local build of the Gini Vision Library
-    // 1. copy a Gini Vision Library release build to the libs folder
-    // 2. uncomment the lines below
-    // 3. comment out the dependency declaration of the released version
-//    implementation(name:'ginivision-release', ext:'aar')
-//    implementation 'com.google.android.gms:play-services-vision:11.6.0'
-//    implementation 'org.slf4j:slf4j-api:1.7.21'
-//    implementation 'org.glassfish.jersey.bundles.repackaged:jersey-jsr166e:2.23.1'
-
-    implementation 'net.gini:gini-vision-lib:2.5.3'
-    implementation ('net.gini:gini-android-sdk:1.5.0@aar') {
+    implementation("net.gini:gini-vision-lib:$giniVisionVersion") {
+        exclude group: 'com.android.support', module: 'support-v13'
+    }
+    newestImplementation "net.gini:gini-vision-network-lib:$giniVisionVersion"
+    legacyImplementation('net.gini:gini-android-sdk:1.5.0@aar') {
         transitive = true
     }
 

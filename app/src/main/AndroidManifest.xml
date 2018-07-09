@@ -50,8 +50,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".info.InfoActivity"
-            android:label="@string/info_activity_title" />
+            android:name=".settings.SettingsActivity"
+            android:label="@string/settings_activity_title"
+            android:parentActivityName=".GVLExampleActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="net.gini.android.gvlexample.GVLExampleActivity" />
+        </activity>
         <activity
             android:name=".results.ResultsActivity"
             android:label="@string/results_activity_title"
@@ -60,17 +66,14 @@
             android:name=".NoPdfResultsActivity"
             android:label="@string/no_pdf_results_activity_title" />
         <activity
-            android:name=".gini.CameraActivity"
-            android:label="@string/gv_title_camera"
-            android:theme="@style/GiniVisionTheme" />
-        <activity
-            android:name=".gini.AnalysisActivity"
-            android:label="@string/gv_title_analysis"
-            android:theme="@style/GiniVisionTheme" />
-        <activity
-            android:name=".gini.ReviewActivity"
-            android:label="@string/gv_title_review"
-            android:theme="@style/GiniVisionTheme" />
+            android:name=".configuration.ConfigurationActivity"
+            android:label="@string/configuration_activity_title"
+            android:parentActivityName=".settings.SettingsActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.gini.android.gvlexample.settings.SettingsActivity" />
+        </activity>
     </application>
 
 </manifest>

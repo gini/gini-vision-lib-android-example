@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Preference constants-->
+    <string name="pref_key_gvl_enable_multi_page">pref_key_gvl_enable_multi_page</string>
+
+    <!-- Default configuration -->
+    <!-- GVL -->
+    <string name="enable_multi_page">true</string>
+</resources>
