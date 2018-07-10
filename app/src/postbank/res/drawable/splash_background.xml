@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item android:drawable="@color/primary" />
+    <item
+        android:bottom="32dp"
+        android:end="32dp"
+        android:left="32dp"
+        android:right="32dp"
+        android:start="32dp"
+        android:top="32dp"
+        tools:ignore="UnusedAttribute">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ginivision_logo_white" />
+    </item>
+</layer-list>

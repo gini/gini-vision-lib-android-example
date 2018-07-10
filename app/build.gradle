@@ -41,7 +41,7 @@ android {
             manifestPlaceholders = [HOCKEYAPP_APP_ID: "972db965d54d43ceaa6509f63e7208c5"]
         }
     }
-    flavorDimensions "app"
+    flavorDimensions "branding", "app"
     productFlavors {
         legacy {
             dimension "app"
@@ -52,6 +52,15 @@ android {
         newest {
             dimension "app"
             resValue "string", "app_name", "Gini Vision"
+        }
+        showcase {
+            dimension "branding"
+        }
+        postbank {
+            dimension "branding"
+            applicationIdSuffix "postbank"
+            versionNameSuffix "-postbank"
+            resValue "string", "app_name", "Postbank Fotoüberweisung"
         }
     }
     dataBinding {

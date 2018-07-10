@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Preference constants-->
+    <string name="pref_key_api_sdk_client_id">pref_key_api_sdk_client_id</string>
+    <string name="pref_key_api_sdk_client_secret">pref_key_api_sdk_client_secret</string>
+    <string name="pref_key_api_sdk_email_domain">pref_key_api_sdk_email_domain</string>
+    <string name="pref_key_api_sdk_gini_api_base_url">pref_key_api_sdk_gini_api_base_url</string>
+    <string name="pref_key_api_sdk_user_center_base_url">pref_key_api_sdk_user_center_base_url</string>
+    <string name="pref_key_api_sdk_connection_timeout">pref_key_api_sdk_connection_timeout</string>
+    <string name="pref_key_api_sdk_nr_of_retries">pref_key_api_sdk_nr_of_retries</string>
+    <string name="pref_key_api_sdk_backoff_multiplier">pref_key_api_sdk_backoff_multiplier</string>
+    <string name="pref_key_gvl_show_onboarding_on_first_run">pref_key_gvl_show_onboarding_on_first_run</string>
+    <string name="pref_key_gvl_always_show_onboarding">pref_key_gvl_always_show_onboarding</string>
+    <string name="pref_key_gvl_enable_qr_code_scanning">pref_key_gvl_enable_qr_code_scanning</string>
+    <string name="pref_key_gvl_enable_file_import">pref_key_gvl_enable_file_import</string>
+    <string name="pref_key_gvl_enable_multi_page">pref_key_gvl_enable_multi_page</string>
+    <string name="pref_key_gvl_document_import_file_types">pref_key_gvl_document_import_file_types</string>
+    <string name="pref_key_gvl_enable_debugging">pref_key_gvl_enable_debugging</string>
+    <string-array name="pref_key_gvl_document_import_file_type_titles">
+        <item>None</item>
+        <item>PDFs</item>
+        <item>Images</item>
+        <item>PDFs and Images</item>
+    </string-array>
+    <string-array name="pref_key_gvl_document_import_file_type_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <!-- Default configuration -->
+    <!-- API SDK-->
+    <string name="api_base_url">https://api.gini.net</string>
+    <string name="user_center_base_url">https://user.gini.net</string>
+    <string name="api_email_domain">gvlexample.net</string>
+    <string name="connection_timeout">60000</string>
+    <string name="nr_of_retries">3</string>
+    <string name="backoff_multiplier">1</string>
+    <!-- GVL -->
+    <string name="show_onboarding_on_first_run">true</string>
+    <string name="always_show_onboarding">false</string>
+    <string name="enable_qr_code_scanning">true</string>
+    <string name="enable_file_import">true</string>
+    <!-- Index in the DocumentImportEnabledFileTypes enum -->
+    <string name="document_import_file_types">3</string>
+    <string name="enable_gvl_debugging">false</string>
+</resources>

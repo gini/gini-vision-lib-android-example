@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    android:padding="@dimen/default_padding"
+    tools:context="net.gini.android.gvlexample.GVLExampleActivity">
+
+    <TextView
+        style="@style/TextAppearance.AppVersion"
+        android:id="@+id/appVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:overScrollMode="ifContentScrolls">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/default_screen_horizontal_padding"
+            android:paddingLeft="@dimen/default_screen_horizontal_padding"
+            android:paddingRight="@dimen/default_screen_horizontal_padding"
+            android:paddingStart="@dimen/default_screen_horizontal_padding">
+
+            <ImageView
+                android:id="@+id/ginivisionLogo"
+                android:layout_width="@dimen/ginivision_logo_width"
+                android:layout_height="@dimen/ginivision_logo_height"
+                android:contentDescription="@string/gini_vision_logo_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="64dp"
+                app:srcCompat="@drawable/postbank_logo" />
+
+            <TextView
+                android:id="@+id/mainGreeting"
+                style="@style/TextAppearance.Body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Fotoüberweisung"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ginivisionLogo" />
+
+            <Button
+                android:id="@+id/startButton"
+                style="@style/Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:onClick="launchGiniVision"
+                android:text="@string/start_gvl_button"
+                android:theme="@style/ThemeOverlay.Button.Colored"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mainGreeting" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
