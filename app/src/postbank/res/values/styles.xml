@@ -4,4 +4,73 @@
         <item name="android:textColorPrimary">@color/text_primary</item>
     </style>
 
+    <style name="GiniVisionTheme.Review.MultiPage.ThumbnailBadge.TextStyle" parent="Root.GiniVisionTheme.Review.MultiPage.ThumbnailBadge.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Review.MultiPage.AddPagesSubtitle.TextStyle" parent="Root.GiniVisionTheme.Review.MultiPage.AddPagesSubtitle.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Review.MultiPage.ReorderPagesTip.TextStyle" parent="Root.GiniVisionTheme.Review.MultiPage.ReorderPagesTip.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Analysis.PdfFilename.TextStyle" parent="Root.GiniVisionTheme.Analysis.PdfFilename.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Analysis.PdfPageCount.TextStyle" parent="Root.GiniVisionTheme.Analysis.PdfPageCount.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.Item.TextStyle" parent="Root.GiniVisionTheme.Help.Item.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.PhotoTips.Header.TextStyle" parent="Root.GiniVisionTheme.Help.PhotoTips.Header.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.PhotoTips.Tip.TextStyle" parent="Root.GiniVisionTheme.Help.PhotoTips.Tip.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.SupportedFormats.Item.Header.TextStyle" parent="Root.GiniVisionTheme.Help.SupportedFormats.Item.Header.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.SupportedFormats.Item.TextStyle" parent="Root.GiniVisionTheme.Help.SupportedFormats.Item.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.FileImport.Header.TextStyle" parent="Root.GiniVisionTheme.Help.FileImport.Header.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.FileImport.Section.Title.TextStyle" parent="Root.GiniVisionTheme.Help.FileImport.Section.Title.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.FileImport.Section.Body.TextStyle" parent="Root.GiniVisionTheme.Help.FileImport.Section.Body.TextStyle">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="TextAppearance.EditText.Hint" parent="Gini.TextAppearance.EditText.Hint">
+        <item name="android:textColorHint">@color/text_primary</item>
+    </style>
+
+    <style name="TextAppearance.EditText.CollapsedHint" parent="Gini.TextAppearance.EditText.CollapsedHint">
+        <item name="android:textColor">@color/text_primary</item>>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.EditText.Hint.Secondary" parent="Gini.TextAppearance.EditText.Hint.Secondary">
+        <item name="android:textColorHint">@color/text_primary</item>
+    </style>
+
+    <style name="TextAppearance.EditText.CollapsedHint.Secondary" parent="Gini.TextAppearance.EditText.CollapsedHint.Secondary">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

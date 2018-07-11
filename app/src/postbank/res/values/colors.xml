@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#FFCC03</color>
-    <color name="primary_dark">#dcb002</color>
-    <color name="text_primary">#010166</color>
-    <color name="accent">#FFCC03</color>
-    <color name="ic_launcher_background">#FFCC03</color>
+    <color name="postbank_yellow">#FFCC03</color>
+    <color name="postbank_yellow_dark">#dcb002</color>
+    <color name="postbank_blue">#010166</color>
+    <color name="postbank_blue_dark">#010146</color>
+    <color name="postbank_background_light">#f1f5f8</color>
+    <color name="postbank_background_dark">#e6ebf2</color>
+    <color name="primary">@color/postbank_yellow</color>
+    <color name="primary_dark">@color/postbank_yellow_dark</color>
+    <color name="accent">@color/postbank_yellow</color>
+    <color name="activity_background">@color/postbank_background_light</color>
+    <color name="text_primary">@color/postbank_blue</color>
+    <color name="ic_launcher_background">@color/postbank_yellow</color>
     <color name="text_body_inverted">#fff</color>
-    <color name="start_button">#010166</color>
-    <color name="tip_dont_icon_background">#ff4f65</color>
-    <color name="tip_do_icon_background">#b8e986</color>
-    <color name="secondary_extraction_hint">#afb2b3</color>
-    <color name="secondary_extraction">#9a9d9e</color>
-    <color name="text_app_version">#010166</color>
-    <color name="settings_value">#010166</color>
+    <color name="start_button">@color/postbank_blue</color>
+    <color name="text_app_version">@color/postbank_blue</color>
+    <!--<color name="settings_value">@color/postbank_blue</color>-->
+
+    <color name="gv_action_bar">@color/primary</color>
+    <color name="gv_status_bar">@color/primary_dark</color>
+    <color name="gv_accent">@color/accent</color>
+    <color name="gv_onboarding_fab">@color/postbank_background_light</color>
+    <color name="gv_onboarding_fab_pressed">@color/postbank_background_dark</color>
+    <color name="gv_review_fab">@color/postbank_background_light</color>
+    <color name="gv_review_fab_pressed">@color/postbank_background_dark</color>
+    <color name="gv_multi_page_review_thumbnails_panel_background">@color/postbank_background_light</color>
+    <color name="gv_multi_page_review_thumbnail_card_background">@color/postbank_background_dark</color>
+    <color name="gv_multi_page_thumbnail_badge_background_border">@color/postbank_blue</color>
+    <color name="gv_multi_page_thumbnail_highlight_strip">@color/postbank_blue</color>
+    <color name="gv_analysis_activity_indicator">@color/postbank_yellow</color>
+    <color name="gv_analysis_pdf_info_background">@color/postbank_background_light</color>
+    <color name="gv_help_activity_background">@color/postbank_background_light</color>
+    <color name="gv_photo_tips_activity_background">@color/postbank_background_light</color>
+    <color name="gv_photo_tips_button">@color/postbank_yellow</color>
+    <color name="gv_photo_tips_button_text">@color/text_primary</color>
+    <color name="gv_supported_formats_activity_background">@color/postbank_background_light</color>
+    <color name="gv_file_import_section_number">@color/postbank_blue</color>
 </resources>

@@ -12,4 +12,5 @@
     <color name="secondary_extraction">#9a9d9e</color>
     <color name="text_app_version">#0078a7</color>
     <color name="settings_value">#666</color>
+    <color name="activity_background">#fff</color>
 </resources>

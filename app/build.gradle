@@ -59,8 +59,7 @@ android {
         postbank {
             dimension "branding"
             applicationIdSuffix "postbank"
-            versionNameSuffix "-postbank"
-            resValue "string", "app_name", "Postbank Fotoüberweisung"
+            resValue "string", "app_name", "Postbank FÜ"
         }
     }
     dataBinding {
