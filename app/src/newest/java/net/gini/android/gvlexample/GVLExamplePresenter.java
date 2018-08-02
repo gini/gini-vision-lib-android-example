@@ -143,6 +143,7 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 .setConnectionTimeoutUnit(TimeUnit.MILLISECONDS)
                 .setMaxNumberOfRetries(Integer.parseInt(nrOfRetries))
                 .setBackoffMultiplier(Float.parseFloat(backoffMultiplier))
+                .setNetworkSecurityConfigResId(R.xml.network_security_config)
                 .build();
 
         mGiniVisionNetworkApi = GiniVisionDefaultNetworkApi

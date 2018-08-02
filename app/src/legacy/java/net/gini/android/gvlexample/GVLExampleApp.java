@@ -66,7 +66,8 @@ public class GVLExampleApp extends Application {
                 .setUserCenterApiBaseUrl(userCenterBaseUrl)
                 .setConnectionTimeoutInMs(Integer.parseInt(connectionTimeout))
                 .setMaxNumberOfRetries(Integer.parseInt(nrOfRetries))
-                .setConnectionBackOffMultiplier(Float.parseFloat(backoffMultiplier));
+                .setConnectionBackOffMultiplier(Float.parseFloat(backoffMultiplier))
+                .setNetworkSecurityConfigResId(R.xml.network_security_config);
         mGiniApi = builder.build();
     }
 }
