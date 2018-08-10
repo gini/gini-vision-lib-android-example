@@ -47,7 +47,6 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
             mFileImportCancellationToken.cancel();
             mFileImportCancellationToken = null;
         }
-        GiniVision.cleanup(getView().getContext());
     }
 
     @Override
