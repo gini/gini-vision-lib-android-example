@@ -6,11 +6,11 @@ def appVersionCode = gitTagCount() > 0 ? gitTagCount() : 1
 def appVersionName = "${gitDescribe() ?: '0.0.0'} (${appVersionCode})"
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "net.gini.android.gvlexample"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode appVersionCode
         versionName appVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -70,7 +70,7 @@ repositories {
     }
 }
 
-def giniVisionVersion = '3.0.2'
+def giniVisionVersion = '3.0.3'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
