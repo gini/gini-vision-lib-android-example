@@ -23,7 +23,14 @@ import net.gini.android.vision.requirements.RequirementsReport;
 import net.gini.android.vision.review.ReviewActivity;
 import net.gini.android.vision.util.CancellationToken;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.TimeUnit;
+
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.android.LogcatAppender;
+import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 
 /**
  * Created by Alpar Szotyori on 22.02.2018.
@@ -94,8 +101,10 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
 
         if (enableDebugging) {
             GiniVisionDebug.enable();
+            enableGVLLoggin();
         } else {
             GiniVisionDebug.disable();
+            disableGVLLogging();
         }
 
         GiniVision.newInstance()
@@ -231,5 +240,29 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 getView().showImportedFileError(errorMessage);
             }
         }
+    }
+
+    private void enableGVLLoggin() {
+        final LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+        lc.reset();
+
+        final PatternLayoutEncoder layoutEncoder = new PatternLayoutEncoder();
+        layoutEncoder.setContext(lc);
+        layoutEncoder.setPattern("%-5level %file:%line [%thread] - %msg%n");
+        layoutEncoder.start();
+
+        final LogcatAppender logcatAppender = new LogcatAppender();
+        logcatAppender.setContext(lc);
+        logcatAppender.setEncoder(layoutEncoder);
+        logcatAppender.start();
+
+        final ch.qos.logback.classic.Logger root =
+                (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+        root.addAppender(logcatAppender);
+    }
+
+    private void disableGVLLogging() {
+        final LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+        lc.reset();
     }
 }
