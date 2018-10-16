@@ -9,7 +9,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "net.gini.android.gvlexample"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode appVersionCode
         versionName appVersionName
@@ -70,7 +70,7 @@ repositories {
     }
 }
 
-def giniVisionVersion = '3.0.3'
+def giniVisionVersion = '3.0.4'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
