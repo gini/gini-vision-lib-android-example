@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import net.gini.android.DocumentMetadata;
 import net.gini.android.gvlexample.configuration.ConfigurationManager;
 import net.gini.android.vision.AsyncCallback;
 import net.gini.android.vision.DocumentImportEnabledFileTypes;
@@ -142,6 +143,10 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
         final String backoffMultiplier = configuration.getString(
                 context.getString(R.string.pref_key_api_sdk_backoff_multiplier), "1");
 
+        final DocumentMetadata documentMetadata = new DocumentMetadata();
+        documentMetadata.setBranchId("GVLShowcaseAndroid");
+        documentMetadata.add("AppFlow", "ScreenAPI");
+
         mGiniVisionNetworkService = GiniVisionDefaultNetworkService
                 .builder(context)
                 .setBaseUrl(apiBaseUrl)
@@ -152,6 +157,7 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 .setMaxNumberOfRetries(Integer.parseInt(nrOfRetries))
                 .setBackoffMultiplier(Float.parseFloat(backoffMultiplier))
                 .setNetworkSecurityConfigResId(R.xml.network_security_config)
+                .setDocumentMetadata(documentMetadata)
                 .build();
 
         mGiniVisionNetworkApi = GiniVisionDefaultNetworkApi

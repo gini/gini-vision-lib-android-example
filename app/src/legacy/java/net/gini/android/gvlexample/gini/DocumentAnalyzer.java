@@ -2,6 +2,7 @@ package net.gini.android.gvlexample.gini;
 
 import android.util.Log;
 
+import net.gini.android.DocumentMetadata;
 import net.gini.android.DocumentTaskManager;
 import net.gini.android.models.SpecificExtraction;
 import net.gini.android.vision.Document;
@@ -21,6 +22,7 @@ import bolts.Task;
 public class DocumentAnalyzer {
 
     private final DocumentTaskManager mDocumentTaskManager;
+    private final DocumentMetadata mDocumentMetadata;
     private boolean mCancelled = false;
     private net.gini.android.models.Document mGiniApiDocument;
     private Listener mListener;
@@ -29,11 +31,14 @@ public class DocumentAnalyzer {
 
     DocumentAnalyzer(DocumentTaskManager documentTaskManager) {
         mDocumentTaskManager = documentTaskManager;
+        mDocumentMetadata = new DocumentMetadata();
+        mDocumentMetadata.setBranchId("GVLShowcaseAndroid");
+        mDocumentMetadata.add("AppFlow", "ScreenAPI");
     }
 
     synchronized void analyze(Document document) {
         mDocumentTaskManager
-                .createDocument(document.getData(), null, null)
+                .createDocument(document.getData(), null, null, mDocumentMetadata)
                 .onSuccessTask(
                         new Continuation<net.gini.android.models.Document, Task<net.gini.android.models.Document>>() {
                             @Override
