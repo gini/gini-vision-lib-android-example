@@ -70,5 +70,7 @@
     <string name="reset_all_configuration_item_title">Alles zurücksetzen</string>
     <string name="pref_title_enable_gvl_debugging">Debugging einschalten</string>
     <string name="pref_category_debug">Debug</string>
+    <string name="pref_category_certificate_pinning">Certificate Pinning</string>
+    <string name="pref_title_enable_certificate_pinning">Pinning einschalten</string>
 </resources>
 

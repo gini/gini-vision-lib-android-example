@@ -142,23 +142,27 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 context.getString(R.string.pref_key_api_sdk_nr_of_retries), "3");
         final String backoffMultiplier = configuration.getString(
                 context.getString(R.string.pref_key_api_sdk_backoff_multiplier), "1");
+        final boolean enableCertificatePinning = configuration.getBoolean(
+                context.getString(R.string.pref_key_api_sdk_enable_certificate_pinning), true);
 
         final DocumentMetadata documentMetadata = new DocumentMetadata();
         documentMetadata.setBranchId("GVLShowcaseAndroid");
         documentMetadata.add("AppFlow", "ScreenAPI");
 
-        mGiniVisionNetworkService = GiniVisionDefaultNetworkService
-                .builder(context)
-                .setBaseUrl(apiBaseUrl)
+        final GiniVisionDefaultNetworkService.Builder builder = GiniVisionDefaultNetworkService
+                .builder(context);
+        builder.setBaseUrl(apiBaseUrl)
                 .setUserCenterBaseUrl(userCenterBaseUrl)
                 .setClientCredentials(clientId, clientSecret, emailDomain)
                 .setConnectionTimeout(Long.parseLong(connectionTimeout))
                 .setConnectionTimeoutUnit(TimeUnit.MILLISECONDS)
                 .setMaxNumberOfRetries(Integer.parseInt(nrOfRetries))
                 .setBackoffMultiplier(Float.parseFloat(backoffMultiplier))
-                .setNetworkSecurityConfigResId(R.xml.network_security_config)
-                .setDocumentMetadata(documentMetadata)
-                .build();
+                .setDocumentMetadata(documentMetadata);
+        if (enableCertificatePinning) {
+            builder.setNetworkSecurityConfigResId(R.xml.network_security_config);
+        }
+        mGiniVisionNetworkService = builder.build();
 
         mGiniVisionNetworkApi = GiniVisionDefaultNetworkApi
                 .builder()

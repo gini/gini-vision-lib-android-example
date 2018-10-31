@@ -9,6 +9,7 @@
     <string name="pref_key_api_sdk_connection_timeout">pref_key_api_sdk_connection_timeout</string>
     <string name="pref_key_api_sdk_nr_of_retries">pref_key_api_sdk_nr_of_retries</string>
     <string name="pref_key_api_sdk_backoff_multiplier">pref_key_api_sdk_backoff_multiplier</string>
+    <string name="pref_key_api_sdk_enable_certificate_pinning">pref_key_api_sdk_enable_certificate_pinning</string>
     <string name="pref_key_gvl_show_onboarding_on_first_run">pref_key_gvl_show_onboarding_on_first_run</string>
     <string name="pref_key_gvl_always_show_onboarding">pref_key_gvl_always_show_onboarding</string>
     <string name="pref_key_gvl_enable_qr_code_scanning">pref_key_gvl_enable_qr_code_scanning</string>
@@ -37,6 +38,7 @@
     <string name="connection_timeout">60000</string>
     <string name="nr_of_retries">3</string>
     <string name="backoff_multiplier">1</string>
+    <string name="enable_certificate_pinning">true</string>
     <!-- GVL -->
     <string name="show_onboarding_on_first_run">true</string>
     <string name="always_show_onboarding">false</string>

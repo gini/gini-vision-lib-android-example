@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import net.gini.android.gvlexample.GVLExampleApp;
 import net.gini.android.gvlexample.R;
 import net.gini.android.gvlexample.configuration.ConfigurationActivity;
 import net.gini.android.gvlexample.configuration.ConfigurationManager;
@@ -79,6 +80,8 @@ class SettingsPresenter extends SettingsContract.Presenter {
         clearSharedPreference(context, "GV_SHARED_PREFS");
         clearSharedPreference(context, "GV_ONCE_PER_INSTALL_EVENTS");
         clearSharedPreference(context, "Gini");
+        final GVLExampleApp app = (GVLExampleApp) getView().getContext().getApplicationContext();
+        app.resetGiniApiInstance();
     }
 
     private void clearSharedPreference(@NonNull final Context context, @NonNull final String name) {

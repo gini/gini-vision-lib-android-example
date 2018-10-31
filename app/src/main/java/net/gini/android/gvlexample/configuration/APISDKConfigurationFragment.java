@@ -1,7 +1,9 @@
 package net.gini.android.gvlexample.configuration;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import net.gini.android.gvlexample.GVLExampleApp;
 import net.gini.android.gvlexample.R;
 
 /**
@@ -9,7 +11,8 @@ import net.gini.android.gvlexample.R;
  *
  * Copyright (c) 2018 Gini GmbH.
  */
-public class APISDKConfigurationFragment extends ConfigurationFragment {
+public class APISDKConfigurationFragment extends ConfigurationFragment implements
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,5 +26,25 @@ public class APISDKConfigurationFragment extends ConfigurationFragment {
         bindPreferenceSummaryToValue(R.string.pref_key_api_sdk_connection_timeout);
         bindPreferenceSummaryToValue(R.string.pref_key_api_sdk_nr_of_retries);
         bindPreferenceSummaryToValue(R.string.pref_key_api_sdk_backoff_multiplier);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+
+    }
+
+    @Override
+    public void onPause() {
+        getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        super.onPause();
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
+            final String key) {
+        final GVLExampleApp app = (GVLExampleApp) getActivity().getApplicationContext();
+        app.resetGiniApiInstance();
     }
 }

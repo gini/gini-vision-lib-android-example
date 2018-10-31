@@ -1,6 +1,5 @@
 package net.gini.android.gvlexample;
 
-import android.app.Application;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
@@ -15,7 +14,7 @@ import net.gini.android.gvlexample.gini.SingleDocumentAnalyzer;
  * Copyright (c) 2017 Gini GmbH.
  */
 
-public class GVLExampleApp extends Application {
+public class GVLExampleApp extends BaseGVLExampleApp {
 
     private Gini mGiniApi;
     private SingleDocumentAnalyzer mSingleDocumentAnalyzer;
@@ -40,6 +39,12 @@ public class GVLExampleApp extends Application {
         return mGiniApi;
     }
 
+    @Override
+    public void resetGiniApiInstance() {
+        mGiniApi = null;
+        mSingleDocumentAnalyzer = null;
+    }
+
     private void createGiniApi() {
         SharedPreferences configuration = ConfigurationManager.getConfigurationPreferences(this);
         final String clientId = configuration.getString(
@@ -60,14 +65,18 @@ public class GVLExampleApp extends Application {
                 this.getString(R.string.pref_key_api_sdk_nr_of_retries), "3");
         final String backoffMultiplier = configuration.getString(
                 this.getString(R.string.pref_key_api_sdk_backoff_multiplier), "1");
+        final boolean enableCertificatePinning = configuration.getBoolean(
+                this.getString(R.string.pref_key_api_sdk_enable_certificate_pinning), true);
 
         SdkBuilder builder = new SdkBuilder(this, clientId, clientSecret, emailDomain)
                 .setApiBaseUrl(apiBaseUrl)
                 .setUserCenterApiBaseUrl(userCenterBaseUrl)
                 .setConnectionTimeoutInMs(Integer.parseInt(connectionTimeout))
                 .setMaxNumberOfRetries(Integer.parseInt(nrOfRetries))
-                .setConnectionBackOffMultiplier(Float.parseFloat(backoffMultiplier))
-                .setNetworkSecurityConfigResId(R.xml.network_security_config);
+                .setConnectionBackOffMultiplier(Float.parseFloat(backoffMultiplier));
+        if (enableCertificatePinning) {
+            builder.setNetworkSecurityConfigResId(R.xml.network_security_config);
+        }
         mGiniApi = builder.build();
     }
 }
