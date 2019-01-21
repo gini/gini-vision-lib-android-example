@@ -13,6 +13,8 @@ import net.gini.android.vision.DocumentImportEnabledFileTypes;
 import net.gini.android.vision.GiniVision;
 import net.gini.android.vision.GiniVisionDebug;
 import net.gini.android.vision.ImportedFileValidationException;
+import net.gini.android.vision.accounting.network.GiniVisionAccountingNetworkApi;
+import net.gini.android.vision.accounting.network.GiniVisionAccountingNetworkService;
 import net.gini.android.vision.analysis.AnalysisActivity;
 import net.gini.android.vision.camera.CameraActivity;
 import net.gini.android.vision.network.GiniVisionDefaultNetworkApi;
@@ -144,11 +146,29 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 context.getString(R.string.pref_key_api_sdk_backoff_multiplier), "1");
         final boolean enableCertificatePinning = configuration.getBoolean(
                 context.getString(R.string.pref_key_api_sdk_enable_certificate_pinning), true);
+        final String networkLibrary = configuration.getString(
+                context.getString(R.string.pref_key_gvl_network_library), "Default");
 
         final DocumentMetadata documentMetadata = new DocumentMetadata();
         documentMetadata.setBranchId("GVLShowcaseAndroid");
         documentMetadata.add("AppFlow", "ScreenAPI");
 
+        if ("Accounting".equals(networkLibrary)) {
+            buildAccountingNetworkLibrary(context, clientId, clientSecret, emailDomain, apiBaseUrl,
+                    userCenterBaseUrl, connectionTimeout, nrOfRetries, backoffMultiplier,
+                    enableCertificatePinning, documentMetadata);
+        } else {
+            buildDefaultNetworkLibrary(context, clientId, clientSecret, emailDomain, apiBaseUrl,
+                    userCenterBaseUrl, connectionTimeout, nrOfRetries, backoffMultiplier,
+                    enableCertificatePinning, documentMetadata);
+        }
+    }
+
+    private void buildDefaultNetworkLibrary(final Context context, final String clientId,
+            final String clientSecret, final String emailDomain, final String apiBaseUrl,
+            final String userCenterBaseUrl, final String connectionTimeout,
+            final String nrOfRetries, final String backoffMultiplier,
+            final boolean enableCertificatePinning, final DocumentMetadata documentMetadata) {
         final GiniVisionDefaultNetworkService.Builder builder = GiniVisionDefaultNetworkService
                 .builder(context);
         builder.setBaseUrl(apiBaseUrl)
@@ -168,6 +188,33 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 .builder()
                 .withGiniVisionDefaultNetworkService(
                         (GiniVisionDefaultNetworkService) mGiniVisionNetworkService)
+                .build();
+    }
+
+    private void buildAccountingNetworkLibrary(final Context context, final String clientId,
+            final String clientSecret, final String emailDomain, final String apiBaseUrl,
+            final String userCenterBaseUrl, final String connectionTimeout,
+            final String nrOfRetries, final String backoffMultiplier,
+            final boolean enableCertificatePinning, final DocumentMetadata documentMetadata) {
+        final GiniVisionAccountingNetworkService.Builder builder = GiniVisionAccountingNetworkService
+                .builder(context);
+        builder.setBaseUrl(apiBaseUrl)
+                .setUserCenterBaseUrl(userCenterBaseUrl)
+                .setClientCredentials(clientId, clientSecret, emailDomain)
+                .setConnectionTimeout(Long.parseLong(connectionTimeout))
+                .setConnectionTimeoutUnit(TimeUnit.MILLISECONDS)
+                .setMaxNumberOfRetries(Integer.parseInt(nrOfRetries))
+                .setBackoffMultiplier(Float.parseFloat(backoffMultiplier))
+                .setDocumentMetadata(documentMetadata);
+        if (enableCertificatePinning) {
+            builder.setNetworkSecurityConfigResId(R.xml.network_security_config);
+        }
+        mGiniVisionNetworkService = builder.build();
+
+        mGiniVisionNetworkApi = GiniVisionAccountingNetworkApi
+                .builder()
+                .withGiniVisionAccountingNetworkService(
+                        (GiniVisionAccountingNetworkService) mGiniVisionNetworkService)
                 .build();
     }
 

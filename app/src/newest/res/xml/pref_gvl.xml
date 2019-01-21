@@ -15,6 +15,17 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/pref_category_network_library">
+
+        <ListPreference
+            android:defaultValue="@string/network_library"
+            android:entries="@array/pref_key_gvl_network_library_values"
+            android:entryValues="@array/pref_key_gvl_network_library_values"
+            android:key="@string/pref_key_gvl_network_library"
+            android:title="@string/pref_title_network_library" />
+
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/pref_category_features">
 
         <SwitchPreference

@@ -1,9 +1,12 @@
 package net.gini.android.gvlexample.configuration;
 
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
 /**
@@ -17,7 +20,7 @@ public class ConfigurationFragment extends PreferenceFragment {
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
-    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener =
+    protected static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener =
             new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object value) {
@@ -67,5 +70,18 @@ public class ConfigurationFragment extends PreferenceFragment {
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
                         .getString(preference.getKey(), ""));
+    }
+
+    protected void updateEditTextPreference(@NonNull final String prefKey, @NonNull final String prefValue) {
+        getPreferenceManager().getSharedPreferences().edit().putString(prefKey,prefValue).apply();
+        EditTextPreference preference = (EditTextPreference) findPreference(prefKey);
+        preference.setText(prefValue);
+        preference.setSummary(prefValue);
+    }
+
+    protected void updateSwitchPreference(@NonNull final String prefKey, @NonNull final boolean prefValue) {
+        getPreferenceManager().getSharedPreferences().edit().putBoolean(prefKey,prefValue).apply();
+        SwitchPreference preference = (SwitchPreference) findPreference(prefKey);
+        preference.setChecked(prefValue);
     }
 }

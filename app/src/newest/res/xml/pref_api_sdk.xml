@@ -18,17 +18,6 @@
             android:title="@string/pref_title_email_domain" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_category_api_type">
-
-        <ListPreference
-            android:defaultValue="@string/api_type"
-            android:entries="@array/pref_key_api_type_titles"
-            android:entryValues="@array/pref_key_api_type_values"
-            android:key="@string/pref_key_api_sdk_api_type"
-            android:title="@string/pref_title_api_type" />
-
-    </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/pref_category_base_urls">
 
         <EditTextPreference

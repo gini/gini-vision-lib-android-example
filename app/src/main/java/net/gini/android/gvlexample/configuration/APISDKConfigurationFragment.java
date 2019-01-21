@@ -2,6 +2,7 @@ package net.gini.android.gvlexample.configuration;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 
 import net.gini.android.gvlexample.GVLExampleApp;
 import net.gini.android.gvlexample.R;
@@ -26,6 +27,34 @@ public class APISDKConfigurationFragment extends ConfigurationFragment implement
         bindPreferenceSummaryToValue(R.string.pref_key_api_sdk_connection_timeout);
         bindPreferenceSummaryToValue(R.string.pref_key_api_sdk_nr_of_retries);
         bindPreferenceSummaryToValue(R.string.pref_key_api_sdk_backoff_multiplier);
+
+        final Preference apiTypePreference = findPreference(getString(R.string.pref_key_api_sdk_api_type));
+        if (apiTypePreference != null) {
+            bindPreferenceSummaryToValue(R.string.pref_key_api_sdk_api_type);
+            apiTypePreference
+                    .setOnPreferenceChangeListener(
+                            new Preference.OnPreferenceChangeListener() {
+                                @Override
+                                public boolean onPreferenceChange(final Preference preference,
+                                        final Object newValue) {
+                                    final String stringValue = newValue.toString();
+                                    final String baseUrlPrefKey =
+                                            getString(R.string.pref_key_api_sdk_gini_api_base_url);
+                                    if ("1".equals(stringValue)) {
+                                        final String baseUrl =
+                                                getString(R.string.api_accounting_base_url);
+                                        updateEditTextPreference(baseUrlPrefKey, baseUrl);
+                                    } else {
+                                        final String baseUrl = getString(R.string.api_base_url);
+                                        updateEditTextPreference(baseUrlPrefKey, baseUrl);
+                                    }
+
+                                    sBindPreferenceSummaryToValueListener.onPreferenceChange(
+                                            preference, newValue);
+                                    return true;
+                                }
+                            });
+        }
     }
 
     @Override

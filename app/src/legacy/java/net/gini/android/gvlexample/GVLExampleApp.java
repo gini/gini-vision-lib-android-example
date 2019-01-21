@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import net.gini.android.Gini;
+import net.gini.android.GiniApiType;
 import net.gini.android.SdkBuilder;
 import net.gini.android.gvlexample.configuration.ConfigurationManager;
 import net.gini.android.gvlexample.gini.SingleDocumentAnalyzer;
@@ -55,6 +56,11 @@ public class GVLExampleApp extends BaseGVLExampleApp {
                 R.string.gini_api_client_secret) : clientSecret;
         final String emailDomain = configuration.getString(
                 this.getString(R.string.pref_key_api_sdk_email_domain), "");
+        final String giniApiTypeIndex = configuration.getString(
+                this.getString(R.string.pref_key_api_sdk_api_type), "0");
+        final GiniApiType giniApiType =
+                GiniApiType.values()[Integer.valueOf(
+                        giniApiTypeIndex)];
         final String apiBaseUrl = configuration.getString(
                 this.getString(R.string.pref_key_api_sdk_gini_api_base_url), "");
         final String userCenterBaseUrl = configuration.getString(
@@ -69,6 +75,7 @@ public class GVLExampleApp extends BaseGVLExampleApp {
                 this.getString(R.string.pref_key_api_sdk_enable_certificate_pinning), true);
 
         SdkBuilder builder = new SdkBuilder(this, clientId, clientSecret, emailDomain)
+                .setGiniApiType(giniApiType)
                 .setApiBaseUrl(apiBaseUrl)
                 .setUserCenterApiBaseUrl(userCenterBaseUrl)
                 .setConnectionTimeoutInMs(Integer.parseInt(connectionTimeout))

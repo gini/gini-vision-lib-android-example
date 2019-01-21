@@ -4,6 +4,17 @@
     <string name="pref_key_api_sdk_client_id">pref_key_api_sdk_client_id</string>
     <string name="pref_key_api_sdk_client_secret">pref_key_api_sdk_client_secret</string>
     <string name="pref_key_api_sdk_email_domain">pref_key_api_sdk_email_domain</string>
+    <string name="pref_key_api_sdk_api_type">pref_key_api_types</string>
+    <string-array name="pref_key_api_type_titles">
+        <item>Default</item>
+        <item>Accounting</item>
+    </string-array>
+    <string-array name="pref_key_api_type_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
     <string name="pref_key_api_sdk_gini_api_base_url">pref_key_api_sdk_gini_api_base_url</string>
     <string name="pref_key_api_sdk_user_center_base_url">pref_key_api_sdk_user_center_base_url</string>
     <string name="pref_key_api_sdk_connection_timeout">pref_key_api_sdk_connection_timeout</string>
@@ -32,7 +43,10 @@
 
     <!-- Default configuration -->
     <!-- API SDK-->
+    <!-- Index in the GiniApiType enum -->
+    <string name="api_type">0</string>
     <string name="api_base_url">https://api.gini.net</string>
+    <string name="api_accounting_base_url">https://accounting-api.gini.net</string>
     <string name="user_center_base_url">https://user.gini.net</string>
     <string name="api_email_domain">gvlexample.net</string>
     <string name="connection_timeout">60000</string>

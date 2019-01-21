@@ -2,8 +2,14 @@
 <resources>
     <!-- Preference constants-->
     <string name="pref_key_gvl_enable_multi_page">pref_key_gvl_enable_multi_page</string>
+    <string name="pref_key_gvl_network_library">pref_key_gvl_network_library</string>
+    <string-array name="pref_key_gvl_network_library_values">
+        <item>Default</item>
+        <item>Accounting</item>
+    </string-array>
 
     <!-- Default configuration -->
     <!-- GVL -->
     <string name="enable_multi_page">true</string>
+    <string name="network_library">Default</string>
 </resources>
