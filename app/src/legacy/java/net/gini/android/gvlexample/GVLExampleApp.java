@@ -20,12 +20,6 @@ public class GVLExampleApp extends BaseGVLExampleApp {
     private Gini mGiniApi;
     private SingleDocumentAnalyzer mSingleDocumentAnalyzer;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        ConfigurationManager.initDefaultValues(this);
-    }
-
     public SingleDocumentAnalyzer getSingleDocumentAnalyzer() {
         if (mSingleDocumentAnalyzer == null) {
             mSingleDocumentAnalyzer = new SingleDocumentAnalyzer(getGiniApi());

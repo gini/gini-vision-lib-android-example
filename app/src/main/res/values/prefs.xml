@@ -12,8 +12,6 @@
     <string-array name="pref_key_api_type_values">
         <item>0</item>
         <item>1</item>
-        <item>2</item>
-        <item>3</item>
     </string-array>
     <string name="pref_key_api_sdk_gini_api_base_url">pref_key_api_sdk_gini_api_base_url</string>
     <string name="pref_key_api_sdk_user_center_base_url">pref_key_api_sdk_user_center_base_url</string>
