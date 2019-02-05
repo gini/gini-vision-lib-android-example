@@ -1,6 +1,6 @@
 package net.gini.android.gvlexample.results;
 
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.textfield.TextInputLayout;
 
 import net.gini.android.gvlexample.R;
 import net.gini.android.gvlexample.databinding.BindingAdapter;

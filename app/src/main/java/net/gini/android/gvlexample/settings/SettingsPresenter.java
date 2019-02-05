@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import net.gini.android.gvlexample.GVLExampleApp;
@@ -16,6 +15,8 @@ import net.gini.android.vision.BuildConfig;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Alpar Szotyori on 22.11.2017.

@@ -5,7 +5,6 @@ import static net.gini.android.gvlexample.gini.ExtractionUtil.hasNoPay5Extractio
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 
 import net.gini.android.gvlexample.GVLExampleActivity;
@@ -19,6 +18,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
+
+import androidx.annotation.NonNull;
 
 public class AnalysisActivity extends net.gini.android.vision.analysis.AnalysisActivity {
 

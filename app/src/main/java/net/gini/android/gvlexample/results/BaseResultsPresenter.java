@@ -3,19 +3,18 @@ package net.gini.android.gvlexample.results;
 import static net.gini.android.gvlexample.gini.ExtractionUtil.isPay5Extraction;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 
 import net.gini.android.gvlexample.gini.Extraction;
-import net.gini.android.vision.network.Error;
-import net.gini.android.vision.network.GiniVisionNetworkCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Alpar Szotyori on 23.11.2017.

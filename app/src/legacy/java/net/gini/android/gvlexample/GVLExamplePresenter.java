@@ -3,7 +3,6 @@ package net.gini.android.gvlexample;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
 
 import net.gini.android.gvlexample.configuration.ConfigurationManager;
 import net.gini.android.gvlexample.gini.AnalysisActivity;
@@ -16,6 +15,8 @@ import net.gini.android.vision.GiniVisionFileImport;
 import net.gini.android.vision.ImportedFileValidationException;
 import net.gini.android.vision.requirements.GiniVisionRequirements;
 import net.gini.android.vision.requirements.RequirementsReport;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Alpar Szotyori on 22.02.2018.

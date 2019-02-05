@@ -2,8 +2,9 @@ package net.gini.android.gvlexample;
 
 import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class NoPdfResultsActivity extends AppCompatActivity {
 

@@ -13,11 +13,11 @@
             type="net.gini.android.gvlexample.results.ObservableExtraction" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             style="@style/TextAppearance.EditText.Hint"
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/extractionEditText"
                 style="@style/TextAppearance.EditText"
                 android:layout_width="match_parent"
@@ -42,8 +42,8 @@
                 android:inputType="text"
                 android:text="@={obj.value}" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

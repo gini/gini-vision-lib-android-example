@@ -2,8 +2,9 @@ package net.gini.android.gvlexample;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by Alpar Szotyori on 28.11.2017.

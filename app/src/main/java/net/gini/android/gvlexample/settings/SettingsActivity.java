@@ -1,19 +1,21 @@
 package net.gini.android.gvlexample.settings;
 
+import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
+
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import net.gini.android.gvlexample.R;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Alpar Szotyori on 22.11.2017.

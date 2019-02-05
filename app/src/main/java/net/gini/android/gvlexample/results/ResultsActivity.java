@@ -3,11 +3,8 @@ package net.gini.android.gvlexample.results;
 import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import net.gini.android.gvlexample.R;
 import net.gini.android.gvlexample.databinding.ActivityResultsBinding;
@@ -15,6 +12,10 @@ import net.gini.android.gvlexample.gini.Extraction;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Alpar Szotyori on 23.11.2017.

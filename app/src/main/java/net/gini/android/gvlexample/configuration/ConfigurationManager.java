@@ -3,8 +3,10 @@ package net.gini.android.gvlexample.configuration;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
+
 import net.gini.android.gvlexample.R;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Alpar Szotyori on 22.06.2018.

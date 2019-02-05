@@ -4,10 +4,9 @@ import static net.gini.android.gvlexample.gini.ExtractionUtil.hasNoPay5Extractio
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
-import net.gini.android.gvlexample.GVLExampleApp;
 import net.gini.android.gvlexample.GVLExampleActivity;
+import net.gini.android.gvlexample.GVLExampleApp;
 import net.gini.android.models.SpecificExtraction;
 import net.gini.android.vision.Document;
 import net.gini.android.vision.GiniVisionDebug;
@@ -16,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
+
+import androidx.annotation.NonNull;
 
 public class ReviewActivity extends net.gini.android.vision.review.ReviewActivity {
 

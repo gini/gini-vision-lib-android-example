@@ -1,9 +1,10 @@
 package net.gini.android.gvlexample.results;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import net.gini.android.models.SpecificExtraction;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by Alpar Szotyori on 01.02.2018.

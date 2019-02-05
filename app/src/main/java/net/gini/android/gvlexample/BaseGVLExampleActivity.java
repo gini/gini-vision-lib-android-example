@@ -1,5 +1,7 @@
 package net.gini.android.gvlexample;
 
+import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,18 +11,22 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.*;
+import com.karumi.dexter.listener.DexterError;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.single.PermissionListener;
+
 import net.gini.android.gvlexample.results.ResultsActivity;
 import net.gini.android.gvlexample.settings.SettingsActivity;
 import net.gini.android.vision.GiniVisionError;
@@ -30,7 +36,8 @@ import net.gini.android.vision.requirements.RequirementsReport;
 
 import java.util.List;
 
-import static net.gini.android.gvlexample.ActivityHelper.forcePortraitOrientationOnPhones;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Alpar Szotyori on 20.11.2017.

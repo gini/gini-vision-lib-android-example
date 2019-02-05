@@ -1,7 +1,7 @@
 package net.gini.android.gvlexample.results;
 
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 
 import net.gini.android.gvlexample.BR;
 import net.gini.android.gvlexample.gini.Extraction;

@@ -2,10 +2,11 @@ package net.gini.android.gvlexample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import net.gini.android.vision.GiniVisionError;
 import net.gini.android.vision.requirements.RequirementsReport;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by Alpar Szotyori on 27.11.2017.

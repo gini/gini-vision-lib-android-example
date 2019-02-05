@@ -4,7 +4,6 @@ import static net.gini.android.gvlexample.gini.ExtractionUtil.getExtractionsBund
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import net.gini.android.gvlexample.GVLExampleActivity;
 import net.gini.android.gvlexample.GVLExampleApp;
@@ -15,6 +14,8 @@ import net.gini.android.vision.document.QRCodeDocument;
 
 import java.util.Collections;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Alpar Szotyori on 14.12.2017.
