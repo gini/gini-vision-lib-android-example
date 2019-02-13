@@ -101,6 +101,8 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 context.getString(R.string.pref_key_gvl_enable_multi_page), true);
         final boolean enableDebugging = configuration.getBoolean(
                 context.getString(R.string.pref_key_gvl_enable_debugging), true);
+        final boolean enableSupportedFormatsHelpScreen = configuration.getBoolean(
+                context.getString(R.string.pref_key_gvl_supported_formats_help_screen), true);
 
         if (enableDebugging) {
             GiniVisionDebug.enable();
@@ -119,6 +121,7 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 .setFileImportEnabled(enableFileImport)
                 .setMultiPageEnabled(enableMultiPage)
                 .setDocumentImportEnabledFileTypes(documentImportFileTypes)
+                .setSupportedFormatsHelpScreenEnabled(enableSupportedFormatsHelpScreen)
                 .build();
     }
 

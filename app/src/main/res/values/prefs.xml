@@ -38,6 +38,7 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+    <string name="pref_key_gvl_supported_formats_help_screen">pref_key_gvl_supported_formats_help_screen</string>
 
     <!-- Default configuration -->
     <!-- API SDK-->
@@ -59,4 +60,5 @@
     <!-- Index in the DocumentImportEnabledFileTypes enum -->
     <string name="document_import_file_types">3</string>
     <string name="enable_gvl_debugging">false</string>
+    <string name="enable_supported_formats_help_screen">true</string>
 </resources>

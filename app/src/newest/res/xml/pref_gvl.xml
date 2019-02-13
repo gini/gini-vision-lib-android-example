@@ -52,6 +52,15 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/pref_category_help_screen">
+
+        <SwitchPreference
+            android:defaultValue="@string/enable_supported_formats_help_screen"
+            android:key="@string/pref_key_gvl_supported_formats_help_screen"
+            android:title="@string/pref_title_supported_formats_help_screen" />
+
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/pref_category_debug">
         <SwitchPreference
             android:defaultValue="@string/enable_gvl_debugging"
