@@ -46,9 +46,14 @@
             android:title="@string/pref_title_document_import_file_types" />
 
         <SwitchPreference
-            android:defaultValue="true"
+            android:defaultValue="@string/enable_multi_page"
             android:key="@string/pref_key_gvl_enable_multi_page"
             android:title="@string/pref_title_enable_multi_page" />
+
+        <SwitchPreference
+            android:defaultValue="@string/enable_flash_toggle"
+            android:key="@string/pref_key_gvl_enable_flash_toggle"
+            android:title="@string/pref_title_enable_flash_toggle" />
 
     </PreferenceCategory>
 
