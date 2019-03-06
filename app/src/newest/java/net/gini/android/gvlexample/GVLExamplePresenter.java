@@ -105,6 +105,8 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 context.getString(R.string.pref_key_gvl_supported_formats_help_screen), true);
         final boolean enableFlashToggle = configuration.getBoolean(
                 context.getString(R.string.pref_key_gvl_enable_flash_toggle), true);
+        final boolean enableBackButtons = configuration.getBoolean(
+                context.getString(R.string.pref_key_gvl_enable_back_buttons), true);
 
         if (enableDebugging) {
             GiniVisionDebug.enable();
@@ -125,6 +127,7 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 .setDocumentImportEnabledFileTypes(documentImportFileTypes)
                 .setSupportedFormatsHelpScreenEnabled(enableSupportedFormatsHelpScreen)
                 .setFlashButtonEnabled(enableFlashToggle)
+                .setBackButtonsEnabled(enableBackButtons)
                 .build();
     }
 

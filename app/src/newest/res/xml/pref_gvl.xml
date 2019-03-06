@@ -55,6 +55,11 @@
             android:key="@string/pref_key_gvl_enable_flash_toggle"
             android:title="@string/pref_title_enable_flash_toggle" />
 
+        <SwitchPreference
+            android:defaultValue="@string/enable_back_buttons"
+            android:key="@string/pref_key_gvl_enable_back_buttons"
+            android:title="@string/pref_title_enable_back_buttons" />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_category_help_screen">
