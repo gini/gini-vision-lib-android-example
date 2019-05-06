@@ -105,6 +105,8 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 context.getString(R.string.pref_key_gvl_supported_formats_help_screen), true);
         final boolean enableFlashToggle = configuration.getBoolean(
                 context.getString(R.string.pref_key_gvl_enable_flash_toggle), true);
+        final boolean flashOnByDefault = configuration.getBoolean(
+                context.getString(R.string.pref_key_gvl_flash_on_by_default), true);
         final boolean enableBackButtons = configuration.getBoolean(
                 context.getString(R.string.pref_key_gvl_enable_back_buttons), true);
 
@@ -128,6 +130,7 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 .setSupportedFormatsHelpScreenEnabled(enableSupportedFormatsHelpScreen)
                 .setFlashButtonEnabled(enableFlashToggle)
                 .setBackButtonsEnabled(enableBackButtons)
+                .setFlashOnByDefault(flashOnByDefault)
                 .build();
     }
 

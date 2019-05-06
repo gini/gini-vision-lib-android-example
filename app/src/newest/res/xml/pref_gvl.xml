@@ -56,6 +56,11 @@
             android:title="@string/pref_title_enable_flash_toggle" />
 
         <SwitchPreference
+            android:defaultValue="@string/flash_on_by_default"
+            android:key="@string/pref_key_gvl_flash_on_by_default"
+            android:title="@string/pref_title_flash_on_by_default" />
+
+        <SwitchPreference
             android:defaultValue="@string/enable_back_buttons"
             android:key="@string/pref_key_gvl_enable_back_buttons"
             android:title="@string/pref_title_enable_back_buttons" />
