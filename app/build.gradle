@@ -90,7 +90,7 @@ dependencies {
     }
     newestImplementation "net.gini:gini-vision-network-lib:$giniVisionVersion"
     newestImplementation "net.gini:gini-vision-accounting-network-lib:$giniVisionVersion"
-    legacyImplementation('net.gini:gini-android-sdk:2.3.0@aar') {
+    legacyImplementation('net.gini:gini-android-sdk:2.4.1@aar') {
         transitive = true
     }
 
