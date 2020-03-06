@@ -7,6 +7,7 @@ import android.text.TextUtils;
 
 import net.gini.android.DocumentMetadata;
 import net.gini.android.gvlexample.configuration.ConfigurationManager;
+import net.gini.android.gvlexample.gini.ExampleEventTracker;
 import net.gini.android.vision.AsyncCallback;
 import net.gini.android.vision.DocumentImportEnabledFileTypes;
 import net.gini.android.vision.GiniVision;
@@ -119,6 +120,7 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
         }
 
         GiniVision.newInstance()
+                .setEventTracker(new ExampleEventTracker())
                 .setGiniVisionNetworkService(mGiniVisionNetworkService)
                 .setGiniVisionNetworkApi(mGiniVisionNetworkApi)
                 .setShouldShowOnboardingAtFirstRun(showOnboardingOnFirstRun)
