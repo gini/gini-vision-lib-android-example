@@ -84,6 +84,8 @@ dependencies {
         // workaround issue #73
         exclude group: 'com.google.android', module: 'android'
     }
+    implementation 'com.microsoft.appcenter:appcenter-analytics:3.1.0'
+    implementation 'com.microsoft.appcenter:appcenter-crashes:3.1.0'
 
     implementation("net.gini:gini-vision-lib:$giniVisionVersion") {
         exclude group: 'com.android.support', module: 'support-v13'

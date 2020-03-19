@@ -3,6 +3,10 @@ package net.gini.android.gvlexample;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+
 import net.gini.android.vision.camera.CameraActivity;
 
 /**
@@ -12,6 +16,13 @@ import net.gini.android.vision.camera.CameraActivity;
  */
 
 public class GVLExampleActivity extends BaseGVLExampleActivity implements GVLExampleContract.View {
+
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AppCenter.start(getApplication(), "972db965-d54d-43ce-aa65-09f63e7208c5",
+                Analytics.class, Crashes.class);
+    }
 
     @Override
     Bundle getExtractions(final Intent data) {

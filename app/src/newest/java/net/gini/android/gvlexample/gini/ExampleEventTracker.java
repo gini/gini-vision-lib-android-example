@@ -2,6 +2,8 @@ package net.gini.android.gvlexample.gini;
 
 import android.util.Log;
 
+import com.microsoft.appcenter.analytics.Analytics;
+
 import net.gini.android.vision.tracking.AnalysisScreenEvent;
 import net.gini.android.vision.tracking.CameraScreenEvent;
 import net.gini.android.vision.tracking.Event;
@@ -23,21 +25,25 @@ public class ExampleEventTracker implements EventTracker {
     @Override
     public void onOnboardingScreenEvent(final Event<OnboardingScreenEvent> event) {
         logEvent(event);
+        trackEvent(event);
     }
 
     @Override
     public void onCameraScreenEvent(final Event<CameraScreenEvent> event) {
         logEvent(event);
+        trackEvent(event);
     }
 
     @Override
     public void onReviewScreenEvent(final Event<ReviewScreenEvent> event) {
         logEvent(event);
+        trackEvent(event);
     }
 
     @Override
     public void onAnalysisScreenEvent(final Event<AnalysisScreenEvent> event) {
         logEvent(event);
+        trackEvent(event);
     }
 
     private void logEvent(@NonNull final Event<?> event) {
@@ -61,5 +67,11 @@ public class ExampleEventTracker implements EventTracker {
                     .append("; ");
         }
         return output.toString();
+    }
+
+    private void trackEvent(@NonNull final Event<?> event) {
+        final String name =
+                event.getType().getClass().getSimpleName() + "." + event.getType().name();
+        Analytics.trackEvent(name, event.getDetails());
     }
 }
