@@ -24,8 +24,8 @@ pipeline {
             steps {
                 script {
                     def changelog = sh(returnStdout: true, script: "git log --format='format:- %s' --no-merges \$(git describe --abbrev=0 --tags \$(git rev-list --tags --skip=1  --max-count=1))..HEAD").trim()
-                    appCenter apiToken: APP_CENTER_API_TOKEN, appName: 'Gini-Vision-Lib-Showcase', distributionGroups: 'Public', notifyTesters: true, ownerName: 'Gini-Team-Organization', pathToApp: 'app/build/outputs/apk/newest/release/app-newest-release.apk', pathToDebugSymbols: 'app/build/outputs/mapping/newest/release/mapping.txt', releaseNotes: changelog
-                    appCenter apiToken: APP_CENTER_API_TOKEN, appName: 'Gini-Vision-Lib-Showcase-legacy', distributionGroups: 'Public', notifyTesters: true, ownerName: 'Gini-Team-Organization', pathToApp: 'app/build/outputs/apk/legacy/release/app-legacy-release.apk', pathToDebugSymbols: 'app/build/outputs/mapping/legacy/release/mapping.txt', releaseNotes: changelog
+                    appCenter apiToken: APP_CENTER_API_TOKEN, appName: 'Gini-Vision-Lib-Showcase', distributionGroups: 'Public', notifyTesters: true, ownerName: 'Gini-Team-Organization', pathToApp: 'app/build/outputs/apk/newest/release/app-newest-release.apk', pathToDebugSymbols: 'app/build/outputs/mapping/newestRelease/mapping.txt', releaseNotes: changelog
+                    appCenter apiToken: APP_CENTER_API_TOKEN, appName: 'Gini-Vision-Lib-Showcase-legacy', distributionGroups: 'Public', notifyTesters: true, ownerName: 'Gini-Team-Organization', pathToApp: 'app/build/outputs/apk/legacy/release/app-legacy-release.apk', pathToDebugSymbols: 'app/build/outputs/mapping/legacyRelease/mapping.txt', releaseNotes: changelog
                 }
             }
         }
