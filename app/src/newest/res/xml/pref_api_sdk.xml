@@ -32,14 +32,6 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_category_certificate_pinning">
-
-        <SwitchPreference android:defaultValue="@string/enable_certificate_pinning"
-            android:key="@string/pref_key_api_sdk_enable_certificate_pinning"
-            android:title="@string/pref_title_enable_certificate_pinning"/>
-
-    </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/pref_category_requests">
 
         <EditTextPreference

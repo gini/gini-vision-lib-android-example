@@ -65,8 +65,6 @@ public class GVLExampleApp extends BaseGVLExampleApp {
                 this.getString(R.string.pref_key_api_sdk_nr_of_retries), "3");
         final String backoffMultiplier = configuration.getString(
                 this.getString(R.string.pref_key_api_sdk_backoff_multiplier), "1");
-        final boolean enableCertificatePinning = configuration.getBoolean(
-                this.getString(R.string.pref_key_api_sdk_enable_certificate_pinning), true);
 
         SdkBuilder builder = new SdkBuilder(this, clientId, clientSecret, emailDomain)
                 .setGiniApiType(giniApiType)
@@ -74,10 +72,9 @@ public class GVLExampleApp extends BaseGVLExampleApp {
                 .setUserCenterApiBaseUrl(userCenterBaseUrl)
                 .setConnectionTimeoutInMs(Integer.parseInt(connectionTimeout))
                 .setMaxNumberOfRetries(Integer.parseInt(nrOfRetries))
-                .setConnectionBackOffMultiplier(Float.parseFloat(backoffMultiplier));
-        if (enableCertificatePinning) {
-            builder.setNetworkSecurityConfigResId(R.xml.network_security_config);
-        }
+                .setConnectionBackOffMultiplier(Float.parseFloat(backoffMultiplier))
+                .setNetworkSecurityConfigResId(R.xml.network_security_config);
+
         mGiniApi = builder.build();
     }
 }

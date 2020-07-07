@@ -161,8 +161,6 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 context.getString(R.string.pref_key_api_sdk_nr_of_retries), "3");
         final String backoffMultiplier = configuration.getString(
                 context.getString(R.string.pref_key_api_sdk_backoff_multiplier), "1");
-        final boolean enableCertificatePinning = configuration.getBoolean(
-                context.getString(R.string.pref_key_api_sdk_enable_certificate_pinning), true);
         final String networkLibrary = configuration.getString(
                 context.getString(R.string.pref_key_gvl_network_library), "Default");
 
@@ -173,11 +171,11 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
         if ("Accounting".equals(networkLibrary)) {
             buildAccountingNetworkLibrary(context, clientId, clientSecret, emailDomain, apiBaseUrl,
                     userCenterBaseUrl, connectionTimeout, nrOfRetries, backoffMultiplier,
-                    enableCertificatePinning, documentMetadata);
+                    documentMetadata);
         } else {
             buildDefaultNetworkLibrary(context, clientId, clientSecret, emailDomain, apiBaseUrl,
                     userCenterBaseUrl, connectionTimeout, nrOfRetries, backoffMultiplier,
-                    enableCertificatePinning, documentMetadata);
+                    documentMetadata);
         }
     }
 
@@ -185,7 +183,7 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
             final String clientSecret, final String emailDomain, final String apiBaseUrl,
             final String userCenterBaseUrl, final String connectionTimeout,
             final String nrOfRetries, final String backoffMultiplier,
-            final boolean enableCertificatePinning, final DocumentMetadata documentMetadata) {
+            final DocumentMetadata documentMetadata) {
         final GiniVisionDefaultNetworkService.Builder builder = GiniVisionDefaultNetworkService
                 .builder(context);
         builder.setBaseUrl(apiBaseUrl)
@@ -195,10 +193,9 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 .setConnectionTimeoutUnit(TimeUnit.MILLISECONDS)
                 .setMaxNumberOfRetries(Integer.parseInt(nrOfRetries))
                 .setBackoffMultiplier(Float.parseFloat(backoffMultiplier))
-                .setDocumentMetadata(documentMetadata);
-        if (enableCertificatePinning) {
-            builder.setNetworkSecurityConfigResId(R.xml.network_security_config);
-        }
+                .setDocumentMetadata(documentMetadata)
+                .setNetworkSecurityConfigResId(R.xml.network_security_config);
+
         mGiniVisionNetworkService = builder.build();
 
         mGiniVisionNetworkApi = GiniVisionDefaultNetworkApi
@@ -212,7 +209,7 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
             final String clientSecret, final String emailDomain, final String apiBaseUrl,
             final String userCenterBaseUrl, final String connectionTimeout,
             final String nrOfRetries, final String backoffMultiplier,
-            final boolean enableCertificatePinning, final DocumentMetadata documentMetadata) {
+            final DocumentMetadata documentMetadata) {
         final GiniVisionAccountingNetworkService.Builder builder = GiniVisionAccountingNetworkService
                 .builder(context);
         builder.setBaseUrl(apiBaseUrl)
@@ -222,10 +219,9 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 .setConnectionTimeoutUnit(TimeUnit.MILLISECONDS)
                 .setMaxNumberOfRetries(Integer.parseInt(nrOfRetries))
                 .setBackoffMultiplier(Float.parseFloat(backoffMultiplier))
-                .setDocumentMetadata(documentMetadata);
-        if (enableCertificatePinning) {
-            builder.setNetworkSecurityConfigResId(R.xml.network_security_config);
-        }
+                .setDocumentMetadata(documentMetadata)
+                .setNetworkSecurityConfigResId(R.xml.network_security_config);
+
         mGiniVisionNetworkService = builder.build();
 
         mGiniVisionNetworkApi = GiniVisionAccountingNetworkApi
