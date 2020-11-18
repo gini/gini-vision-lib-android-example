@@ -4,7 +4,7 @@ pipeline {
     environment {
         SIGNING_KEYSTORE_PSW = credentials('gvl-android_example-app-release-keystore-password')
         SIGNING_KEY_PSW = credentials('gvl-android_gvl-example-app-release-key-password')
-        CLIENT_CREDENTIALS = credentials('gvl-android_gvl-example-app-gini-api-client-credentials')
+        CLIENT_CREDENTIALS = credentials('gvl-android_gvl-example-app-gini-api-client-credentials2')
         APP_CENTER_API_TOKEN = credentials('gvl-android_gvl-example-app-app-center-api-token')
     }
     stages {
