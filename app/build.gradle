@@ -71,7 +71,7 @@ repositories {
     }
 }
 
-def giniVisionVersion = '4.0.0-beta5'
+def giniVisionVersion = '4.0.0-beta7'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
