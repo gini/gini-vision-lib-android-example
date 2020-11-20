@@ -3,6 +3,7 @@ package net.gini.android.gvlexample.gini;
 import android.util.Log;
 
 import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.analytics.EventProperties;
 
 import net.gini.android.vision.tracking.AnalysisScreenEvent;
 import net.gini.android.vision.tracking.CameraScreenEvent;
@@ -58,9 +59,9 @@ public class ExampleEventTracker implements EventTracker {
         Log.i("GVL Event Tracker", message.toString());
     }
 
-    private String printEventDetails(@NonNull final Map<String, String> details) {
+    private String printEventDetails(@NonNull final Map<String, Object> details) {
         final StringBuilder output = new StringBuilder();
-        for (final Map.Entry<String, String> detail : details.entrySet()) {
+        for (final Map.Entry<String, Object> detail : details.entrySet()) {
             output.append(detail.getKey())
                     .append(": ")
                     .append(detail.getValue())
@@ -72,6 +73,6 @@ public class ExampleEventTracker implements EventTracker {
     private void trackEvent(@NonNull final Event<?> event) {
         final String name =
                 event.getType().getClass().getSimpleName() + "." + event.getType().name();
-        Analytics.trackEvent(name, event.getDetails());
+        Analytics.trackEvent(name, (EventProperties) event.getDetails());
     }
 }
