@@ -12,6 +12,7 @@ import net.gini.android.vision.tracking.EventTracker;
 import net.gini.android.vision.tracking.OnboardingScreenEvent;
 import net.gini.android.vision.tracking.ReviewScreenEvent;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
@@ -73,6 +74,16 @@ public class ExampleEventTracker implements EventTracker {
     private void trackEvent(@NonNull final Event<?> event) {
         final String name =
                 event.getType().getClass().getSimpleName() + "." + event.getType().name();
-        Analytics.trackEvent(name, (EventProperties) event.getDetails());
+        final Map<String, String> properties = toProperties(event.getDetails());
+        Analytics.trackEvent(name, properties);
+    }
+
+    private Map<String, String> toProperties(@NonNull final Map<String, Object> details) {
+        final Map<String, String> properties = new HashMap<>(details.size());
+        for (Map.Entry<String, Object> entry: details.entrySet()) {
+            final String value = entry.getValue().toString();
+            properties.put(entry.getKey(), value);
+        }
+        return properties;
     }
 }
