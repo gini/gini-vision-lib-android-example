@@ -29,11 +29,6 @@
     <PreferenceCategory android:title="@string/pref_category_features">
 
         <SwitchPreference
-            android:defaultValue="@string/enable_return_assistant"
-            android:key="@string/pref_key_gvl_enable_return_assistant"
-            android:title="@string/pref_title_enable_return_assistant" />
-
-        <SwitchPreference
             android:defaultValue="@string/enable_qr_code_scanning"
             android:key="@string/pref_key_gvl_enable_qr_code_scanning"
             android:title="@string/pref_title_enable_qr_code_scanning" />

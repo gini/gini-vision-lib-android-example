@@ -3,6 +3,7 @@ package net.gini.android.gvlexample.gini;
 import android.util.Log;
 
 import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.analytics.EventProperties;
 
 import net.gini.android.vision.tracking.AnalysisScreenEvent;
 import net.gini.android.vision.tracking.CameraScreenEvent;
@@ -11,6 +12,7 @@ import net.gini.android.vision.tracking.EventTracker;
 import net.gini.android.vision.tracking.OnboardingScreenEvent;
 import net.gini.android.vision.tracking.ReviewScreenEvent;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
@@ -58,9 +60,9 @@ public class ExampleEventTracker implements EventTracker {
         Log.i("GVL Event Tracker", message.toString());
     }
 
-    private String printEventDetails(@NonNull final Map<String, String> details) {
+    private String printEventDetails(@NonNull final Map<String, Object> details) {
         final StringBuilder output = new StringBuilder();
-        for (final Map.Entry<String, String> detail : details.entrySet()) {
+        for (final Map.Entry<String, Object> detail : details.entrySet()) {
             output.append(detail.getKey())
                     .append(": ")
                     .append(detail.getValue())
@@ -72,6 +74,16 @@ public class ExampleEventTracker implements EventTracker {
     private void trackEvent(@NonNull final Event<?> event) {
         final String name =
                 event.getType().getClass().getSimpleName() + "." + event.getType().name();
-        Analytics.trackEvent(name, event.getDetails());
+        final Map<String, String> properties = toProperties(event.getDetails());
+        Analytics.trackEvent(name, properties);
+    }
+
+    private Map<String, String> toProperties(@NonNull final Map<String, Object> details) {
+        final Map<String, String> properties = new HashMap<>(details.size());
+        for (Map.Entry<String, Object> entry: details.entrySet()) {
+            final String value = entry.getValue().toString();
+            properties.put(entry.getKey(), value);
+        }
+        return properties;
     }
 }
