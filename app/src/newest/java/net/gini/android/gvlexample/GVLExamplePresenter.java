@@ -110,8 +110,6 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
                 context.getString(R.string.pref_key_gvl_flash_on_by_default), true);
         final boolean enableBackButtons = configuration.getBoolean(
                 context.getString(R.string.pref_key_gvl_enable_back_buttons), true);
-        final boolean enableReturnAssistant = configuration.getBoolean(
-                context.getString(R.string.pref_key_gvl_enable_back_buttons), true);
 
         if (enableDebugging) {
             GiniVisionDebug.enable();
@@ -122,7 +120,6 @@ public class GVLExamplePresenter extends BaseGVLExamplePresenter {
         }
 
         GiniVision.newInstance()
-                .setReturnAssistantEnabled(enableReturnAssistant)
                 .setEventTracker(new ExampleEventTracker())
                 .setGiniVisionNetworkService(mGiniVisionNetworkService)
                 .setGiniVisionNetworkApi(mGiniVisionNetworkApi)
