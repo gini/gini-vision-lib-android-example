@@ -64,6 +64,9 @@ repositories {
     // Use repo on filesystem for using local builds
     mavenLocal()
     maven {
+        url 'https://repo.gini.net/nexus/content/repositories/snapshots'
+    }
+    maven {
         url 'https://repo.gini.net/nexus/content/repositories/open'
     }
     flatDir {
@@ -71,7 +74,7 @@ repositories {
     }
 }
 
-def giniVisionVersion = '4.0.0-beta7'
+def giniVisionVersion = '4.0.0-return-assistant-SNAPSHOT'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -88,8 +91,8 @@ dependencies {
     implementation 'com.microsoft.appcenter:appcenter-analytics:3.1.0'
     implementation 'com.microsoft.appcenter:appcenter-crashes:3.1.0'
 
-    implementation("net.gini:gini-vision-lib:$giniVisionVersion") {
-        exclude group: 'com.android.support', module: 'support-v13'
+    implementation("net.gini:gini-vision-lib:4.0.0-return-assistant-20210204.150929-1") {
+        transitive = true
     }
     newestImplementation "net.gini:gini-vision-network-lib:$giniVisionVersion"
     newestImplementation "net.gini:gini-vision-accounting-network-lib:$giniVisionVersion"
