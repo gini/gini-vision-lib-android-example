@@ -6,4 +6,5 @@
     <string name="pref_title_enable_flash_toggle">Flasch-Schalter anzeigen</string>
     <string name="pref_title_flash_on_by_default">Flasch standardmäßig einschalten</string>
     <string name="pref_title_enable_back_buttons">Alle Back Buttons einschalten</string>
+    <string name="pref_title_enable_return_assistant">Retouren Assistent einschalten</string>
 </resources>

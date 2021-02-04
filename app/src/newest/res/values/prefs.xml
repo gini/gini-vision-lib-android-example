@@ -10,6 +10,7 @@
     <string name="pref_key_gvl_enable_flash_toggle">pref_key_gvl_enable_flash_toggle</string>
     <string name="pref_key_gvl_flash_on_by_default">pref_key_gvl_flash_on_by_default</string>
     <string name="pref_key_gvl_enable_back_buttons">pref_key_gvl_enable_back_buttons</string>
+    <string name="pref_key_gvl_enable_return_assistant">pref_key_gvl_enable_return_assistant</string>
 
     <!-- Default configuration -->
     <!-- GVL -->
@@ -18,4 +19,5 @@
     <string name="enable_flash_toggle">true</string>
     <string name="enable_back_buttons">true</string>
     <string name="flash_on_by_default">true</string>
+    <string name="enable_return_assistant">true</string>
 </resources>
