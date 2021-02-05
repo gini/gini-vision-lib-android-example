@@ -3,7 +3,7 @@ Release Documentation
 
 When a commit is ready to be released you only have to:
 
-1. Tag the commit with a semver version (see below) and push it
+1. Increment app version name and tag the commit with a semver version (see below) and push it
 2. Start a build on our Jenkins, if it didn't start automatically
 
 App Versioning

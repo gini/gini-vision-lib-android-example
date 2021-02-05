@@ -3,7 +3,7 @@ apply from: rootProject.file('gradle/git_utils.gradle')
 apply from: rootProject.file('gradle/gini_credentials.gradle')
 
 def appVersionCode = gitTagCount() > 0 ? gitTagCount() : 1
-def appVersionName = "${gitDescribe() ?: '0.0.0'} (${appVersionCode})"
+def appVersionName = "1.16.0-return-assistant (${appVersionCode})"
 
 android {
     compileSdkVersion 30
