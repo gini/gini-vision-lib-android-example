@@ -17,8 +17,8 @@ pipeline {
         stage('Upload to Hockeyapp') {
             when {
                 expression {
-                    def tag = sh(returnStdout: true, script: 'git tag --contains $(git rev-parse HEAD)').trim()
-                    return !tag.isEmpty()
+                    def status = sh(returnStatus: true, script: 'git describe --exact-match HEAD')
+                    return status == 0
                 }
             }
             steps {
