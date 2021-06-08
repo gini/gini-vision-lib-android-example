@@ -66,9 +66,6 @@ repositories {
     maven {
         url 'https://repo.gini.net/nexus/content/repositories/open'
     }
-    flatDir {
-        dirs 'libs'
-    }
 }
 
 def giniVisionVersion = '4.0.1'
