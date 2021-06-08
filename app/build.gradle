@@ -66,12 +66,9 @@ repositories {
     maven {
         url 'https://repo.gini.net/nexus/content/repositories/open'
     }
-    flatDir {
-        dirs 'libs'
-    }
 }
 
-def giniVisionVersion = '4.0.0'
+def giniVisionVersion = '4.0.1'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
