@@ -1,0 +1,154 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base styles to allow easy overriding for other resource qualifiers -->
+    <style name="Gini.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:fontFamily">@font/hind_madurai</item>
+        <item name="fontFamily">@font/hind_madurai</item>
+    </style>
+
+    <style name="Gini.TextAppearance.SettingsHeader" parent="Gini.TextAppearance.Title">
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="GiniVisionTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/gv_action_bar</item>
+        <item name="colorPrimaryDark">@color/gv_status_bar</item>
+        <item name="colorAccent">@color/gv_accent</item>
+        <item name="actionBarStyle">@style/GiniVisionTheme.ActionBar</item>
+        <item name="android:fontFamily">@font/hind_madurai</item>
+        <item name="fontFamily">@font/hind_madurai</item>
+    </style>
+
+    <style name="GiniVisionTheme.Analysis.AnalysingMessage.TextStyle" parent="Root.GiniVisionTheme.Analysis.AnalysingMessage.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Analysis.Hint.TextStyle" parent="Root.GiniVisionTheme.Analysis.Hint.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Analysis.HintHeadline.TextStyle" parent="Root.GiniVisionTheme.Analysis.HintHeadline.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Analysis.PdfFilename.TextStyle" parent="Root.GiniVisionTheme.Analysis.PdfFilename.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Analysis.PdfPageCount.TextStyle" parent="Root.GiniVisionTheme.Analysis.PdfPageCount.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Camera.DocumentImportHint.TextStyle" parent="Root.GiniVisionTheme.Camera.DocumentImportHint.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Camera.DocumentImportSubtitle.TextStyle" parent="Root.GiniVisionTheme.Camera.DocumentImportSubtitle.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Camera.Error.NoPermission.Button.TextStyle" parent="Root.GiniVisionTheme.Camera.Error.NoPermission.Button.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Camera.Error.NoPermission.TextStyle" parent="Root.GiniVisionTheme.Camera.Error.NoPermission.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Camera.ImageStackBadge.TextStyle" parent="Root.GiniVisionTheme.Camera.ImageStackBadge.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Camera.ImageStackSubtitle.TextStyle" parent="Root.GiniVisionTheme.Camera.ImageStackSubtitle.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Camera.QRCodeDetectedPopup.Message1.TextStyle" parent="Root.GiniVisionTheme.Camera.QRCodeDetectedPopup.Message1.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Camera.QRCodeDetectedPopup.Message2.TextStyle" parent="Root.GiniVisionTheme.Camera.QRCodeDetectedPopup.Message2.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.FileImport.Header.TextStyle" parent="Root.GiniVisionTheme.Help.FileImport.Header.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.FileImport.Section.Body.TextStyle" parent="Root.GiniVisionTheme.Help.FileImport.Section.Body.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.FileImport.Section.Title.TextStyle" parent="Root.GiniVisionTheme.Help.FileImport.Section.Title.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.Item.TextStyle" parent="Root.GiniVisionTheme.Help.Item.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.PhotoTips.Header.TextStyle" parent="Root.GiniVisionTheme.Help.PhotoTips.Header.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.PhotoTips.Tip.TextStyle" parent="Root.GiniVisionTheme.Help.PhotoTips.Tip.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.SupportedFormats.Item.Header.TextStyle" parent="Root.GiniVisionTheme.Help.SupportedFormats.Item.Header.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Help.SupportedFormats.Item.TextStyle" parent="Root.GiniVisionTheme.Help.SupportedFormats.Item.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.NoResults.Header.TextStyle" parent="Root.GiniVisionTheme.NoResults.Header.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.NoResults.Headline.TextStyle" parent="Root.GiniVisionTheme.NoResults.Headline.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.NoResults.Tip.TextStyle" parent="Root.GiniVisionTheme.NoResults.Tip.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Onboarding.Message.TextStyle" parent="Root.GiniVisionTheme.Onboarding.Message.TextStyle">
+        <item name="gvCustomFont">hind_madurai_light.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Review.BottomPanel.TextStyle" parent="Root.GiniVisionTheme.Review.BottomPanel.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Review.MultiPage.AddPagesSubtitle.TextStyle" parent="Root.GiniVisionTheme.Review.MultiPage.AddPagesSubtitle.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Review.MultiPage.PageIndicator.TextStyle" parent="Root.GiniVisionTheme.Review.MultiPage.PageIndicator.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Review.MultiPage.ReorderPagesTip.TextStyle" parent="Root.GiniVisionTheme.Review.MultiPage.ReorderPagesTip.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Review.MultiPage.ThumbnailBadge.TextStyle" parent="Root.GiniVisionTheme.Review.MultiPage.ThumbnailBadge.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Snackbar.Error.Button.TextStyle" parent="Root.GiniVisionTheme.Snackbar.Error.Button.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+    <style name="GiniVisionTheme.Snackbar.Error.TextStyle" parent="Root.GiniVisionTheme.Snackbar.Error.TextStyle">
+        <item name="gvCustomFont">hind_madurai_regular.ttf</item>
+    </style>
+
+</resources>
