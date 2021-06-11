@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#0066B3</color>
+    <color name="primary_dark">#033266</color>
+    <color name="accent">#FF6600</color>
+    <color name="start_button">#0066B3</color>
+    <color name="text_app_version">#0066B3</color>
+    
+    <color name="gv_action_bar">@color/primary</color>
+    <color name="gv_status_bar">@color/primary_dark</color>
+    <color name="gv_accent">@color/accent</color>
+    <color name="gv_onboarding_fab">@color/accent</color>
+    <color name="gv_onboarding_fab_pressed">#CA5100</color>
+    <color name="gv_review_fab">@color/accent</color>
+    <color name="gv_review_fab_pressed">#CA5100</color>
+    <color name="gv_analysis_activity_indicator">@color/accent</color>
+    <color name="gv_analysis_pdf_info_background">@color/primary_dark</color>
+    <color name="gv_multi_page_thumbnail_highlight_strip">@color/accent</color>
+    <color name="gv_photo_tips_button">@color/accent</color>
+    <color name="gv_file_import_section_number">@color/accent</color>
+</resources>
