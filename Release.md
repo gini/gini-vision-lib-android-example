@@ -19,7 +19,7 @@ For example version `1.2.3` would mean we are at the first major release from th
 Jenkins Pipeline Build Job
 ----
 
-The build job uploads the app to [Hockeyapp](https://rink.hockeyapp.net/manage/apps/657872) and you can share the new version with the [Public Page](https://rink.hockeyapp.net/apps/972db965d54d43ceaa6509f63e7208c5).
+The build job uploads the app to [App Center](https://appcenter.ms/orgs/Gini-Team-Organization/apps/Gini-Vision-Lib-Showcase) and you can share the new version with the [Public Page](https://install.appcenter.ms/orgs/gini-team-organization/apps/gini-vision-lib-showcase/distribution_groups/public).
 
 > Note:
 > The [Jenkinsfile](Jenkinsfile) contains the steps the build on Jenkins performs.
